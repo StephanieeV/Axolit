@@ -1,0 +1,472 @@
+{% extends "layout.html.twig" %}
+{% block titre_page %}Axolit - Produit {% endblock %}
+{% block link_css %}<link href="./css/page_produit.css" rel="stylesheet">{% endblock %}
+{% block accueil %} class="btn btn-rose"{% endblock %}
+{% block vendre %}class="btn btn-rose "{% endblock %}
+{% block acheter %}class="btn btn-rose "{% endblock %}
+{% block reparer %}class="btn btn-rose "{% endblock %}
+{% block contenu %}
+
+
+
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-8">
+                <div class="card" >
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                <h3>{% block titre %}{% endblock %}</h3>
+                                <h4>Prix : {% block prix %}{% endblock %}</h4>
+                                <div class="row justify-content-center">
+                                    <img {% block photo %}{% endblock %} style="width: 450px;">
+                                </div>
+                                <br>
+                                <h5 class="card-title">Description</h5>
+                                <p class="card-text text-justify">{% block description %}{% endblock %}</p>
+                                <div>
+                                    <h5 class="card-title">Caractéristiques</h5>
+                                    <p class="card-text">Type : {% block type %}{% endblock %}<br>
+                                    Modèle : {% block modele %}{% endblock %}<br>
+                                    Année : {% block annee %}{% endblock %}<br>
+                                    Couleur: {% block couleur %}{% endblock %}<br>
+                                    OS et version : {% block version %}{% endblock %}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-1 text-right">
+                                <a href=""  data-toggle="modal" data-target="#myModal"><img src="./css/svg/icone/signaler.svg" style="width: 35px;"></a>
+                                <!-- The Modal -->
+                                <div class="modal" id="myModal">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+
+                                      <!-- Modal Header -->
+                                      <div class="modal-header">
+                                        <h4 class="modal-title">Signaler une annonce</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                      </div>
+
+                                      <!-- Modal body -->
+                                      <div class="modal-body">
+                                        <form>
+                                          <label for="checkbox">Motif :</label>
+                                          <div class="liste_motif">
+                                              <input type="checkbox" name="checkbox1" value="1"> Contenu indésirable<br>
+                                              <input type="checkbox" name="checkbox2" value="2"> Fraude<br>
+                                              <input type="checkbox" name="checkbox4" value="3"> Arnaque<br>
+                                              <input type="checkbox" name="checkbox3" value="4"> Professionnel<br>
+                                              <input type="checkbox" name="checkbox4" value="5"> Doublon<br>
+                                              <input type="checkbox" name="checkbox5" value="6"> Autre<br>
+                                          </div>
+                                          <label for="input/text">Message :</label>
+                                          <input class="form-control" type="text" name="message" placeholder="Décrivez pourquoi vous signalez...">
+                                        </form>
+                                      </div>
+
+                                      <!-- Modal footer -->
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" name="bouton annuler" data-dismiss="modal">Annuler</button>
+                                        <button type="button" class="btn btn-danger" name="bouton envoyer" data-dismiss="modal">Envoyer</button>
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center text-md-left">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img {% block photo_profil %}{% endblock %} alt="photo profil" class="photo_profil">
+                            </div>
+                            <div class="col-md-8 offset-md-2">
+                                <h3 class="card-title">{% block nom %}{% endblock %}</h3>
+                                <h4 class="card-text"><img src="./css/svg/icone/localisation.svg" alt="icone de localisation"> {% block ville_profil %}{% endblock %}</h4>
+                                <img src="./css/svg/icone/reparer.svg" class="badge" alt="badge de réparateur">
+                                <img src="./css/svg/icone/vendre.svg" class="badge"  alt="badge de réparateur">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                            <table>
+                            <tr>
+                                <tr>
+                                    <div class="row justify-content-center">
+                                        <img src="./css/svg/icone/telephone.svg" id="icone_tel" alt="icone telephone" >
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="row justify-content-center">
+                                        <button class="btn-rose btn btn-primary btn-sm" type="button" name="voir numero telepone" data-toggle="modal" data-target=".bd-numero-modal-sm">Voir le numéro</button>
+                                        <div class="modal fade bd-numero-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                  <div class="modal-body">
+                                                      {% block numeroTelephone %}{% endblock %}
+                                                      <button type="button" class="close" data-dismiss="modal">
+                                                      <span>&times;</span>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tr>
+                            </tr>
+                            </table>
+                        </div>
+                            <div class="col-md-6">
+                                <table>
+                                <tr>
+                                    <tr>
+                                        <div class="row justify-content-center">
+                                            <img src="./css/svg/icone/mail.svg" id="icone_mail" alt="icone mail">
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div class="row justify-content-center">
+                                            <button class="btn-rose btn btn-primary btn-sm" type="button" name="bouton envoie mail" data-toggle="modal" data-target=".bd-mail-modal-sm">Envoyer un mail</button>
+                                            <div class="modal fade bd-mail-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-content">
+                                                      <div class="modal-body">
+                                                        {% block adresseMail %}{% endblock %}
+                                                        <button type="button" class="close" data-dismiss="modal">
+                                                        <span>&times;</span>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </tr>
+                                </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row justify-content-center">
+                            <a {% block pageProfil %}{% endblock %}><button class="btn-rose btn btn-primary btn-sm" name="bouton voir profil" type="button">Voir le profil</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <h2>Localisation</h2>
+        <br>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d90615.62084142302!2d-0.7510120414918734!3d44.786143385329645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd54d8f9227cb8a3%3A0x3ace1d334bf95f98!2s33600%20Pessac!5e0!3m2!1sfr!2sfr!4v1574255940564!5m2!1sfr!2sfr" width="700" height="300" frameborder="0" style="border:0;" allowfullscreen="" class="col"></iframe>        
+        <br>
+
+        <h4 class="card-text"><img src="./css/svg/icone/localisation.svg" alt="icone de localisation"> Pessac, 33600</h4>
+
+        <br>
+        <h2>Annonces similaires</h2>
+        <br>
+
+        <div id="carouselExampleIndicators" class="carousel slide carousel-pc" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+            <div class="sous-categorie container">
+              <div class="row justify-content-center ">
+                <div class="col-auto">
+                  <a href="#">
+                    <p class="photo-annonces">
+                      <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                      <span class="texte-photo "><u>IPhone X</u><br>Ecran cassé + batterie en fin de vie</span>
+                    </p>
+                  </a>
+                </div>
+                <div class="col-auto">
+                    <a href="#">
+                      <p class="photo-annonces">
+                        <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                        <span class="texte-photo"><u>IPhone X</u><br>Ecran cassé + batterie en fin de vie</span>
+                      </p>
+                    </a>
+                  </div>
+                  <div class="col-auto">
+                      <a href="#">
+                        <p class="photo-annonces">
+                          <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                          <span class="texte-photo"><u>IPhone X</u><br>Ecran cassé + batterie en fin de vie</span>
+                        </p>
+                      </a>
+                  </div>
+              </div>
+            </div>
+            </div>
+            <div class="carousel-item">
+                        <div class="sous-categorie container">
+                    <div class="row justify-content-center ">
+                        <div class="col-auto">
+                        <a href="#">
+                            <p class="photo-annonces">
+                            <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                            <span class="texte-photo "><u>IPhone X</u><br>Ecran cassé + batterie en fin de vie</span>
+                            </p>
+                        </a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="#">
+                            <p class="photo-annonces">
+                                <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                                <span class="texte-photo"><u>IPhone X</u><br>Ecran cassé + batterie en fin de vie</span>
+                            </p>
+                            </a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="#">
+                                <p class="photo-annonces">
+                                <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                                <span class="texte-photo"><u>IPhone X</u><br>Ecran cassé + batterie en fin de vie</span>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            <div class="carousel-item">
+                        <div class="sous-categorie container">
+                    <div class="row justify-content-center ">
+                        <div class="col-auto">
+                        <a href="#">
+                            <p class="photo-annonces">
+                            <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                            <span class="texte-photo "><u>IPhone X</u><br>Ecran cassé + batterie en fin de vie</span>
+                            </p>
+                        </a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="#">
+                            <p class="photo-annonces">
+                                <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                                <span class="texte-photo"><u>IPhone X</u><br>Ecran cassé + batterie en fin de vie</span>
+                            </p>
+                            </a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="#">
+                                <p class="photo-annonces">
+                                <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                                <span class="texte-photo"><u>IPhone X</u><br>Ecran cassé + batterie en fin de vie</span>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Précédent</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Suivant</span>
+            </a>
+        </div>
+
+
+
+
+        <div id="carouselExampleIndicatorsm" class="carousel slide carousel-m" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicatorsm" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicatorsm" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicatorsm" data-slide-to="2"></li>
+                <li data-target="#carouselExampleIndicatorsm" data-slide-to="3"></li>
+                <li data-target="#carouselExampleIndicatorsm" data-slide-to="4"></li>
+                <li data-target="#carouselExampleIndicatorsm" data-slide-to="5"></li>
+                <li data-target="#carouselExampleIndicatorsm" data-slide-to="6"></li>
+                <li data-target="#carouselExampleIndicatorsm" data-slide-to="7"></li>
+                <li data-target="#carouselExampleIndicatorsm" data-slide-to="8"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+            <div class="sous-categorie container">
+              <div class="row justify-content-center ">
+                <div class="col-auto">
+                  <a href="#">
+                    <p class="photo-annonces">
+                      <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                      <div class="carousel-caption d-block">
+                       <h5>Second slide label</h5>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                     </div>
+                   </a>
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+            </div>
+                <div class="carousel-item">
+            <div class="sous-categorie container">
+              <div class="row justify-content-center ">
+                <div class="col-auto">
+                  <a href="#">
+                    <p class="photo-annonces">
+                      <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                      <div class="carousel-caption d-block">
+                       <h5>Second slide label</h5>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                     </div>
+                   </a>
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+            </div>
+                <div class="carousel-item">
+            <div class="sous-categorie container">
+              <div class="row justify-content-center ">
+                <div class="col-auto">
+                  <a href="#">
+                    <p class="photo-annonces">
+                      <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                      <div class="carousel-caption d-block">
+                       <h5>Second slide label</h5>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                     </div>
+                   </a>
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+            </div>
+                <div class="carousel-item">
+            <div class="sous-categorie container">
+              <div class="row justify-content-center ">
+                <div class="col-auto">
+                  <a href="#">
+                    <p class="photo-annonces">
+                      <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                      <div class="carousel-caption d-block">
+                       <h5>Second slide label</h5>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                     </div>
+                   </a>
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+            </div>
+                <div class="carousel-item">
+            <div class="sous-categorie container">
+              <div class="row justify-content-center ">
+                <div class="col-auto">
+                  <a href="#">
+                    <p class="photo-annonces">
+                      <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                      <div class="carousel-caption d-block">
+                       <h5>Second slide label</h5>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                     </div>
+                   </a>
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+            </div>
+                <div class="carousel-item">
+            <div class="sous-categorie container">
+              <div class="row justify-content-center ">
+                <div class="col-auto">
+                  <a href="#">
+                    <p class="photo-annonces">
+                      <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                      <div class="carousel-caption d-block">
+                       <h5>Second slide label</h5>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                     </div>
+                   </a>
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+            </div>
+                <div class="carousel-item">
+            <div class="sous-categorie container">
+              <div class="row justify-content-center ">
+                <div class="col-auto">
+                  <a href="#">
+                    <p class="photo-annonces">
+                      <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                      <div class="carousel-caption d-block">
+                       <h5>Second slide label</h5>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                     </div>
+                   </a>
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+            </div>
+                <div class="carousel-item">
+            <div class="sous-categorie container">
+              <div class="row justify-content-center ">
+                <div class="col-auto">
+                  <a href="#">
+                    <p class="photo-annonces">
+                      <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                      <div class="carousel-caption d-block">
+                       <h5>Second slide label</h5>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                     </div>
+                   </a>
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+            </div>
+                <div class="carousel-item">
+            <div class="sous-categorie container">
+              <div class="row justify-content-center ">
+                <div class="col-auto">
+                  <a href="#">
+                    <p class="photo-annonces">
+                      <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                      <div class="carousel-caption d-block">
+                       <h5>Second slide label</h5>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                     </div>
+                   </a>
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicatorsm" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Précédent</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicatorsm" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Suivant</span>
+            </a>
+        </div>
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+/* 404 */
+.quatrecentquatre{
+    font-family: 'Bebas Neue', cursive;
+    text-decoration: none;
+    color: black;
+    position: relative;
+    top: 50px;
+}
+    
+.qcqa:hover{
+    text-decoration: none;
+    color: grey;
+}

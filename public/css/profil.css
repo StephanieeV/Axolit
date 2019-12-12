@@ -1,0 +1,32 @@
+/* 
+    Badges
+*/
+
+.badge{
+    width: 100px;
+}
+
+/*
+    ..............Notes
+*/
+
+.td-note-gauche{
+    text-align: left;
+    float: left;
+ }
+
+ .td-note-droite{
+    text-align: right;
+ }
+
+ .table-note{
+    margin: auto;
+ }
+
+ /*
+    Signaler
+*/
+
+.liste_motif{
+    text-align: left;
+}

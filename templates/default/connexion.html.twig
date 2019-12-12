@@ -1,0 +1,43 @@
+{% extends "layout.html.twig" %}
+{% block titre_page %}Axolit - Connexion{% endblock %}
+{% block accueil %} class="btn btn-rose "{% endblock %}
+{% block vendre %}class="btn btn-rose "{% endblock %}
+{% block acheter %}class="btn btn-rose "{% endblock %}
+{% block reparer %}class="btn btn-rose "{% endblock %}
+{% block contenu %}
+
+        <div class="container">
+            <div class="card">
+            <h5 class="card-header">Connexion</h5>
+                <div class="card-body text-center">
+                    <form method="post" action="connexion.php">
+                        <div class="form-group row col-md-6 offset-md-3">
+                            <label for="email">Adresse e-mail :</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text" id="btnGroupAddon">@</div>
+                                </div>
+                                <input type="email" class="form-control" id="email" placeholder="E-mail" required="Veuillez renseigner ce champ" name="email">
+                            </div>
+                        </div>
+                        <div class="form-group row col-md-6 offset-md-3">
+                            <label for="mdp">Mot de passe :</label>
+                            <input type="password" class="form-control" id="mdp" placeholder="Mot de passe" required="Veuillez renseigner ce champ" name="mdp">
+                        </div>
+                        <a href="#">Mot de passe oublié ?</a>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="connexion">
+                            <label class="form-check-label" for="connexion">Se souvenir de moi</label>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-rose btn-primary">Me connecter</button>
+                    </form>
+                </div>
+                <div class="card-footer text-muted text-center">
+                Vous n'avez pas de compte ?
+                <a href="inscription.php">Créer un compte</a>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

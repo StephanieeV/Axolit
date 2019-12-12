@@ -1,0 +1,186 @@
+{% extends "layout.html.twig" %}
+
+{% block link_css %}
+<link href="{{asset('css/accueil.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block accueil %} class="btn btn-rose  active"{% endblock %}
+{% block vendre %}class="btn btn-rose "{% endblock %}
+{% block acheter %}class="btn btn-rose "{% endblock %}
+{% block reparer %}class="btn btn-rose "{% endblock %}
+
+{% block titre_page %}Axolit - Accueil{% endblock %}
+
+{% block contenu %}
+<div id="banniere">
+ <div class="texte-ban">
+    <h1>Bienvenue sur AxoliT !</h1>
+    <h2>Vend, Achète, Répare</h2>
+ </div>
+</div>
+
+<div id="banniere_smartphone">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title text-center">Bienvenue sur AxoliT !</h1>
+            <h2 class="card-text text-center">Vend, Achète, Répare</h2>
+            <div class="col-xs-3">
+              <form class="form-inline justify-content-center">
+                <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Search">
+                <button class="btn bouton-search" name="rechercher" type="submit">Rechercher</button>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================================================================================ -->
+<div class="content">
+ <div class="categorie">
+    <h3>
+        <span class="trait">Démarre ton Projet</span>
+    </h3>
+    <div class="container sous-categorie">
+        <div class="row justify-content-center">
+          <div class="col col-xs-4">
+            <table>
+              <tr>
+                <td><a href="vendre.php"><img class="badges-grand img-fluid repare" alt="badge vendre" src="./css/svg/icone/vendre.svg"></a></td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="vendre.php"><button class="btn-rosea btn-rose btn btn-primary" name="vendre" type="button">Vendre</button></a>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="col col-xs-4">
+              <table>
+                  <tr>
+                      <td><a href="liste_produits.php"><img class="badges-grand img-fluid repare" alt="badge acheter" src="./css/svg/icone/acheter.svg"></a></td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <a href="liste_produits.php"><button class="btn-rosea btn-rose btn btn-primary" name="acheter" type="button">Acheter</button></a>
+                      </td>
+                  </tr>
+                </table>
+          </div>
+          <div class="col-auto col-xs-4">
+              <table>
+                  <tr>
+                      <td><a href="liste_reparation.php"><img id="repare" class="badges-grand img-fluid repare" alt="badge reparer" src="./css/svg/icone/reparer.svg"></a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="liste_reparation.php"><button class="btn-rosea btn-rose btn btn-primary" name="reparer" type="button">Réparer</button></a></td>
+                  </tr>
+                </table>
+          </div>
+
+      </div>
+    </div>
+ </div>
+
+
+ <div class="carouselProduit">
+    <h3>
+      <span class="trait">Dernières annonces mises en ligne</span>
+    </h3>
+  <div class="lecarousel">
+ <div id="Indicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#Indicators" data-slide-to="0" class="active"></li>
+        <li data-target="#Indicators" data-slide-to="1"></li>
+        <li data-target="#Indicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+        <a href="produit1.php">
+          <img src="img/telephone.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-block">
+            <h5>Iphone X</h5>
+            <p>Vitre cassée.</p>
+          </div>
+        </a>
+        </div>
+        <div class="carousel-item">
+        <a href="produit.php">
+          <img src="./css/images/phone1.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-block">
+            <h5>Second slide label</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </a>
+        </div>
+        <div class="carousel-item">
+        <a href="produit.php">
+          <img src="./css/images/phone1.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-block">
+            <h5>Second slide label</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </a>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#Indicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#Indicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+ </div>
+ </div>
+
+
+
+ <div id="LastAnnoncesPC" class="categorie">
+    <h3>
+      <span class="trait">Dernières annonces mises en ligne</span>
+    </h3>
+    <div class="photo_last_annonces">
+      <div class="sous-categorie container">
+        <div class="row justify-content-center ">
+          <div class="col-auto">
+            <a href="produit1.php">
+              <p class="photo-annonces">
+                <img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
+                <span class="texte-photo "><u>IPhone 8</u><br>Ecran noir</span>
+              </p>
+            </a>
+          </div>
+          <div class="col-auto">
+              <a href="produit2.php">
+                <p class="photo-annonces">
+                  <img class="photo img-fluid" src="img/telephone.jpg" alt="annonce récente">
+                  <span class="texte-photo"><u>Samsung</u><br>Vitre cassé</span>
+                </p>
+              </a>
+            </div>
+            <div class="col-auto">
+                <a href="produit3.php">
+                  <p class="photo-annonces">
+                    <img class="photo img-fluid" src="./css/images/ordinateuracer.jpg" alt="annonce récente">
+                    <span class="texte-photo"><u>Acer</u><br>Batterie en fin de vie</span>
+                  </p>
+                </a>
+            </div>
+
+        </div>
+        </div>
+        </div>
+      </div>
+
+
+ <div class="categorie">
+      <h3><span class="trait">Retrouve nous sur les réseaux sociaux !</span></h3>
+      <div class="sous-categorie">
+             <a href="https://twitter.com/AxolitFr"><img class="btn-reseaux-sociaux-body img-fluid" alt="lien et icone twitter" src="./css/svg/icone/twitter.svg"></a>
+             <a href="https://www.facebook.com/AxoIIT/"><img class="btn-reseaux-sociaux-body img-fluid" alt="lien et icone facebook" src="./css/svg/icone/facebook.svg"></a>
+        </div>
+      </div>
+</div>
+</div>
+{% endblock %}

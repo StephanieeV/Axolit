@@ -1,0 +1,88 @@
+/*
+    Annonces
+*/
+.photo{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 128, .5);
+    width: 250px;
+    /*height: 350px;*/
+    
+}
+
+.photo-annonces{
+    float:left;
+    position:relative;
+ }
+
+.photo-annonces .texte-photo{
+    position:absolute;
+    bottom:0;
+    right:0px;
+    background-color: rgba(50,50,50,0.6);
+    width:300px;
+    font-size: 20px;
+    color:white;
+    text-align: left;
+    padding: 10px;
+    visibility: hidden;
+ }
+
+.photo-annonces:hover .texte-photo{
+     visibility: visible;
+ }
+
+ /*
+    Signaler
+*/
+
+.liste_motif{
+    text-align: left;
+}
+
+/*
+    Profil
+*/
+.photo_profil{
+    width: 90px; 
+    height: 90px;
+}
+/*
+    Icone
+*/
+#icone_tel{
+    width: 35px; 
+    height:35px
+}
+#icone_mail{
+    width: 40px; 
+    height:35px
+}
+
+/*
+    Badges
+*/
+.badge{
+    width: 40px;
+}
+
+
+/* 
+    Medias 
+*/
+
+
+   /* Specificité smartphone*/
+   @media (max-width: 500px){
+     .carousel-pc{
+           display: none;
+    }
+ 
+   }
+   /*  ****************************************************************      */
+   /* Specificité ordinateur */
+@media (min-width:501px){
+     .carousel-m{
+        display: none;
+    }
+}

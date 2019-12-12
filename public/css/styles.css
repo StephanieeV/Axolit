@@ -1,0 +1,191 @@
+/*
+  Navbar
+*/
+
+.btn-nav{
+    width: 50px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.nav-link{
+    color: white !important;
+    display: inline;
+}
+
+#logo {
+    min-width: 100px;
+    width: 200px;
+
+    position: relative;
+}
+nav{
+    margin-bottom: 15px;
+    padding: none;
+}
+
+
+/*
+    Body
+*/  
+
+h1, h3{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+h2, h4{
+    font-family: 'Roboto', sans-serif;
+}
+
+p{
+    font-family: 'Raleway', sans-serif;
+}
+
+.btn-rose{
+    background-color: #967ebe ;
+    border: none;
+    margin-right: 5px;
+    margin-left: 5px;
+    color: white;
+}
+
+.btn-rose:hover{
+    background-color: #c8b4d8;
+    color: white;
+}
+
+/*
+    Footer
+*/
+
+footer a{
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+    
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: middle;
+}
+footer p{
+    color: white; 
+}
+.fixe{
+    flex-shrink: none;
+}
+footer a:hover{
+    color: rgb(52, 172, 180);
+    text-decoration: none;
+} 
+footer{
+   height: auto;
+}
+.btn-reseaux-sociaux-footer{
+    width: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/*nav bar */
+.ico{
+    width: 10%;
+}
+#ma_nav{
+    min-height: 50px;
+    }
+    #img_nav_bar{
+        height: 50px;
+    }
+    .card.presentation{
+        width: initial;
+        display: block;
+    }
+    
+    .active{
+        background: #c8b4d8;
+    }
+/*
+    Inutilisé/Je comprend pas à quoi il sert et où
+*/
+
+/*
+.mention{
+    margin-top: 10px;
+}
+........
+header{
+    background: url(../images/fond.jpg) no-repeat center center fixed;
+    color: darkslategrey;
+}
+
+.section{
+    border: none;   
+    outline: none;
+    padding: 10px 16px;
+    background-color: var(--mauve-axolit);
+    cursor: pointer;
+}
+
+.sectionactive {
+    background-color: #666;
+}
+
+#present{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+}
+
+#present p{
+    margin-top: 30px;
+}  
+
+#present h2{
+    font-family: 'Rubik', sans-serif;
+  
+}
+
+.bloc{
+    border: 2px solid grey; 
+    border-radius: 15px;
+    padding: 2%;
+    background-color:white;
+}
+
+.card{
+    margin-top: 10%;
+    margin-bottom: 10%;
+    border: 2px solid grey; 
+    border-radius: 15px;
+    padding: 5%;
+    background-color:white;
+}
+
+#addonee{
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    font-size: 22px;
+}
+#rsx p{
+    font-size:30px;
+}
+
+.card-title{
+    font-size: 30px;
+}
+
+header h1{
+    margin-top: 30px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 50px;
+    color: white;
+}
+header .lead{
+    font-family: 'Rubik', sans-serif;
+    font-size: 30px;
+    color: white;
+}
+
+
+*/

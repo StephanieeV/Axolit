@@ -1,0 +1,88 @@
+{% extends "layout.html.twig" %}
+{% block titre_page %}Axolit - Mes annonces{% endblock %}
+
+{% block link_css %}<link href="./css/mes_annonces.css" rel="stylesheet">{% endblock %}
+
+{% block accueil %} class="btn btn-rose "{% endblock %}
+{% block vendre %}class="btn btn-rose "{% endblock %}
+{% block acheter %}class="btn btn-rose "{% endblock %}
+{% block reparer %}class="btn btn-rose "{% endblock %}
+{% block contenu %}
+
+        <div class="container">
+           <div class="row sous-categorie">
+
+                <div class="col-md-9 offset-md-1">
+                    <h1>Liste de mes annonces</h1>
+                    <br>
+                    <p>Vous pouvez déposer une annonce.</p>
+                    <a href="annonce.php"><button class="btn-rose btn btn-primary" name="bouton poster annonce" type="button" style="margin-bottom: 25px;">Poster une annonce</button></a>
+                    <br>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src="img/telephone.jpg" class="image_tel" alt="image produit">
+                                </div>
+                                <div class="col-md-9 offset-md-1">
+                                    <h3>iPhone</h3>
+                                    <p class="text-justify">Vitre cassé</p>
+                                    <a href="#"><button class="btn-rose btn btn-primary" name="bouton voir produit" type="button">Voir le produit</button></a>
+                                    <a href="#"><button class="btn btn-light" name="modifier annonce" type="button">Modifier l'annonce</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src="img/telephone.jpg" class="image_tel" alt="image produit">
+                                </div>
+                                <div class="col-md-9 offset-md-1">
+                                    <h3>iPhone</h3>
+                                    <p class="text-justify">Vitre cassé</p>
+                                    <a href="#"><button class="btn-rose btn btn-primary"name="bouton voir produit" type="button">Voir le produit</button></a>
+                                    <a href="#"><button class="btn btn-light" name="modifier annonce" type="button">Modifier l'annonce</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src="img/telephone.jpg" class="image_tel" alt="image produit">
+                                </div>
+                                <div class="col-md-9 offset-md-1">
+                                    <h3>iPhone</h3>
+                                    <p class="text-justify">Vitre cassé</p>
+                                    <a href="#"><button class="btn-rose btn btn-primary" name="bouton voir produit" type="button">Voir le produit</button></a>
+                                    <a href="#"><button class="btn btn-light" name="modifier annonce" type="button">Modifier l'annonce</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="#" tabindex="-1">Précédente</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1<span class="sr-only">(current)</span></a></li>
+                <li class="page-item active">
+                    <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Suivante</a>
+                </li>
+            </ul>
+        </nav>
+
+{% endblock %}

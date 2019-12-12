@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="script.js"></script>
+    <link href="css/bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <link href="css/styles.css" rel="stylesheet">
+    {% block link_css %}
+    <link href="./css/404.css" rel="stylesheet">
+    {% endblock %}
+    <title>404 Page not found</title>
+</head>
+<body>  
+
+    <div class="container">
+        <div class="column justify-content-center">
+            <h1 class="text-center quatrecentquatre">Mince Votre page est introuvable</h1>
+            <p class="text-center"><a class="quatrecentquatre"  href="index.html">Mais voici une page qui est toujours disponible !</a></p>
+            <div class="row justify-content-center fixed-bottom">
+                <div id="img404" class="col-sm-4 col-xs-1"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" language="javascript">
+        document.getElementById('img404').innerHTML ='<img src="img/404/image'+ Math.round((Math.random()*3)+1)+'.jpg" id="imgq" alt="photo chien" class="img-fluid col-12" />';
+        // document.getElementById('imgq').src = "imag/404/image" + Math.floor((Math.random()*11)+1) + ".jpg";
+    </script>
+
+</body>
+</html>

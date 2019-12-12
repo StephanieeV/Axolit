@@ -1,0 +1,166 @@
+{% extends "layout.html.twig"%}
+{% block titre_page %}Axolit - Votre compte{% endblock %}
+{% block link_css %}
+<link href="./css/informations.css" rel="stylesheet">
+{% endblock %}
+
+{% block accueil %} class="btn btn-rose"{% endblock %}
+{% block vendre %}class="btn btn-rose "{% endblock %}
+{% block acheter %}class="btn btn-rose "{% endblock %}
+{% block reparer %}class="btn btn-rose "{% endblock %}
+
+{% block contenu %}
+
+        <div class="container justify-content-center">
+            <div class="card">
+                <div class="card-header">
+                    Informations utilisateur
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title text-center">Informations personnelles</h5>
+                    <br>
+                    <form>
+                    <div class="form-group row">
+                        <label for="pseudo" class="col-form-label col-sm-6 col-md-2 offset-md-3">Pseudo :</label>
+                        <div class="col-sm-6 col-md-4">
+                            <input class="form-control" type="text" name="pseudo" placeholder="Pseudo">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="radio" class="col-form-label col-sm-6 col-md-2 offset-md-3">Civilité :</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="option1"  value="option1">
+                            <label class="form-check-label" for="inlineRadio1">Mme.</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="option2"  value="option2">
+                            <label class="form-check-label" for="inlineRadio2">M.</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="nom" class="col-form-label col-sm-6 col-md-2 offset-md-3">Nom :</label>
+                        <div class="col-sm-6 col-md-4">
+                            <input class="form-control" type="text" name="nom" placeholder="Nom">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="prenom" class="col-form-label col-sm-6 col-md-2 offset-md-3">Prénom :</label>
+                        <div class="col-sm-6 col-md-4">
+                            <input class="form-control" type="texte" name="prenom" placeholder="Prénom">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="dateN" class="col-form-label col-sm-6 col-md-2 offset-md-3">Date de naissance :</label>
+                        <div class="col-sm-6 col-md-4">
+                            <input class="form-control" type="date" name="dateN" placeholder="1996-08-19">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fichier" class="col-form-label col-sm-6 col-md-2 offset-md-3">Photo de profil :</label>
+                        <div class="col-sm-6 col-md-4">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="fichier" accept="image/bmp,image/gif,image/jpeg,image/png,image/x-ms-bmp">
+                                <label class="custom-file-label" for="customFile">Choisir une image</label>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <h5 class="card-title text-center">Adresse </h5>
+                    <br>
+                    <div class="form-group row">
+                        <label for="adresse" class="col-form-label col-sm-6 col-md-2 offset-md-3">Adresse :</label>
+                        <div class="col-sm-6 col-md-4">
+                            <input class="form-control" type="text" name="adresse" placeholder="1 rue de Bordeaux">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="ville" class="col-form-label col-sm-6 col-md-2 offset-md-3">Ville :</label>
+                        <div class="form-group col-sm-6 col-md-4">
+                            <input type="text" class="form-control" name="ville" placeholder="Bordeaux">
+                        </div>
+                    </div>
+                    <br>
+                    <h5 class="card-title text-center">Coordonnées</h5>
+                    <br>
+                    <div class="form-group row">
+                        <label for="email" class="col-form-label col-sm-6 col-md-2 offset-md-3">E-mail :</label>
+                        <div class="form-group col-sm-6 col-md-4">
+                            <input type="email" class="form-control" name="mail" placeholder="nom@exemple.com">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tel" class="col-form-label col-sm-6 col-md-2 offset-md-3">Téléphone :</label>
+                        <div class="form-group col-sm-6 col-md-4">
+                            <input class="form-control" type="tel" name="tel" placeholder="(+33)">
+                        </div>
+                    </div>
+                    <br>
+                    <h5 class="card-title text-center">Badges</h5>
+                    <br>
+                    <div class="form-group row">
+                        <label for="checkbox" class="col-form-label col-sm-3 col-md-3 offset-md-2">Modifier son badge :</label>
+                        <div class="col-sm-6 col-md-4" style="text-align: left;">
+                            <input type="checkbox" name="checkbox1" value="1"> <img class="badges" src="./css/svg/icone/reparer.svg" alt="badge réparateur"> Réparateur<br>
+                            <input type="checkbox" name="checkbox2" value="2"> <img class="badges" src="./css/svg/icone/vendre.svg" alt="badge vendeur"> Vendeur<br>
+                        </div>
+                    </div>
+                    <br>
+
+                    <h5 class="card-title text-center">Compétences</h5>
+                    <br>
+                    <div class="form-group row">
+
+                        <label for="competence" class="col-form-label col-sm-3 col-md-3 offset-md-2">Compétences réparateur :</label>
+
+
+                        <div class="form-group col-md-4">
+                            <input type="text" class="form-control" name="competence" placeholder="Changer vitre téléphone">
+                            <input type="text" class="form-control" name="competence2" placeholder="Changer vitre pc">
+                            <input type="text" class="form-control" name="competence3" placeholder="Remplacer batterie">
+                            <input type="text" class="form-control" name="competence4" placeholder="Autres">
+                        </div>
+                    </div>
+
+                    <h5 class="card-title text-center">Mot de passe</h5>
+                    <br>
+                    <div class="form-group row">
+                        <label for="mdp" class="col-form-label col-sm-3 col-md-3 offset-md-2">Modifier le mot de passe :</label>
+                        <div class="form-group col-sm-6 col-md-4">
+                            <input autocomplete="new-password" type="password" class="form-control" name="mdp" placeholder="Mot de passe">
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary btn-rose" data-toggle="modal" data-target="#popup">Sauvegarder les modifications</button>
+                        <button type="button" class="btn btn-light" id="refresh">Annuler</button>
+
+                        <div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="popupLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                Voulez-vous sauvegarder les modifications ?
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-light" data-dismiss="modal">Annuler</button>
+                                <button type="submit" class="btn btn-primary btn-rose">Sauvegarder les modifications</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <script type="text/javascript" language="javascript">
+            var refresh = window.getElementById('refresh');
+            refresh.addEventListener('click', location.reload(), false);
+        </script>
+
+{% endblock %}

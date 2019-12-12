@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Axolit, la plateforme de réparation d'appareils entre particuliers!">
+		<link rel="icon" type="image/png" href="{{ asset('img/favicon.png')}}"/>
+		<title>
+			{% block titre_page %}
+			{% endblock %}
+		</title>
+
+		<link rel="stylesheet" href="{{ asset('css/bootstrap-4.3.1-dist/css/bootstrap.min.css') }}" type="text/css"/>
+		<link href="{{ asset('./css/styles.css') }}" rel="stylesheet" type="text/css"/> {% block link_css %}{% endblock %}
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+	</head>
+
+	<!-- ============================================================================================================================ -->
+
+	<body>
+
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark " id="navbar">
+			<a class="navbar-brand" href="index.php">
+				<img id="logo" class="img-fluid" alt="Logo de Axolit" src="{{asset('./img/logo_nav.svg')}}">
+			</a>
+
+			<button class="navbar-toggler" name="menu" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item ">
+						<a class="nav-link" href="">
+							<button {% block accueil %} {% endblock %}>
+								Accueil
+								<span class="sr-only">
+									(current)
+								</span>
+							</button>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('vendre')}}">
+							<button {% block vendre %} {% endblock %}>
+								Vendre
+							</button>
+						</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link" href="{{path('liste_produits')}}">
+							<button {% block acheter %} {% endblock %}>
+								Acheter
+							</button>
+						</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link" href="{{path('liste_reparation')}}">
+							<button {% block reparer %} {% endblock %}>
+								Réparer
+							</button>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+
+			<form class="form-inline my-2 my-lg-3 collapse justify-content-end row" multi-collapse id="searchFieldNav">
+				<input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher">
+			</form>
+			<form class="form-inline my-2 my-lg-0" method="post">
+
+				<img class="btn-nav" alt="bouton pour rechercher" src="css/svg/icone/chercher.svg" data-toggle="collapse" href="#searchFieldNav" role="button" aria-expanded="false" aria-controls="searchFieldNav">
+				<div class="dropdown">
+					<a data-toggle="dropdown" href="">
+						<img class="btn-nav " alt="bouton du compte" src="css/svg/icone/compte.svg">
+					</a>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+						<a class="dropdown-item" href="{{path('connexion')}}">
+							Connexion
+						</a>
+						<a class="dropdown-item" href="{{path('inscription')}}">
+							Inscription
+						</a>
+						<a class="dropdown-item" href="{{path('mes_annonces')}}">
+							Mes annonces
+						</a>
+						<a class="dropdown-item" href="{{path('informations')}}">
+							Mon compte
+						</a>
+						<div class="dropdown-divider"></div>
+
+						<button class="btn btn-rose" id="deconnexion" type="submit" value="Déconnexion" name="deco">
+							Déconnexion
+						</button>
+
+					</div>
+				</div>
+				<a href="{{path('favoris_reparateur')}}">
+					<img class="btn-nav" alt="bouton des favoris" src="css/svg/icone/favoris.svg">
+				</a>
+			</form>
+
+
+		</nav>
+
+
+		<!-- ============================================================================================================================ -->
+		{% block contenu %}
+
+		{% endblock %}
+		<!-- ============================================================================================================================ -->
+
+		<footer class="bg-dark mt-5 fixe  font-small text-center">
+			<p>
+				<a href="index.php" id="copyright">
+					&copy;AxolIT -
+				</a>
+				<a href="contact.php">
+					Contact -
+				</a>
+				<a href="mentions.php">
+					Mentions légales
+				</a>
+				<br>
+				<a href="https://twitter.com/AxolitFr">
+					<img class="btn-reseaux-sociaux-footer" alt="lien et icone twitter" src="./css/svg/icone/twitter.svg">
+				</a>
+				<a href="https://www.facebook.com/AxoIIT/">
+					<img class="btn-reseaux-sociaux-footer" alt="lien et icone facebook" src="./css/svg/icone/facebook.svg">
+				</a>
+			</p>
+
+
+		</footer>
+
+
+	</body>
+
+</html>
