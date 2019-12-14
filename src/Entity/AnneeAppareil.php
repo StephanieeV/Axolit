@@ -21,10 +21,7 @@ class AnneeAppareil
      */
     private $annee;
 
-    /**
-     * @ORM\Column(type="string", length=40)
-     */
-    private $couleur_appareil;
+
 
     public function getId(): ?int
     {
@@ -43,15 +40,5 @@ class AnneeAppareil
         return $this;
     }
 
-    public function getCouleurAppareil(): ?string
-    {
-        return $this->couleur_appareil;
-    }
 
-    public function setCouleurAppareil(string $couleur_appareil): self
-    {
-        $this->couleur_appareil = $couleur_appareil;
-
-        return $this;
-    }
 }
