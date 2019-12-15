@@ -1,0 +1,166 @@
+{% block contenu %}
+
+	<div class="container">
+		<div class="card">
+			<div class="card-header">
+				Déposer une annonce
+			</div>
+
+			<div class="card-body">
+				<form>
+					<div class="form-group row">
+						<label for="radio" class="col-form-label col-sm-3 col-md-3 offset-md-2">
+							Type d'annonce :
+						</label>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="option1" name="radio1" value="option1">
+							<label class="form-check-label" for="inlineRadio1">
+								A vendre
+							</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="option2" name="radio2" value="option2">
+							<label class="form-check-label" for="inlineRadio2">
+								A réparer
+							</label>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-form-label col-sm-3 col-md-3 offset-md-2">
+							Type d'appareil :
+						</label>
+						<div class="col-sm-6 col-md-4">
+							<select class="custom-select">
+								<option selected>
+									Choisissez le type d'appareil
+								</option>
+								<option value="1">
+									Téléphone
+								</option>
+								<option value="2">
+									Tablette
+								</option>
+								<option value="3">
+									Ordinateur
+								</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="titre" class="col-form-label col-sm-3 col-md-3 offset-md-2">
+							Titre de l'annonce :
+						</label>
+						<div class="col-sm-6 col-md-4">
+							<input class="form-control" type="text" name="titre" placeholder="Titre" required="Veuillez renseigner ce champ">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="texteannonce" class="col-form-label col-sm-3 col-md-3 offset-md-2">
+							Texte de l'annonce :
+						</label>
+						<div class="col-sm-6 col-md-4">
+							<textarea class="form-control" rows="5" name="texteannonce" placeholder="Texte" required="Veuillez renseigner ce champ"></textarea>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="prix" class="col-form-label col-sm-3 col-md-3 offset-md-2">
+							Prix :
+						</label>
+						<div class="col-sm-6 col-md-4">
+							<input class="form-control" type="number" name="prix" placeholder="€">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="fichier" class="col-form-label col-sm-3 col-md-3 offset-md-2">
+							Photos :
+						</label>
+						<div class="col-sm-6 col-md-4">
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" name="fichier" accept="image/bmp,image/gif,image/jpeg,image/png,image/x-ms-bmp">
+								<label class="custom-file-label" for="customFile">
+									Choisir une image
+								</label>
+							</div>
+						</div>
+					</div>
+					<br>
+					<h5 class="card-title text-center">
+						Caractéristiques de l'appareil :
+					</h5>
+					<br>
+					<div class="form-group row">
+						<label for="modele" class="col-form-label col-sm-3 col-md-3 offset-md-2">
+							Modèle :
+						</label>
+						<div class="col-sm-6 col-md-4">
+							<input class="form-control" type="text" name="modele" placeholder="Modèle">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="annee" class="col-form-label col-sm-3 col-md-3 offset-md-2">
+							Année :
+						</label>
+						<div class="col-sm-6 col-md-4">
+							<input class="form-control" type="text" name="annee" placeholder="Année">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="couleur" class="col-form-label col-sm-3 col-md-3 offset-md-2">
+							Couleur :
+						</label>
+						<div class="col-sm-6 col-md-4">
+							<input class="form-control" type="text" name="couleur" placeholder="Couleur">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="version" class="col-form-label col-sm-3 col-md-3 offset-md-2">
+							Version :
+						</label>
+						<div class="col-sm-6 col-md-4">
+							<input class="form-control" type="text" name="version" placeholder="Version">
+						</div>
+					</div>
+
+					<div class="text-center">
+						<button type="button" class="btn btn-light">
+							Annuler
+						</button>
+						<button type="submit" class="btn btn-rose btn-primary" data-toggle="modal" data-target="#depotModal">
+							Déposer l'annonce
+						</button>
+
+
+						<div class="modal fade" id="depotModal" tabindex="-1" role="dialog" aria-labelledby="depotModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="depotModalLabel">
+											Annonce
+										</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">
+												&times;
+											</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										Une fois votre annonce validée par notre équipe, elle sera mise en ligne dans un délai de 24 heures.
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-light" data-dismiss="modal">
+											Fermer
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}
