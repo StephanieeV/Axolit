@@ -8,6 +8,7 @@ use App\Entity\Annonce;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Form\InscriptionType;
+use App\Form\AnnonceType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\AnnonceRepository;
 
@@ -48,11 +49,20 @@ class DefaultController extends AbstractController
     /**
      * @Route("/annonce", name="annonce")
      */
-    public function annonce()
-    {
-        return $this->render('default/annonce.html.twig', [
-            'controller_name' => 'DefaultController',
-        ]);
+    public function annonce(Request $request){
+        $annonce = new Annonce();
+        $form = $this->createForm(AnnonceType::class, $annonce);
+        $form->handleRequest($request);
+        if($form->isSubmitted()&& $form->isValid()){
+            
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($annonce);
+            $em->flush();
+
+            return $this->redirectToRoute('accueil');
+        }
+        return $this->render('./default/annonce.html.twig', array('form_annonce'=>$form->createView()));
     }
     /**
      * @Route("/contact", name="contact")
