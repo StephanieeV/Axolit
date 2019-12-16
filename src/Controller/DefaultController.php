@@ -5,6 +5,10 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Annonce;
+use App\Entity\User;
+use App\Form\UserType;
+use App\Form\InscriptionType;
+use Symfony\Component\HttpFoundation\Request;
 use App\Repository\AnnonceRepository;
 
 class DefaultController extends AbstractController
@@ -94,11 +98,20 @@ class DefaultController extends AbstractController
     /**
      * @Route("/inscription", name="inscription")
      */
-    public function inscription()
-    {
-        return $this->render('default/inscription.html.twig', [
-            'controller_name' => 'DefaultController',
-        ]);
+    public function inscription(Request $request){
+        $user = new User();
+        $form = $this->createForm(InscriptionType::class, $user);
+        $form->handleRequest($request);
+        if($form->isSubmitted()&& $form->isValid()){
+            
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('connexion');
+        }
+        return $this->render('./default/inscription.html.twig', array('form'=>$form->createView()));
     }
     /**
      * @Route("/liste_produits", name="liste_produits")

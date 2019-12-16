@@ -1,91 +1,130 @@
 {% extends "layout.html.twig"%}
-{% block titre_page %}Axolit - Inscription{% endblock %}
+{% block titre_page %}
+	Axolit - Inscription
+{% endblock %}
 
-{% block accueil %} class="btn btn-rose  "{% endblock %}
-{% block vendre %}class="btn btn-rose "{% endblock %}
-{% block acheter %}class="btn btn-rose "{% endblock %}
-{% block reparer %}class="btn btn-rose "{% endblock %}
+{% block accueil %}
+	class="btn btn-rose  "
+{% endblock %}
+{% block vendre %}
+	class="btn btn-rose "
+{% endblock %}
+{% block acheter %}
+	class="btn btn-rose "
+{% endblock %}
+{% block reparer %}
+	class="btn btn-rose "
+{% endblock %}
 
 {% block contenu %}
 
-        <div class="container">
-            <div class="card">
-            <h5 class="card-header">Créez un compte</h5>
-                <div class="card-body">
-                    <form>
-                        <div class="form-row">
-                            <div class="col-md-3 offset-md-3">
-                                <label>Nom :</label>
-                                <input type="text" class="form-control" placeholder="Nom" required="Veuillez renseigner ce champ" name="nom">
-                            </div>
-                            <div class="col-md-3">
-                                <label>Prénom :</label>
-                                <input type="text" class="form-control" placeholder="Prénom" required="Veuillez renseigner ce champ" name="prenom">
-                            </div>
-                        </div>
+	<div class="container">
+		<div class="card">
+			<h5 class="card-header">
+				Créez un compte
+			</h5>
+			<div class="card-body">
+				<form>
+					<div class="form-row">
+						<div class="col-md-3 offset-md-3">
+							<label>
+								Nom :
+							</label>
+							<input type="text" class="form-control" placeholder="Nom" required="Veuillez renseigner ce champ" name="nom">
+						</div>
+						<div class="col-md-3">
+							<label>
+								Prénom :
+							</label>
+							<input type="text" class="form-control" placeholder="Prénom" required="Veuillez renseigner ce champ" name="prenom">
+						</div>
+					</div>
 
-                        <br>
-                        <div class="form-group col-md-6 offset-md-3">
-                            <label>E-mail :</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text" id="btnGroupAddon">@</div>
-                                </div>
-                                <input type="email" class="form-control" id="email" placeholder="E-mail" required="Veuillez renseigner ce champ" name="envoi">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-row">
-                            <div class="col-md-4 offset-md-2">
-                                <label>Mot de passe (6 caractères minimum) :</label>
-                                <input  id="mdp" type="password" class="form-control" placeholder="Mot de passe" required="Veuillez renseigner ce champ" minlength="6" name="mdp">
-                            </div>
-                            <div class="col-md-4">
-                                <label>Confirmer votre mot de passe :</label>
-                                <input  id="confirmer_mdp" type="password" class="form-control" placeholder="Confirmer le mot de passe" required="Veuillez renseigner ce champ" minlength="6">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="text-center">
-                        <button id="creer" type="submit" name="bouton creer compte" class="btn btn-rose btn-primary">Créer votre compte</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="card-footer text-muted text-center">
-                Vous possédez déjà un compte ?
-                <a href="connexion.php">Identifiez-vous</a>
-                </div>
-            </div>
-        </div>
+					<br>
+					<div class="form-group col-md-6 offset-md-3">
+						<label>
+							E-mail :
+						</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<div class="input-group-text" id="btnGroupAddon">
+									@
+								</div>
+							</div>
+							<input type="email" class="form-control" id="email" placeholder="E-mail" required="Veuillez renseigner ce champ" name="envoi">
+						</div>
+					</div>
+					<br>
+					<div class="form-row">
+						<div class="col-md-4 offset-md-2">
+							<label>
+								Mot de passe (6 caractères minimum) :
+							</label>
+							<input id="mdp" type="password" class="form-control" placeholder="Mot de passe" required="Veuillez renseigner ce champ" minlength="6" name="mdp">
+						</div>
+						<div class="col-md-4">
+							<label>
+								Confirmer votre mot de passe :
+							</label>
+							<input id="confirmer_mdp" type="password" class="form-control" placeholder="Confirmer le mot de passe" required="Veuillez renseigner ce champ" minlength="6">
+						</div>
+					</div>
+					<br>
+					<div class="text-center">
+						<button id="creer" type="submit" name="bouton creer compte" class="btn btn-rose btn-primary">
+							Créer votre compte
+						</button>
+					</div>
+				</form>
+			</div>
+			<div class="card-footer text-muted text-center">
+				Vous possédez déjà un compte ?
+				<a href="connexion.php">
+					Identifiez-vous
+				</a>
+			</div>
+		</div>
+	</div>
 
-        <script type="text/javascript" language="javascript">
 
-        document.getElementById("creer").onclick = function(event) {
-            var a = document.getElementById("mdp").value;
-            var b = document.getElementById("confirmer_mdp").value;
+	{{ form_start(form) }}
 
-            if (a != b) {
-                alert("Les mots de passe ne correspondent pas.");
-            }
-             else {
-                alert("Un e-mail de confirmation vous a été envoyé.");
-                window.location='your url';
-            }
-        }
-         document.getElementById("creer").onclick = function(event) {
-            var a = document.getElementById("mdp").value;
-            var b = document.getElementById("confirmer_mdp").value;
 
-            if (b == 0) {
-                alert("Tous les champs obligatoires ne sont pas renseignés.");
-            }
-             else {
-                alert("Un e-mail de confirmation vous a été envoyé.");
-                window.location='inscription.php';
-            }
-        }
-        
+	{{form_row(form.email)}}
+	{{form_row(form.mdp)}}
+	{{form_row(form.prenom)}}
+	{{form_row(form.nom)}}
+	<button type="submit">
+		tester
+	</button>
 
-        </script>
+	{{ form_end(form) }}
+
+
+	<script type="text/javascript" language="javascript">
+
+		document.getElementById("creer").onclick = function (event) {
+var a = document.getElementById("mdp").value;
+var b = document.getElementById("confirmer_mdp").value;
+
+if (a != b) {
+alert("Les mots de passe ne correspondent pas.");
+} else {
+alert("Un e-mail de confirmation vous a été envoyé.");
+window.location = 'your url';
+}
+}
+document.getElementById("creer").onclick = function (event) {
+var a = document.getElementById("mdp").value;
+var b = document.getElementById("confirmer_mdp").value;
+
+if (b == 0) {
+alert("Tous les champs obligatoires ne sont pas renseignés.");
+} else {
+alert("Un e-mail de confirmation vous a été envoyé.");
+window.location = 'inscription.php';
+}
+}
+	</script>
 
 {% endblock %}
