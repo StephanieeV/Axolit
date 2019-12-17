@@ -21,6 +21,12 @@ class PhotoAnnonce
      */
     private $libelle;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Annonce", inversedBy="photoAnnonces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $annonce;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +40,18 @@ class PhotoAnnonce
     public function setLibelle(string $libelle): self
     {
         $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    public function getAnnonce(): ?Annonce
+    {
+        return $this->annonce;
+    }
+
+    public function setAnnonce(?Annonce $annonce): self
+    {
+        $this->annonce = $annonce;
 
         return $this;
     }
