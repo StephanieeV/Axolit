@@ -68,6 +68,7 @@ footer a{
 }
 footer p{
     color: white; 
+    margin: none;
 }
 .fixe{
     flex-shrink: none;
@@ -78,6 +79,7 @@ footer a:hover{
 } 
 footer{
    height: auto;
+   padding: 10px;
 }
 .btn-reseaux-sociaux-footer{
     width: 50px;
