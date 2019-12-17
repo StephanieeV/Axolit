@@ -7,13 +7,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\InscriptionType;
 class InscriptionController extends AbstractController{
     /**
      * @Route("/inscription", name="inscription")
      */
     public function registerAction(Request $request){
         $user = new User();
-        $form = $this->createForm(User::class, $user);
+        $form = $this->createForm(InscriptionType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted()&& $form->isValid()){
             
