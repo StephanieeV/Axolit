@@ -21,6 +21,11 @@ class Competences
      */
     private $libelle;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CompetencesUser", inversedBy="competences")
+     */
+    private $competencesUser;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +39,18 @@ class Competences
     public function setLibelle(string $libelle): self
     {
         $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    public function getCompetencesUser(): ?CompetencesUser
+    {
+        return $this->competencesUser;
+    }
+
+    public function setCompetencesUser(?CompetencesUser $competencesUser): self
+    {
+        $this->competencesUser = $competencesUser;
 
         return $this;
     }

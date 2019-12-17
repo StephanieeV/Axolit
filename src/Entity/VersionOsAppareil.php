@@ -21,6 +21,11 @@ class VersionOsAppareil
      */
     private $libelle;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Annonce", inversedBy="versionOsAppareils")
+     */
+    private $annonces;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +39,18 @@ class VersionOsAppareil
     public function setLibelle(string $libelle): self
     {
         $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    public function getAnnonces(): ?Annonce
+    {
+        return $this->annonces;
+    }
+
+    public function setAnnonces(?Annonce $annonces): self
+    {
+        $this->annonces = $annonces;
 
         return $this;
     }

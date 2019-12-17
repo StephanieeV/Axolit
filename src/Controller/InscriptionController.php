@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\InscriptionType;
 class InscriptionController extends AbstractController{
     /**
      * @Route("/inscription", name="inscription")
@@ -27,5 +28,4 @@ class InscriptionController extends AbstractController{
         }
         return $this->render('./default/inscription.html.twig', array('form_inscription'=>$form->createView()));
     }
-    
 }
