@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Form\UserType;
+use App\Form\InscriptionType;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,7 +14,7 @@ class InscriptionController extends AbstractController{
      */
     public function registerAction(Request $request){
         $user = new User();
-        $form = $this->createForm(User::class, $user);
+        $form = $this->createForm(InscriptionType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted()&& $form->isValid()){
             
