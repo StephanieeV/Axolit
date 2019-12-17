@@ -121,7 +121,7 @@ class DefaultController extends AbstractController
 
             return $this->redirectToRoute('connexion');
         }
-        return $this->render('./default/inscription.html.twig', array('form'=>$form->createView()));
+        return $this->render('./default/inscription.html.twig', array('form_inscription'=>$form->createView()));
     }
     /**
      * @Route("/liste_produits", name="liste_produits")

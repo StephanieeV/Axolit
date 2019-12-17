@@ -1,3 +1,4 @@
+
 {% extends "layout.html.twig"%}
 {% block titre_page %}
 	Axolit - Inscription
@@ -87,19 +88,59 @@
 	</div>
 
 
-	{{ form_start(form_inscription) }}
+{{ form_start(form_inscription) }}
+
+						<div class="container">
+						<div class="card">
+						<h5 class="card-header">
+						Créez un compte
+						</h5>
+
+						<div class="form-group form-row" >
+
+						<div  class=" offset-md-3 col-md-3 ">
+						{{form_label(form_inscription.nom, 'Votre nom :')	}}
+						{{form_widget(form_inscription.nom, 
+						{'attr':{'class':'form-control'}}
+						)}}
+						{{form_errors(form_inscription.nom)	}}
+						</div>
+						
+						<div class="col-md-3 ">
+						{{form_label(form_inscription.prenom, 'Votre prenom :')	}}
+						{{form_widget(form_inscription.prenom, {'attr':{'class':'form-control'}})}}
+						{{form_errors(form_inscription.prenom)	}}
+						</div>
+
+						</div>
+
+						<div class="form-group col-md-6 offset-md-3">
+						{{form_label(form_inscription.email, 'Votre email :')	}}
+						{{form_widget(form_inscription.email, {'attr':{'class':'form-control'}})}}
+						{{form_errors(form_inscription.email)	}}
+						</div>
+
+						<div class="form-group col-md-6 offset-md-3">
+						{{form_label(form_inscription.mdp, 'Votre mot de passe (6 caractères minimum) :')	}}
+						{{form_widget(form_inscription.mdp, {'attr':{'class':'form-control'}})}}
+						{{form_errors(form_inscription.mdp)	}}
+						</div>
 
 
-	{{form_row(form_inscription.email)}}
-	{{form_row(form_inscription.mdp)}}
-	{{form_row(form_inscription.prenom)}}
-	{{form_row(form_inscription.nom)}}
-	<button type="submit">
-		tester
+
+	<div class="col-md-5 offset-md-5">
+	<button type="submit" class="btn btn-rose btn-primary">
+		Créer votre compte
 	</button>
+	</div>
 
 	{{ form_end(form_inscription) }}
-
+	<div class="card-footer text-muted text-center">
+				Vous possédez déjà un compte ?
+				<a href="connexion.php">
+					Identifiez-vous
+				</a>
+			</div>
 
 	<script type="text/javascript" language="javascript">
 
@@ -127,4 +168,7 @@ window.location = 'inscription.php';
 }
 	</script>
 
+
+</div>
+</div>
 {% endblock %}

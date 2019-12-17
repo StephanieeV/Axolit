@@ -27,5 +27,4 @@ class InscriptionController extends AbstractController{
         }
         return $this->render('./default/inscription.html.twig', array('form_inscription'=>$form->createView()));
     }
-    
 }

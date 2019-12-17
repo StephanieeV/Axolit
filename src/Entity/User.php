@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -70,6 +72,51 @@ class User
      * @ORM\Column(type="date", nullable=true)
      */
     private $date_de_naissance;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Annonce", mappedBy="user", orphanRemoval=true)
+     */
+    private $annonces;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Annonce", inversedBy="favoris")
+     */
+    private $favoris;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Badge", mappedBy="users")
+     */
+    private $badges;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reparation", mappedBy="user")
+     */
+    private $reparations;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CompetencesUser", inversedBy="User")
+     */
+    private $competencesUser;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PhotoProfil", mappedBy="user", orphanRemoval=true)
+     */
+    private $photoProfils;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Amis", mappedBy="AamisB")
+     */
+    private $amis;
+
+    public function __construct()
+    {
+        $this->annonces = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
+        $this->badges = new ArrayCollection();
+        $this->reparations = new ArrayCollection();
+        $this->photoProfils = new ArrayCollection();
+        $this->amis = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -204,6 +251,193 @@ class User
     public function setDateDeNaissance(?\DateTimeInterface $date_de_naissance): self
     {
         $this->date_de_naissance = $date_de_naissance;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getAnnonces(): Collection
+    {
+        return $this->annonces;
+    }
+
+    public function addAnnonce(Annonce $annonce): self
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces[] = $annonce;
+            $annonce->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonce(Annonce $annonce): self
+    {
+        if ($this->annonces->contains($annonce)) {
+            $this->annonces->removeElement($annonce);
+            // set the owning side to null (unless already changed)
+            if ($annonce->getUser() === $this) {
+                $annonce->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Annonce $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris[] = $favori;
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Annonce $favori): self
+    {
+        if ($this->favoris->contains($favori)) {
+            $this->favoris->removeElement($favori);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Badge[]
+     */
+    public function getBadges(): Collection
+    {
+        return $this->badges;
+    }
+
+    public function addBadge(Badge $badge): self
+    {
+        if (!$this->badges->contains($badge)) {
+            $this->badges[] = $badge;
+            $badge->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBadge(Badge $badge): self
+    {
+        if ($this->badges->contains($badge)) {
+            $this->badges->removeElement($badge);
+            $badge->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reparation[]
+     */
+    public function getReparations(): Collection
+    {
+        return $this->reparations;
+    }
+
+    public function addReparation(Reparation $reparation): self
+    {
+        if (!$this->reparations->contains($reparation)) {
+            $this->reparations[] = $reparation;
+            $reparation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReparation(Reparation $reparation): self
+    {
+        if ($this->reparations->contains($reparation)) {
+            $this->reparations->removeElement($reparation);
+            // set the owning side to null (unless already changed)
+            if ($reparation->getUser() === $this) {
+                $reparation->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCompetencesUser(): ?CompetencesUser
+    {
+        return $this->competencesUser;
+    }
+
+    public function setCompetencesUser(?CompetencesUser $competencesUser): self
+    {
+        $this->competencesUser = $competencesUser;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PhotoProfil[]
+     */
+    public function getPhotoProfils(): Collection
+    {
+        return $this->photoProfils;
+    }
+
+    public function addPhotoProfil(PhotoProfil $photoProfil): self
+    {
+        if (!$this->photoProfils->contains($photoProfil)) {
+            $this->photoProfils[] = $photoProfil;
+            $photoProfil->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhotoProfil(PhotoProfil $photoProfil): self
+    {
+        if ($this->photoProfils->contains($photoProfil)) {
+            $this->photoProfils->removeElement($photoProfil);
+            // set the owning side to null (unless already changed)
+            if ($photoProfil->getUser() === $this) {
+                $photoProfil->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Amis[]
+     */
+    public function getAmis(): Collection
+    {
+        return $this->amis;
+    }
+
+    public function addAmi(Amis $ami): self
+    {
+        if (!$this->amis->contains($ami)) {
+            $this->amis[] = $ami;
+            $ami->addAamisB($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAmi(Amis $ami): self
+    {
+        if ($this->amis->contains($ami)) {
+            $this->amis->removeElement($ami);
+            $ami->removeAamisB($this);
+        }
 
         return $this;
     }
