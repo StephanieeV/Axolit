@@ -4,9 +4,20 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Annonce;
+use App\Entity\User;
+use App\Form\UserType;
+use App\Form\InscriptionType;
+use App\Form\AnnonceType;
+use Symfony\Component\HttpFoundation\Request;
+use App\Repository\AnnonceRepository;
 
 class DefaultController extends AbstractController
 {
+    /**
+     * Routes
+     */
+
     /**
      * @Route("/", name="index")
      */
@@ -38,11 +49,20 @@ class DefaultController extends AbstractController
     /**
      * @Route("/annonce", name="annonce")
      */
-    public function annonce()
-    {
-        return $this->render('default/annonce.html.twig', [
-            'controller_name' => 'DefaultController',
-        ]);
+    public function annonce(Request $request){
+        $annonce = new Annonce();
+        $form = $this->createForm(AnnonceType::class, $annonce);
+        $form->handleRequest($request);
+        if($form->isSubmitted()&& $form->isValid()){
+            
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($annonce);
+            $em->flush();
+
+            return $this->redirectToRoute('accueil');
+        }
+        return $this->render('./default/annonce.html.twig', array('form_annonce'=>$form->createView()));
     }
     /**
      * @Route("/contact", name="contact")
@@ -58,8 +78,10 @@ class DefaultController extends AbstractController
      */
     public function favoris_reparateur()
     {
+        $em=$this->get('doctrine')->getManager();
+        $favoris_reparateurs = $em->getRepository(Annonce::class)->findAll();
         return $this->render('default/favoris_reparateur.html.twig', [
-            'controller_name' => 'DefaultController',
+            'favoris_reparateurs' => $favoris_reparateurs,
         ]);
     }
     
@@ -68,8 +90,10 @@ class DefaultController extends AbstractController
      */
     public function favoris_annonce()
     {
+        $em=$this->get('doctrine')->getManager();
+        $favoris_annonces = $em->getRepository(Annonce::class)->findAll();
         return $this->render('default/favoris.html.twig', [
-            'controller_name' => 'DefaultController',
+            'favoris_annonces' => $favoris_annonces,
         ]);
     }
     /**
@@ -84,19 +108,30 @@ class DefaultController extends AbstractController
     /**
      * @Route("/inscription", name="inscription")
      */
-    public function inscription()
-    {
-        return $this->render('default/inscription.html.twig', [
-            'controller_name' => 'DefaultController',
-        ]);
+    public function inscription(Request $request){
+        $user = new User();
+        $form = $this->createForm(InscriptionType::class, $user);
+        $form->handleRequest($request);
+        if($form->isSubmitted()&& $form->isValid()){
+            
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('connexion');
+        }
+        return $this->render('./default/inscription.html.twig', array('form_inscription'=>$form->createView()));
     }
     /**
      * @Route("/liste_produits", name="liste_produits")
      */
     public function liste_produits()
     {
+        $em=$this->get('doctrine')->getManager();
+        $annonces = $em->getRepository(Annonce::class)->findAll();
         return $this->render('default/liste_produits.html.twig', [
-            'controller_name' => 'DefaultController',
+            'annonces' => $annonces,
         ]);
     }
     /**
@@ -104,8 +139,10 @@ class DefaultController extends AbstractController
      */
     public function liste_reparation()
     {
+        $em=$this->get('doctrine')->getManager();
+        $annonces = $em->getRepository(Annonce::class)->findAll();
         return $this->render('default/liste_reparation.html.twig', [
-            'controller_name' => 'DefaultController',
+            'annonces' => $annonces,
         ]);
     }
     /**
@@ -154,5 +191,5 @@ class DefaultController extends AbstractController
         ]);
     }
 
-
+   
 }

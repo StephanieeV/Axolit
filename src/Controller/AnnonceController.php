@@ -1,30 +1,33 @@
 <?php
 
 namespace App\Controller;
-use App\Form\UserType;
-use App\Entity\User;
+
+use App\Form\AnnonceType;
+use App\Entity\Annonce;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-class InscriptionController extends AbstractController{
+
+
+class AnnonceController extends AbstractController
+{
     /**
-     * @Route("/inscription", name="inscription")
+     * @Route("/annonce", name="annonce")
      */
     public function registerAction(Request $request){
-        $user = new User();
-        $form = $this->createForm(User::class, $user);
+        $annonce = new Annonce();
+        $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
         if($form->isSubmitted()&& $form->isValid()){
             
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
+            $em->persist($annonce);
             $em->flush();
 
-            return $this->redirectToRoute('connexion');
+            return $this->redirectToRoute('accueil');
         }
-        return $this->render('./default/inscription.html.twig', array('form_inscription'=>$form->createView()));
+        return $this->render('./default/annonce.html.twig', array('form_annonce'=>$form->createView()));
     }
-    
 }

@@ -164,7 +164,6 @@ class Annonce
 
         return $this;
     }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -328,19 +327,6 @@ class Annonce
         if (!$this->reparations->contains($reparation)) {
             $this->reparations[] = $reparation;
             $reparation->setAnnonce($this);
-        }
-
-        return $this;
-    }
-
-    public function removeReparation(Reparation $reparation): self
-    {
-        if ($this->reparations->contains($reparation)) {
-            $this->reparations->removeElement($reparation);
-            // set the owning side to null (unless already changed)
-            if ($reparation->getAnnonce() === $this) {
-                $reparation->setAnnonce(null);
-            }
         }
 
         return $this;
