@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Annonce;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,6 +27,7 @@ class AnnonceType extends AbstractType
                     'hour' => 'Heure', 'minute' => 'Minute', 'second' => 'Seconde',
                 ]
             ])
+            
         ;
     }
 

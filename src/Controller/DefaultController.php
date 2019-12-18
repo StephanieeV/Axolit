@@ -55,7 +55,6 @@ class DefaultController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted()&& $form->isValid()){
             
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($annonce);
             $em->flush();
@@ -175,11 +174,20 @@ class DefaultController extends AbstractController
     /**
      * @Route("/vendre", name="vendre")
      */
-    public function vendre()
+    public function vendre(Request $request)
     {
-        return $this->render('default/vendre.html.twig', [
-            'controller_name' => 'DefaultController',
-        ]);
+        $annonce = new Annonce();
+        $form = $this->createForm(AnnonceType::class, $annonce);
+        $form->handleRequest($request);
+        if($form->isSubmitted()&& $form->isValid()){
+            
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($annonce);
+            $em->flush();
+
+            return $this->redirectToRoute('accueil');
+        }
+        return $this->render('./default/vendre.html.twig', array('form_annonce'=>$form->createView()));
     }
     /**
      * @Route("/profil1", name="profil")

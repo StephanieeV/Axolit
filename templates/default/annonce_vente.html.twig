@@ -161,6 +161,18 @@
 			</div>
 		</div>
 	</div>
+	{{ form_start(form_annonce) }}
+
+
+	{{form_row(form_annonce.titre)}}
+	{{form_row(form_annonce.prix)}}
+	{{form_row(form_annonce.heure_date_publication)}}
+
+	<button type="submit">
+		tester
+	</button>
+
+	{{ form_end(form_annonce) }}
 
 
 {% endblock %}
