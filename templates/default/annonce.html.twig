@@ -18,6 +18,7 @@
 
 {% block contenu %}
 
+	{{ form_start(form_annonce) }}
 	<div class="container">
 		<div class="card">
 			<div class="card-header">
@@ -65,27 +66,33 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="titre" class="col-form-label col-sm-3 col-md-3 offset-md-2">
-							Titre de l'annonce :
-						</label>
+						<div class="col-sm-3 col-md-3 offset-md-2">
+							{{form_label(form_annonce.titre, 'Titre de l\'annonce :')	}}
+						</div>
 						<div class="col-sm-6 col-md-4">
-							<input class="form-control" type="text" name="titre" placeholder="Titre" required="Veuillez renseigner ce champ">
+							{{form_widget(form_annonce.titre, {'attr':{'class':'form-control'}})}}
+							{{form_row(form_annonce.titre)}}
+							{{form_errors(form_annonce.titre)}}
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="texteannonce" class="col-form-label col-sm-3 col-md-3 offset-md-2">
-							Texte de l'annonce :
-						</label>
+						<div class="col-sm-3 col-md-3 offset-md-2">
+							{{form_label(form_annonce.texte_annonce, 'Texte de l\'annonce :')}}
+						</div>
 						<div class="col-sm-6 col-md-4">
-							<textarea class="form-control" rows="5" name="texteannonce" placeholder="Texte" required="Veuillez renseigner ce champ"></textarea>
+							{{form_widget(form_annonce.texte_annonce, {'attr':{'class':'form-control'}})}}
+							{{form_row(form_annonce.texte_annonce)}}
+							{{form_errors(form_annonce.texte_annonce)}}
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="prix" class="col-form-label col-sm-3 col-md-3 offset-md-2">
-							Prix :
-						</label>
+						<div class="col-sm-3 col-md-3 offset-md-2">
+							{{form_label(form_annonce.prix, 'Prix :')}}
+						</div>
 						<div class="col-sm-6 col-md-4">
-							<input class="form-control" type="number" name="prix" placeholder="€">
+							{{form_widget(form_annonce.prix, {'attr':{'class':'form-control'}})}}
+							{{form_row(form_annonce.prix)}}
+							{{form_errors(form_annonce.prix)}}
 						</div>
 					</div>
 					<div class="form-group row">
@@ -99,6 +106,16 @@
 									Choisir une image
 								</label>
 							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-3 col-md-3 offset-md-2">
+							{{form_label(form_annonce.localisation, 'Localisation :')}}
+						</div>
+						<div class="col-sm-6 col-md-4">
+							{{form_widget(form_annonce.localisation, {'attr':{'class':'form-control'}})}}
+							{{form_row(form_annonce.localisation)}}
+							{{form_errors(form_annonce.localisation)}}
 						</div>
 					</div>
 					<br>
@@ -173,22 +190,11 @@
 							</div>
 						</div>
 
-
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-	{{ form_start(form_annonce) }}
-
-
-	{{form_row(form_annonce.titre)}}
-	{{form_row(form_annonce.prix)}}
-	{{form_row(form_annonce.heure_date_publication)}}
-
-	<button type="submit">
-		tester
-	</button>
 
 	{{ form_end(form_annonce) }}
 
