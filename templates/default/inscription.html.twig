@@ -19,82 +19,13 @@
 
 {% block contenu %}
 
+{{ form_start(form_inscription) }}
+
 	<div class="container">
 		<div class="card">
 			<h5 class="card-header">
 				Créez un compte
 			</h5>
-			<div class="card-body">
-				<form>
-					<div class="form-row">
-						<div class="col-md-3 offset-md-3">
-							<label>
-								Nom :
-							</label>
-							<input type="text" class="form-control" placeholder="Nom" required="Veuillez renseigner ce champ" name="nom">
-						</div>
-						<div class="col-md-3">
-							<label>
-								Prénom :
-							</label>
-							<input type="text" class="form-control" placeholder="Prénom" required="Veuillez renseigner ce champ" name="prenom">
-						</div>
-					</div>
-
-					<br>
-					<div class="form-group col-md-6 offset-md-3">
-						<label>
-							E-mail :
-						</label>
-						<div class="input-group">
-							<div class="input-group-prepend">
-								<div class="input-group-text" id="btnGroupAddon">
-									@
-								</div>
-							</div>
-							<input type="email" class="form-control" id="email" placeholder="E-mail" required="Veuillez renseigner ce champ" name="envoi">
-						</div>
-					</div>
-					<br>
-					<div class="form-row">
-						<div class="col-md-4 offset-md-2">
-							<label>
-								Mot de passe (6 caractères minimum) :
-							</label>
-							<input id="mdp" type="password" class="form-control" placeholder="Mot de passe" required="Veuillez renseigner ce champ" minlength="6" name="mdp">
-						</div>
-						<div class="col-md-4">
-							<label>
-								Confirmer votre mot de passe :
-							</label>
-							<input id="confirmer_mdp" type="password" class="form-control" placeholder="Confirmer le mot de passe" required="Veuillez renseigner ce champ" minlength="6">
-						</div>
-					</div>
-					<br>
-					<div class="text-center">
-						<button id="creer" type="submit" name="bouton creer compte" class="btn btn-rose btn-primary">
-							Créer votre compte
-						</button>
-					</div>
-				</form>
-			</div>
-			<div class="card-footer text-muted text-center">
-				Vous possédez déjà un compte ?
-				<a href="connexion.php">
-					Identifiez-vous
-				</a>
-			</div>
-		</div>
-	</div>
-
-
-{{ form_start(form_inscription) }}
-
-						<div class="container">
-						<div class="card">
-						<h5 class="card-header">
-						Créez un compte
-						</h5>
 
 						<div class="form-group form-row" >
 
@@ -107,44 +38,61 @@
 						</div>
 						
 						<div class="col-md-3 ">
-						{{form_label(form_inscription.prenom, 'Votre prenom :')	}}
+						{{form_label(form_inscription.prenom, 'Votre prénom :')	}}
 						{{form_widget(form_inscription.prenom, {'attr':{'class':'form-control'}})}}
 						{{form_errors(form_inscription.prenom)	}}
 						</div>
 
 						</div>
 
-						<div class="form-group col-md-6 offset-md-3">
-						{{form_label(form_inscription.email, 'Votre email :')	}}
+						<div class="form-group col-md-4 offset-md-4">
+							{{form_label(form_inscription.email, 'Votre e-mail :')}}
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text" id="btnGroupAddon">
+										@
+									</div>
+								</div>
 						{{form_widget(form_inscription.email, {'attr':{'class':'form-control'}})}}
-						{{form_errors(form_inscription.email)	}}
+						{{form_errors(form_inscription.email)}}
+							</div>
 						</div>
 
-						<div class="form-group col-md-6 offset-md-3">
+					<div class="form-row">
+						<div class="col-md-3 offset-md-3">
 						{{form_label(form_inscription.mdp, 'Votre mot de passe (6 caractères minimum) :')	}}
 						{{form_widget(form_inscription.mdp, {'attr':{'class':'form-control'}})}}
 						{{form_errors(form_inscription.mdp)	}}
 						</div>
+						<div class="col-md-3">
+							<label>
+								Confirmer votre mot de passe (6 caractères minimum) :
+							</label>
+							<input id="confirmer_mdp" type="password" class="form-control" required="Veuillez renseigner ce champ" minlength="6">
+						</div>
+					</div>
 
-
+	</br>
 
 	<div class="col-md-5 offset-md-5">
 	<button type="submit" class="btn btn-rose btn-primary">
 		Créer votre compte
 	</button>
 	</div>
+	</br>
 
 	{{ form_end(form_inscription) }}
+
 	<div class="card-footer text-muted text-center">
 				Vous possédez déjà un compte ?
-				<a href="connexion.php">
+				<a href="{{path('connexion')}}">
 					Identifiez-vous
 				</a>
 			</div>
 
 	<script type="text/javascript" language="javascript">
 
-		document.getElementById("creer").onclick = function (event) {
+document.getElementById("creer").onclick = function (event) {
 var a = document.getElementById("mdp").value;
 var b = document.getElementById("confirmer_mdp").value;
 
@@ -166,7 +114,7 @@ alert("Un e-mail de confirmation vous a été envoyé.");
 window.location = 'inscription.php';
 }
 }
-	</script>
+</script>
 
 
 </div>
