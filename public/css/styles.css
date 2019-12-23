@@ -105,6 +105,45 @@ footer{
     .active{
         background: #c8b4d8;
     }
+    .ariane.top {
+        border-bottom: 1px solid grey;
+        padding-bottom: 10px;
+        margin: 20px 0;
+      }
+
+
+      .loader {
+
+        position : fixed;
+        z-index: 9999;
+        background : url('../img/loader.gif') 50% 50% no-repeat;
+        background-color: rgb(249,249,249);
+        opacity: 70%;
+        top : 0px;
+        left : 0px;
+        height : 100%;
+        width : 100%;
+        cursor : wait;
+        
+        }
+.loader h3{
+		background: none;
+		border: none;
+		color: black;
+		font-size: 30px;
+		font-family: 'Ubuntu', sans-serif;
+		font-variant: small-caps;
+		font-weight: 700;
+		height: 700px;
+		line-height: 700px;
+		margin: 0 0 10px;
+		padding: 0;
+		text-align: center;
+	}
+
+
+
+
 /*
     Inutilisé/Je comprend pas à quoi il sert et où
 */
