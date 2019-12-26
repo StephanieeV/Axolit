@@ -83,7 +83,7 @@ class CompetencesUser
     {
         if ($this->User->contains($user)) {
             $this->User->removeElement($user);
-            // set the owning side to null (unless already changed)
+            // set t* owning side to null (unless already changed)
             if ($user->getCompetencesUser() === $this) {
                 $user->setCompetencesUser(null);
             }

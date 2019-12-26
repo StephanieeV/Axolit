@@ -21,12 +21,15 @@ class AnnonceType extends AbstractType
             ->add('prix', IntegerType::class)
             ->add('localisation', TextType::class)
             ->add('texte_annonce', TextareaType::class)
-            ->add('heure_date_publication', DateTimeType::class, [
+            /*->add('heure_date_publication', DateTimeType::class, [
+                'required'   => false,
                 'placeholder' => [
                     'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
                     'hour' => 'Heure', 'minute' => 'Minute', 'second' => 'Seconde',
                 ]
-            ])
+            ])*/
+                    
+            
             
         ;
     }
@@ -35,6 +38,8 @@ class AnnonceType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Annonce::class,
+            // @todo implementer la protection avec les tokens csrf , le parametre ci dessous les désactivent
+            'csrf_protection' => false,
         ]);
     }
 }

@@ -6,11 +6,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Annonce;
 use App\Entity\User;
+use App\Entity\Modele;
+use App\Entity\TypeAnnonce;
+use App\Entity\TypeAppareil;
+
+
+
 use App\Form\UserType;
 use App\Form\InscriptionType;
 use App\Form\AnnonceType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\AnnonceRepository;
+
+//@todo retirer import response 
+use Symfony\Component\HttpFoundation\Response;
+
 
 class DefaultController extends AbstractController
 {
@@ -49,19 +59,20 @@ class DefaultController extends AbstractController
     /**
      * @Route("/annonce", name="annonce")
      */
-    public function annonce(Request $request){
+    public function annonce(Request $request)
+    {
         $annonce = new Annonce();
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
-        if($form->isSubmitted()&& $form->isValid()){
-            
+        if ($form->isSubmitted() && $form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($annonce);
             $em->flush();
 
             return $this->redirectToRoute('accueil');
         }
-        return $this->render('./default/annonce.html.twig', array('form_annonce'=>$form->createView()));
+        return $this->render('./default/annonce.html.twig', array('form_annonce' => $form->createView()));
     }
     /**
      * @Route("/contact", name="contact")
@@ -77,19 +88,19 @@ class DefaultController extends AbstractController
      */
     public function favoris_reparateur()
     {
-        $em=$this->get('doctrine')->getManager();
+        $em = $this->get('doctrine')->getManager();
         $favoris_reparateurs = $em->getRepository(Annonce::class)->findAll();
         return $this->render('default/favoris_reparateur.html.twig', [
             'favoris_reparateurs' => $favoris_reparateurs,
         ]);
     }
-    
+
     /**
      * @Route("/favoris_annonce", name="favoris_annonce")
      */
     public function favoris_annonce()
     {
-        $em=$this->get('doctrine')->getManager();
+        $em = $this->get('doctrine')->getManager();
         $favoris_annonces = $em->getRepository(Annonce::class)->findAll();
         return $this->render('default/favoris.html.twig', [
             'favoris_annonces' => $favoris_annonces,
@@ -107,12 +118,13 @@ class DefaultController extends AbstractController
     /**
      * @Route("/inscription", name="inscription")
      */
-    public function inscription(Request $request){
+    public function inscription(Request $request)
+    {
         $user = new User();
         $form = $this->createForm(InscriptionType::class, $user);
         $form->handleRequest($request);
-        if($form->isSubmitted()&& $form->isValid()){
-            
+        if ($form->isSubmitted() && $form->isValid()) {
+
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -120,14 +132,14 @@ class DefaultController extends AbstractController
 
             return $this->redirectToRoute('connexion');
         }
-        return $this->render('./default/inscription.html.twig', array('form_inscription'=>$form->createView()));
+        return $this->render('./default/inscription.html.twig', array('form_inscription' => $form->createView()));
     }
     /**
      * @Route("/liste_produits", name="liste_produits")
      */
     public function liste_produits()
     {
-        $em=$this->get('doctrine')->getManager();
+        $em = $this->get('doctrine')->getManager();
         $annonces = $em->getRepository(Annonce::class)->findAll();
         return $this->render('default/liste_produits.html.twig', [
             'annonces' => $annonces,
@@ -138,7 +150,7 @@ class DefaultController extends AbstractController
      */
     public function liste_reparation()
     {
-        $em=$this->get('doctrine')->getManager();
+        $em = $this->get('doctrine')->getManager();
         $annonces = $em->getRepository(Annonce::class)->findAll();
         return $this->render('default/liste_reparation.html.twig', [
             'annonces' => $annonces,
@@ -179,15 +191,41 @@ class DefaultController extends AbstractController
         $annonce = new Annonce();
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
-        if($form->isSubmitted()&& $form->isValid()){
-            
+
+        
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $magicwizard = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->find(4);
+
+            $mmodele = $this->getDoctrine()
+            ->getRepository(Modele::class)
+            ->find(2);
+
+            $typeannonce = $this->getDoctrine()
+            ->getRepository(TypeAnnonce::class)
+            ->find(2);
+
+            $typeappareil = $this->getDoctrine()
+            ->getRepository(TypeAppareil::class)
+            ->find(1);
+            $annonce->setTypeAppareil($typeappareil);
+            $annonce->setTypeAnnonce($typeannonce);
+            $annonce->setUser($magicwizard);
+            $annonce->setModele($mmodele);
+
+
+
+
+
             $em->persist($annonce);
             $em->flush();
 
             return $this->redirectToRoute('accueil');
-        }
-        return $this->render('./default/vendre.html.twig', array('form_annonce'=>$form->createView()));
+        }   
+        return $this->render('./default/vendre.html.twig', array('form_annonce' => $form->createView()));
     }
     /**
      * @Route("/profil1", name="profil")
@@ -198,6 +236,4 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
         ]);
     }
-
-   
 }

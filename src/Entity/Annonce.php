@@ -98,6 +98,7 @@ class Annonce
         $this->photoAnnonces = new ArrayCollection();
         $this->versionOsAppareils = new ArrayCollection();
         $this->reparations = new ArrayCollection();
+        $this->heure_date_publication = new \DateTime();
     }
 
     public function getId(): ?int
@@ -158,7 +159,7 @@ class Annonce
         return $this->heure_date_publication;
     }
 
-    public function setHeureDatePublication(\DateTimeInterface $heure_date_publication): self
+    public function setHeureDatePublication(?\DateTimeInterface $heure_date_publication): self
     {
         $this->heure_date_publication = $heure_date_publication;
 
