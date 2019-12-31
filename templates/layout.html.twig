@@ -6,8 +6,7 @@
 		<meta name="description" content="Axolit, la plateforme de réparation d'appareils entre particuliers!">
 		<link rel="icon" type="image/png" href="{{ asset('img/favicon.png')}}"/>
 		<title>
-			{% block titre_page %}
-			{% endblock %}
+			{% block titre_page %}{% endblock %}
 		</title>
 
 		<link rel="stylesheet" href="{{ asset('css/bootstrap-4.3.1-dist/css/bootstrap.min.css') }}" type="text/css"/>
@@ -22,12 +21,11 @@
 	<!-- ============================================================================================================================ -->
 
 
-
 	<body>
-<div class="loader">
-<h3>chargement de la page</h3>
-<img src="../img/loader.gif" alt="chargement de la page">
-</div>
+		<div class="loader">
+			<h3>chargement de la page</h3>
+			<img src="../img/loader.gif" alt="chargement de la page">
+		</div>
 
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark " id="navbar">
 			<a class="navbar-brand" href="{{path('accueil')}}">
@@ -117,13 +115,9 @@
 
 		</nav>
 
-		
-
 
 		<!-- ============================================================================================================================ -->
-		{% block contenu %}
-
-		{% endblock %}
+		{% block contenu %}{% endblock %}
 		<!-- ============================================================================================================================ -->
 
 		<footer class="bg-dark mt-5 fixe  font-small text-center">
@@ -149,14 +143,13 @@
 
 		</footer>
 
-	
-	<script type="text/javascript">
-$(window).load(function() {
-    $(".loader").fadeOut("slow");
-});
-</script>
-	
-	
+
+		<script type="text/javascript">
+			$(window).load(function () {
+				$(".loader").fadeOut("slow");
+			});
+		</script>
+	</body>
+
 
 </html>
- 
