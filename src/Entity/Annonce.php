@@ -43,16 +43,6 @@ class Annonce
      */
     private $heure_date_publication;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="annonces")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="favoris")
-     */
-    private $favoris;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Modele", inversedBy="annonces")
@@ -92,6 +82,11 @@ class Annonce
      */
     private $reparations;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="favoris")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->favoris = new ArrayCollection();
@@ -99,6 +94,7 @@ class Annonce
         $this->versionOsAppareils = new ArrayCollection();
         $this->reparations = new ArrayCollection();
         $this->heure_date_publication = new \DateTime();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -328,6 +324,34 @@ class Annonce
         if (!$this->reparations->contains($reparation)) {
             $this->reparations[] = $reparation;
             $reparation->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addFavori($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            $user->removeFavori($this);
         }
 
         return $this;

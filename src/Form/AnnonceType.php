@@ -38,8 +38,6 @@ class AnnonceType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Annonce::class,
-            // @todo implementer la protection avec les tokens csrf , le parametre ci dessous les désactivent
-            'csrf_protection' => false,
         ]);
     }
 }

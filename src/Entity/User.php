@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -76,6 +78,40 @@ class User implements UserInterface
      * @ORM\Column(type="date", nullable=true)
      */
     private $ddn;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Badge", inversedBy="users")
+     */
+    private $badges;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Annonce", inversedBy="users")
+     */
+    private $favoris;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reparation", mappedBy="user")
+     */
+    private $reparation;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CompetenceUser", mappedBy="user")
+     */
+    private $competenceUsers;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PhotoProfil", mappedBy="user", orphanRemoval=true)
+     */
+    private $photoProfils;
+
+    public function __construct()
+    {
+        $this->badges = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
+        $this->reparation = new ArrayCollection();
+        $this->competenceUsers = new ArrayCollection();
+        $this->photoProfils = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -259,6 +295,151 @@ class User implements UserInterface
     public function setDdn(?\DateTimeInterface $ddn): self
     {
         $this->ddn = $ddn;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Badge[]
+     */
+    public function getBadges(): Collection
+    {
+        return $this->badges;
+    }
+
+    public function addBadge(Badge $badge): self
+    {
+        if (!$this->badges->contains($badge)) {
+            $this->badges[] = $badge;
+        }
+
+        return $this;
+    }
+
+    public function removeBadge(Badge $badge): self
+    {
+        if ($this->badges->contains($badge)) {
+            $this->badges->removeElement($badge);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Annonce $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris[] = $favori;
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Annonce $favori): self
+    {
+        if ($this->favoris->contains($favori)) {
+            $this->favoris->removeElement($favori);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reparation[]
+     */
+    public function getReparation(): Collection
+    {
+        return $this->reparation;
+    }
+
+    public function addReparation(Reparation $reparation): self
+    {
+        if (!$this->reparation->contains($reparation)) {
+            $this->reparation[] = $reparation;
+            $reparation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReparation(Reparation $reparation): self
+    {
+        if ($this->reparation->contains($reparation)) {
+            $this->reparation->removeElement($reparation);
+            // set the owning side to null (unless already changed)
+            if ($reparation->getUser() === $this) {
+                $reparation->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CompetenceUser[]
+     */
+    public function getCompetenceUsers(): Collection
+    {
+        return $this->competenceUsers;
+    }
+
+    public function addCompetenceUser(CompetenceUser $competenceUser): self
+    {
+        if (!$this->competenceUsers->contains($competenceUser)) {
+            $this->competenceUsers[] = $competenceUser;
+            $competenceUser->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompetenceUser(CompetenceUser $competenceUser): self
+    {
+        if ($this->competenceUsers->contains($competenceUser)) {
+            $this->competenceUsers->removeElement($competenceUser);
+            // set the owning side to null (unless already changed)
+            if ($competenceUser->getUser() === $this) {
+                $competenceUser->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PhotoProfil[]
+     */
+    public function getPhotoProfils(): Collection
+    {
+        return $this->photoProfils;
+    }
+
+    public function addPhotoProfil(PhotoProfil $photoProfil): self
+    {
+        if (!$this->photoProfils->contains($photoProfil)) {
+            $this->photoProfils[] = $photoProfil;
+            $photoProfil->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhotoProfil(PhotoProfil $photoProfil): self
+    {
+        if ($this->photoProfils->contains($photoProfil)) {
+            $this->photoProfils->removeElement($photoProfil);
+            // set the owning side to null (unless already changed)
+            if ($photoProfil->getUser() === $this) {
+                $photoProfil->setUser(null);
+            }
+        }
 
         return $this;
     }

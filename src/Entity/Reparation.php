@@ -31,17 +31,17 @@ class Reparation
      */
     private $texte_commentaire;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reparations")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Annonce", inversedBy="reparations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $annonce;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reparation")
+     */
+    private $user;
 
     public function getId(): ?int
     {

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,10 +23,16 @@ class Competences
      */
     private $libelle;
 
+
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CompetencesUser", inversedBy="competences")
+     * @ORM\OneToMany(targetEntity="App\Entity\CompetenceUser", mappedBy="competence", orphanRemoval=true)
      */
-    private $competencesUser;
+    private $competenceUsers;
+
+    public function __construct()
+    {
+        $this->competenceUsers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -51,6 +59,37 @@ class Competences
     public function setCompetencesUser(?CompetencesUser $competencesUser): self
     {
         $this->competencesUser = $competencesUser;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CompetenceUser[]
+     */
+    public function getCompetenceUsers(): Collection
+    {
+        return $this->competenceUsers;
+    }
+
+    public function addCompetenceUser(CompetenceUser $competenceUser): self
+    {
+        if (!$this->competenceUsers->contains($competenceUser)) {
+            $this->competenceUsers[] = $competenceUser;
+            $competenceUser->setCompetence($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompetenceUser(CompetenceUser $competenceUser): self
+    {
+        if ($this->competenceUsers->contains($competenceUser)) {
+            $this->competenceUsers->removeElement($competenceUser);
+            // set the owning side to null (unless already changed)
+            if ($competenceUser->getCompetence() === $this) {
+                $competenceUser->setCompetence(null);
+            }
+        }
 
         return $this;
     }

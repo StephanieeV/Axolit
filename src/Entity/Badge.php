@@ -24,9 +24,10 @@ class Badge
     private $libelle;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="badges")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="badges")
      */
     private $users;
+
 
     public function __construct()
     {
