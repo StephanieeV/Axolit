@@ -27,6 +27,8 @@
 
 			<div class="card-body">
 				<form>
+
+				
 					<div class="form-group row">
 						<label for="radio" class="col-form-label col-sm-3 col-md-3 offset-md-2">
 							Type d'annonce :
@@ -156,6 +158,10 @@
 						</div>
 					</div>
 
+
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+					
+
 					<div class="text-center">
 						<button type="button" class="btn btn-light">
 							Annuler
@@ -195,6 +201,7 @@
 			</div>
 		</div>
 	</div>
+
 
 	{{ form_end(form_annonce) }}
 

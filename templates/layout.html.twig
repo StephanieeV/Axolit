@@ -81,10 +81,10 @@
 			</form>
 			<form class="form-inline my-2 my-lg-0" method="post">
 
-				<img class="btn-nav" alt="bouton pour rechercher" src="css/svg/icone/chercher.svg" data-toggle="collapse" href="#searchFieldNav" role="button" aria-expanded="false" aria-controls="searchFieldNav">
+				<img class="btn-nav" alt="bouton pour rechercher" src="{{asset('css/svg/icone/chercher.svg')}}" data-toggle="collapse" href="#searchFieldNav" role="button" aria-expanded="false" aria-controls="searchFieldNav">
 				<div class="dropdown">
 					<a data-toggle="dropdown" href="">
-						<img class="btn-nav " alt="bouton du compte" src="css/svg/icone/compte.svg">
+						<img class="btn-nav " alt="bouton du compte" src="{{asset('css/svg/icone/compte.svg')}}">
 					</a>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 						<a class="dropdown-item" href="{{path('connexion')}}">
@@ -108,7 +108,7 @@
 					</div>
 				</div>
 				<a href="{{path('favoris_reparateur')}}">
-					<img class="btn-nav" alt="bouton des favoris" src="css/svg/icone/favoris.svg">
+					<img class="btn-nav" alt="bouton des favoris" src="{{asset('css/svg/icone/favoris.svg')}}">
 				</a>
 			</form>
 

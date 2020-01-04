@@ -1,7 +1,9 @@
 {% extends "default/profil.html.twig" %}
 
-{% block photo_profil %}src="./css/images/profil/photo_profil.jpg"{% endblock %}
-{% block nom %}Tom Nguyen{% endblock %}
+
+
+{% block photo_profil %} <img src="{{asset('css/images/profil/photo_profil.jpg')}}"> {% endblock %}
+{% block nom %}{{ userProfile.prenom }} {{ userProfile.nom }}{% endblock %}
 {% block ville %}Bordeaux, 33000{% endblock %}
 {% block numeroTelephone %}06.11.11.11.11{% endblock %}
 {% block adresseMail %}nom@example.com{% endblock %}

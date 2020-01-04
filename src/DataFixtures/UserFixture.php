@@ -17,10 +17,11 @@ class UserFixture extends BaseFixture
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(10, 'main_users', function($i) {
-            $user = new User();
+        $this->createMany(10, User::class, function(User $user, $i){
             $user->setEmail(sprintf('spacebar%d@example.com', $i));
-            $user->setFirstName($this->faker->firstName);
+            $user->setNom('John');
+            $user->setPrenom(sprintf('Jo%d', $i));
+            $user->setPseudo(sprintf('JoJo%d', $i));
 
             $user->setPassword($this->passwordEncoder->encodePassword(
                 $user,

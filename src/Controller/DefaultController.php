@@ -172,15 +172,5 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/profil", name="profil")
-     */
-    public function profil1()
-    {
-        return $this->render('default/profil1.html.twig', [
-            'controller_name' => 'DefaultController',
-        ]);
-    }
-
    
 }
