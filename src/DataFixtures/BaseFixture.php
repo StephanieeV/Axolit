@@ -37,7 +37,7 @@ abstract class BaseFixture extends Fixture
 
             $this->manager->persist($entity);
             // store for usage later as App\Entity\ClassName_#COUNT#
-            $this->addReference($className . '_' . $i, $entity);
+            $this->addReference($className.'SAX'.$i , $entity);
         }
     }
 
@@ -46,12 +46,12 @@ abstract class BaseFixture extends Fixture
             $this->referencesIndex[$className] = [];
 
             foreach ($this->referenceRepository->getReferences() as $key => $ref) {
-                if (strpos($key, $className.'_') === 0) {
+                if (strpos($key, $className.'SAX') === 0) {
                     $this->referencesIndex[$className][] = $key;
                 }
             }
         }
-        throw new \Exception(sprintf('Cannot find any references for class "%s"', $className));
+
         if (empty($this->referencesIndex[$className])) {
             throw new \Exception(sprintf('Cannot find any references for class "%s"', $className));
         }

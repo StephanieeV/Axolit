@@ -20,17 +20,17 @@ class TypeAppareilFixture extends BaseFixture
         $typeannonce= new TypeAppareil();
         $typeannonce->setLibelle('Téléphone');
 
-        $this->addReference(sprintf('%s_%d', "typeappareil", 1), $typeannonce);
+        $this->addReference( TypeAppareil::class.'SAX1', $typeannonce);
 
         $typeannonce2= new TypeAppareil();
         $typeannonce2->setLibelle('Tablette');
 
-        $this->addReference(sprintf('%s_%d', "typeappareil", 2), $typeannonce2);
+        $this->addReference( TypeAppareil::class.'SAX2', $typeannonce2);
 
         $typeannonce3= new TypeAppareil();
         $typeannonce3->setLibelle('Ordinateur');
 
-        $this->addReference(sprintf('%s_%d', "typeappareil", 3), $typeannonce3);
+        $this->addReference( TypeAppareil::class.'SAX3', $typeannonce3);
 
 
  

@@ -6,9 +6,12 @@ use App\Entity\Annonce;
 use App\Entity\TypeAnnonce;
 use App\Entity\TypeAppareil;
 use App\Entity\User;
+use App\Entity\Modele;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class AnnonceFixture extends BaseFixture
+
+class AnnonceFixture extends BaseFixture  implements DependentFixtureInterface
 {
 
     public function __construct()
@@ -19,14 +22,14 @@ class AnnonceFixture extends BaseFixture
     {
         $this->createMany(10, Annonce::class, function(Annonce $annonce, $i) {
 
-            $annonce->setTitre(sprintf('Annonce N°%d', $i));
+            $annonce->setTitre('Annonce'. $i);
             $annonce->setPrix($i);
             $annonce->setTexteAnnonce("Un superbe appareil. Forgé à partir de mithril");
-            $annonce->setModele($this->getRandomReference('modele'));
+            $annonce->setModele($this->getRandomReference(Modele::class));
             $annonce->setLocalisation("New Monbasa");
-            $annonce->setModele($this->getRandomReference(TypeAnnonce::class));
-            $annonce->setModele($this->getRandomReference(TypeAppareil::class));
+            $annonce->setTypeAppareil($this->getRandomReference(TypeAppareil::class));
             $annonce->setUser($this->getRandomReference(User::class));
+            $annonce->setTypeAnnonce($this->getRandomReference(TypeAnnonce::class));
 
 
 
@@ -37,5 +40,16 @@ class AnnonceFixture extends BaseFixture
         });
 
         $manager->flush();
+    }
+
+
+    public function getDependencies()
+    {
+        return array(
+            UserFixture::class,
+            TypeAnnonceFixture::class,
+            TypeAppareilFixture::class,
+            ModeleFixture::class,
+        );
     }
 }

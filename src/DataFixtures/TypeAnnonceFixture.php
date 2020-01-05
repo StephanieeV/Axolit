@@ -20,11 +20,11 @@ class TypeAnnonceFixture extends BaseFixture
         $typeannonce= new TypeAnnonce();
         $typeannonce->setLibelle('A vendre');
 
-        $this->addReference(sprintf('%s_%d', "typeannonce", 1), $typeannonce);
+        $this->addReference( TypeAnnonce::class.'SAX'.'1', $typeannonce);
 
         $typeannonce2= new TypeAnnonce();
         $typeannonce2->setLibelle('À réparer');
-        $this->addReference(sprintf('%s_%d', "typeannonce", 2), $typeannonce2);
+        $this->addReference( TypeAnnonce::class.'SAX2', $typeannonce2);
 
         
         $this->manager->persist($typeannonce);
