@@ -19,8 +19,15 @@ class UserFixture extends BaseFixture
     {
         $this->createMany(10, User::class, function(User $user, $i){
             $user->setEmail(sprintf('spacebar%d@example.com', $i));
-            $user->setNom('John');
-            $user->setPrenom(sprintf('Jo%d', $i));
+
+
+            $arrX = array("Jotaro", "Giorno", "Josuke", "Joseph", "Moroder", "Giovanni", "Marduk", "Marwane","Merwan" );
+            $randIndex = array_rand($arrX, 1);
+
+            $user->setNom("Joestar");
+            $user->setPrenom($arrX[$randIndex]);
+
+            
             $user->setPseudo(sprintf('JoJo%d', $i));
 
             $user->setPassword($this->passwordEncoder->encodePassword(

@@ -108,6 +108,9 @@
     "fzaninotto/faker": {
         "version": "v1.9.1"
     },
+    "glanchow/doctrine-fuzzy": {
+        "version": "dev-master"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },

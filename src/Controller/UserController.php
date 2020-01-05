@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\UserRepository;
 use App\Entity\User;
 
 class UserController extends AbstractController
@@ -39,4 +40,36 @@ class UserController extends AbstractController
             'userProfile' => $user,
         ]);
     }
+
+    /**
+     * add levenhtstein & soundex function https://github.com/glanchow/doctrine-fuzzy
+     * @Route("/profil/fuzzy/{userName}", name="fuzzySearchUsername_route")
+     */
+    public function fuzzySearchUsername($userName)
+    {
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $result = $repository->suggestUserName($userName);
+        dd($result);
+
+        
+        //s$result = $repository->suggest
+    }
+
+        /**
+     * add levenhtstein & soundex function https://github.com/glanchow/doctrine-fuzzy
+     * @Route("/profil/fuzzyprenom/{userName}", name="fuzzyPrenomSearchUsername_route")
+     */
+    public function fuzzyprenomSearchUsername($userName)
+    {
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $result = $repository->suggestPrenom($userName);
+        dd($result);
+
+        
+        //s$result = $repository->suggest
+    }
+
+
+
+
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf4d0b784193c4ded89f4f67ab84b235",
+    "content-hash": "b345fdce0a4458cd190284226a504b5f",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1198,6 +1198,44 @@
                 "validator"
             ],
             "time": "2019-08-13T17:33:27+00:00"
+        },
+        {
+            "name": "glanchow/doctrine-fuzzy",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/glanchow/doctrine-fuzzy.git",
+                "reference": "b093f6b3cf258abab3f98976bf728bd210fe1845"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/glanchow/doctrine-fuzzy/zipball/b093f6b3cf258abab3f98976bf728bd210fe1845",
+                "reference": "b093f6b3cf258abab3f98976bf728bd210fe1845",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/orm": ">=2.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "WOK": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Doctrine2 DQL fuzzy functions",
+            "keywords": [
+                "Match",
+                "against",
+                "doctrine",
+                "levenshtein",
+                "soundex",
+                "symfony"
+            ],
+            "time": "2014-11-08T12:07:09+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -6790,7 +6828,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "glanchow/doctrine-fuzzy": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
