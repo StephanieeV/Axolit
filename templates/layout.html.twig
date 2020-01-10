@@ -6,7 +6,8 @@
 		<meta name="description" content="Axolit, la plateforme de réparation d'appareils entre particuliers!">
 		<link rel="icon" type="image/png" href="{{ asset('img/favicon.png')}}"/>
 		<title>
-			{% block titre_page %}{% endblock %}
+			{% block titre_page %}
+			{% endblock %}
 		</title>
 
 		<link rel="stylesheet" href="{{ asset('css/bootstrap-4.3.1-dist/css/bootstrap.min.css') }}" type="text/css"/>
@@ -23,7 +24,9 @@
 
 	<body>
 		<div class="loader">
-			<h3>chargement de la page</h3>
+			<h3>
+				chargement de la page
+			</h3>
 			<img src="../img/loader.gif" alt="chargement de la page">
 		</div>
 
@@ -87,23 +90,34 @@
 						<img class="btn-nav " alt="bouton du compte" src="{{asset('css/svg/icone/compte.svg')}}">
 					</a>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-						<a class="dropdown-item" href="{{path('connexion')}}">
-							Connexion
-						</a>
-						<a class="dropdown-item" href="{{path('inscription')}}">
-							Inscription
-						</a>
-						<a class="dropdown-item" href="{{path('mes_annonces')}}">
-							Mes annonces
-						</a>
-						<a class="dropdown-item" href="{{path('informations')}}">
-							Mon compte
-						</a>
-						<div class="dropdown-divider"></div>
+						{% if app.user %}
 
-						<button class="btn btn-rose" id="deconnexion" type="submit" value="Déconnexion" name="deco">
-							Déconnexion
-						</button>
+							<a class="dropdown-item" href="{{path('mes_annonces')}}">
+								Mes annonces
+							</a>
+							<a class="dropdown-item" href="{{path('informations')}}">
+								Mon compte
+							</a>
+							<div class="dropdown-divider"></div>
+
+
+							<button class="btn btn-rose" id="deconnexion" type="submit" value="Déconnexion" name="deco">
+								Déconnexion
+							</button>
+
+
+						{% else %}
+							<a class="dropdown-item" href="{{path('connexion')}}">
+								Connexion
+							</a>
+
+
+							<a class="dropdown-item" href="{{path('inscription')}}">
+								Inscription
+							</a>
+
+
+						{% endif %}
 
 					</div>
 				</div>
@@ -117,7 +131,8 @@
 
 
 		<!-- ============================================================================================================================ -->
-		{% block contenu %}{% endblock %}
+		{% block contenu %}
+		{% endblock %}
 		<!-- ============================================================================================================================ -->
 
 		<footer class="bg-dark mt-5 fixe  font-small text-center">
@@ -146,10 +161,8 @@
 
 		<script type="text/javascript">
 			$(window).load(function () {
-				$(".loader").fadeOut("slow");
-			});
+$(".loader").fadeOut("slow");
+});
 		</script>
 	</body>
-
-
-</html>
+</html></body></html>

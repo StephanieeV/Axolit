@@ -158,7 +158,7 @@ class DefaultController extends AbstractController
      */
     public function mes_annonces()
     {
-        return $this->render('default/mes_annonces.html.twig', [
+        return $this->render('default/annonce/mes_annonces.html.twig', [
             'controller_name' => 'DefaultController',
         ]);
     }
