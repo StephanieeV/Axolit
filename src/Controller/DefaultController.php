@@ -163,13 +163,15 @@ class DefaultController extends AbstractController
         ]);
     }
     /**
-     * @Route("/produit/produit1", name="produit1")
+     * @Route("/produit/{id}", name="produit",methods={"GET"})
      */
-    public function produit1()
-    {
-        return $this->render('default/produit1.html.twig', [
-            'controller_name' => 'DefaultController',
-        ]);
+    public function produit1(Annonce $annonce)
+    {    
+        return $this->render('default/produit.html.twig'
+            , [
+            'annonce' => $annonce,
+        ]
+        );
     }
 
    

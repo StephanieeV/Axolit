@@ -1,6 +1,9 @@
 {% extends "layout.html.twig" %}
 {% block titre_page %}Axolit - Produit {% endblock %}
-{% block link_css %}<link href="./css/page_produit.css" rel="stylesheet">{% endblock %}
+{% block link_css %}
+	<link href="{{ asset('./css/page_produit.css')}}" rel="stylesheet">
+{% endblock %}
+
 {% block accueil %} class="btn btn-rose"{% endblock %}
 {% block vendre %}class="btn btn-rose "{% endblock %}
 {% block acheter %}class="btn btn-rose "{% endblock %}
@@ -17,14 +20,25 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-10 offset-md-1">
-                                <h3>{% block titre %}{% endblock %}</h3>
-                                <h4>Prix : {% block prix %}{% endblock %}</h4>
+<h3>
+	{{ annonce.titre }}
+</h3>
+
+<h4>
+	Prix :
+	{{ annonce.prix }} €
+</h4>
+
                                 <div class="row justify-content-center">
-                                    <img {% block photo %}{% endblock %} style="width: 450px;">
+<img src="" style="width: 450px;">
+
                                 </div>
                                 <br>
                                 <h5 class="card-title">Description</h5>
-                                <p class="card-text text-justify">{% block description %}{% endblock %}</p>
+<p class="card-text text-justify">
+	{{ annonce.texteannonce}}
+</p>
+
                                 <div>
                                     <h5 class="card-title">Caractéristiques</h5>
                                     <p class="card-text">Type : {% block type %}{% endblock %}<br>
@@ -87,9 +101,14 @@
                             </div>
                             <div class="col-md-8 offset-md-2">
                                 <h3 class="card-title">{% block nom %}{% endblock %}</h3>
-                                <h4 class="card-text"><img src="./css/svg/icone/localisation.svg" alt="icone de localisation"> {% block ville_profil %}{% endblock %}</h4>
-                                <img src="./css/svg/icone/reparer.svg" class="badge" alt="badge de réparateur">
-                                <img src="./css/svg/icone/vendre.svg" class="badge"  alt="badge de réparateur">
+<h4 class="card-text">
+	<img src="{{ asset('./css/svg/icone/localisation.svg') }}"  alt="icone de localisation"> {% block ville_profil %}{% endblock %}
+	</h4>
+
+<img src="{{ asset('./css/svg/icone/reparer.svg') }}" class="badge" alt="badge de réparateur">
+
+<img src="{{ asset('./css/svg/icone/vendre.svg') }}" class="badge" alt="badge de vendre">
+
                             </div>
                         </div>
                         <br>
@@ -99,7 +118,8 @@
                             <tr>
                                 <tr>
                                     <div class="row justify-content-center">
-                                        <img src="./css/svg/icone/telephone.svg" id="icone_tel" alt="icone telephone" >
+<img src="{{ asset('./css/svg/icone/telephone.svg') }}" id="icone_tel" alt="icone telephone">
+
                                     </div>
                                 </tr>
                                 <tr>
@@ -126,7 +146,8 @@
                                 <tr>
                                     <tr>
                                         <div class="row justify-content-center">
-                                            <img src="./css/svg/icone/mail.svg" id="icone_mail" alt="icone mail">
+<img src="{{ asset('./css/svg/icone/mail.svg') }}" id="icone_mail" alt="icone mail">
+
                                         </div>
                                     </tr>
                                     <tr>
@@ -164,7 +185,11 @@
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d90615.62084142302!2d-0.7510120414918734!3d44.786143385329645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd54d8f9227cb8a3%3A0x3ace1d334bf95f98!2s33600%20Pessac!5e0!3m2!1sfr!2sfr!4v1574255940564!5m2!1sfr!2sfr" width="700" height="300" frameborder="0" style="border:0;" allowfullscreen="" class="col"></iframe>        
         <br>
 
-        <h4 class="card-text"><img src="./css/svg/icone/localisation.svg" alt="icone de localisation"> Pessac, 33600</h4>
+<h4 class="card-text">
+	<img src="{{ asset('./css/svg/icone/localisation.svg') }}" alt="icone de localisation">
+	Pessac, 33600
+</h4>
+
 
         <br>
         <h2>Annonces similaires</h2>
