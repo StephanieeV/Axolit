@@ -8,6 +8,8 @@ use App\Entity\Annonce;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Form\InscriptionType;
+use App\Form\InformationsType;
+use App\Form\ContactType;
 use App\Form\AnnonceType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\AnnonceRepository;
@@ -68,9 +70,8 @@ class DefaultController extends AbstractController
      */
     public function contact()
     {
-        return $this->render('default/contact.html.twig', [
-            'controller_name' => 'DefaultController',
-        ]);
+        $form = $this->createForm(ContactType::class);
+        return $this->render('./default/contact.html.twig', array('form_contact'=>$form->createView()));
     }
     /**
      * @Route("/favoris", name="favoris_reparateur")
@@ -98,11 +99,22 @@ class DefaultController extends AbstractController
     /**
      * @Route("/informations", name="informations")
      */
-    public function informations()
+    public function informations(Request $request)
     {
-        return $this->render('default/informations.html.twig', [
-            'controller_name' => 'DefaultController',
-        ]);
+        $user = new User();
+        $form = $this->createForm(InformationsType::class, $user);
+        $form->handleRequest($request);
+        if($form->isSubmitted()&& $form->isValid()){
+            
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('informations');
+        }
+        return $this->render('./default/informations.html.twig', array('form_modif_infos'=>$form->createView()));
+        
     }
     /**
      * @Route("/inscription", name="inscription")
