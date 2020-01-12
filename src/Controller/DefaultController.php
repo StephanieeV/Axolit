@@ -177,7 +177,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/produit/{id}", name="produit",methods={"GET"})
      */
-    public function produit1(Annonce $annonce)
+    public function produit(Annonce $annonce)
     {    
         return $this->render('default/produit.html.twig'
             , [
@@ -185,6 +185,16 @@ class DefaultController extends AbstractController
         ]
         );
     }
-
+/**
+     * @Route("/profil/{id}", name="profil",methods={"GET"})
+     */
+    public function profil(User $user)
+    {    
+        return $this->render('default/profil_autre.html.twig'
+            , [
+            'user' => $user,
+        ]
+        );
+    }
    
 }
