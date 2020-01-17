@@ -28,28 +28,11 @@
 			</div>
 			{{ form_start(form_modif_infos) }}
 
-			{{ form_row(form_modif_infos.pseudo) }}
-			{{ form_row(form_modif_infos.civilite) }}
-			{{ form_row(form_modif_infos.nom) }}
-			{{ form_row(form_modif_infos.prenom) }}
-			{{ form_row(form_modif_infos.ddn) }}
 			{# {{ form_row(form_modif_infos.photo_profil) }} #}
-			{{ form_row(form_modif_infos.adresse) }}
-			{{ form_row(form_modif_infos.Ville) }}
 			{# {{ form_row(form_modif_infos.code_postal) }} #}
-			{{ form_row(form_modif_infos.email) }}
-			{{ form_row(form_modif_infos.telephone) }}
-			{{ form_row(form_modif_infos.badges) }}
+			{# {{ form_row(form_modif_infos.badges) }} #}
 			{# {{ form_row(form_modif_infos.competences) }} #}
-			{{ form_row(form_modif_infos.password) }}
 
-			<button class="btn">
-				Sauvegarder les modifications
-			</button>
-			<button>
-				Annuler
-			</button>
-			{{ form_end(form_modif_infos) }}
 
 
 			<div class="card-body">
@@ -59,16 +42,19 @@
 				<br>
 				<form>
 					<div class="form-group row">
-						<label for="pseudo" class="col-form-label col-sm-6 col-md-2 offset-md-3">
-							Pseudo :
-						</label>
+						<div class="col-form-label col-sm-6 col-md-2 offset-md-3">
+							{{form_label(form_modif_infos.pseudo, 'Pseudo :')	}}
+						</div>
 						<div class="col-sm-6 col-md-4">
-							<input class="form-control" type="text" name="pseudo" placeholder="Pseudo">
+							{{form_widget(form_modif_infos.pseudo, {'attr':{'class':'form-control'}})}}
+							{{form_row(form_modif_infos.pseudo)}}
+							{{form_errors(form_modif_infos.pseudo)}}
 						</div>
 					</div>
-					<div class="form-group row">
-						<label for="radio" class="col-form-label col-sm-6 col-md-2 offset-md-3">
-							Civilité :
+					<label class="form-group row">
+						<label class="col-form-label col-sm-6 col-md-2 offset-md-3">
+							{# {{form_label(form_modif_infos.civilite, 'Civilité :')	}} #}
+							Civilité
 						</label>
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="option1" value="option1">
@@ -84,27 +70,33 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="nom" class="col-form-label col-sm-6 col-md-2 offset-md-3">
-							Nom :
-						</label>
+						<div class="col-sm-6 col-md-2 offset-md-3">
+							{{form_label(form_modif_infos.nom, 'Nom :')	}}
+						</div>
 						<div class="col-sm-6 col-md-4">
-							<input class="form-control" type="text" name="nom" placeholder="Nom">
+							{{form_widget(form_modif_infos.nom, {'attr':{'class':'form-control'}})}}
+							{{form_row(form_modif_infos.nom)}}
+							{{form_errors(form_modif_infos.nom)}}
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="prenom" class="col-form-label col-sm-6 col-md-2 offset-md-3">
-							Prénom :
-						</label>
+						<div class="col-sm-6 col-md-2 offset-md-3">
+							{{form_label(form_modif_infos.prenom, 'Prenom :')	}}
+						</div>
 						<div class="col-sm-6 col-md-4">
-							<input class="form-control" type="texte" name="prenom" placeholder="Prénom">
+							{{form_widget(form_modif_infos.prenom, {'attr':{'class':'form-control'}})}}
+							{{form_row(form_modif_infos.prenom)}}
+							{{form_errors(form_modif_infos.prenom)}}
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="dateN" class="col-form-label col-sm-6 col-md-2 offset-md-3">
-							Date de naissance :
-						</label>
+						<div class="col-sm-6 col-md-2 offset-md-3">
+							{{form_label(form_modif_infos.ddn, 'Date de naissance :')}}
+						</div>
 						<div class="col-sm-6 col-md-4">
-							<input class="form-control" type="date" name="dateN" placeholder="1996-08-19">
+							{{form_widget(form_modif_infos.ddn, {'attr':{'class':'form-control'}})}}
+							{{form_row(form_modif_infos.ddn)}}
+							{{form_errors(form_modif_infos.ddn)}}
 						</div>
 					</div>
 					<div class="form-group row">
@@ -126,19 +118,23 @@
 					</h5>
 					<br>
 					<div class="form-group row">
-						<label for="adresse" class="col-form-label col-sm-6 col-md-2 offset-md-3">
-							Adresse :
-						</label>
+						<div class="col-sm-6 col-md-2 offset-md-3">
+							{{form_label(form_modif_infos.adresse, 'Adresse :')	}}
+						</div>
 						<div class="col-sm-6 col-md-4">
-							<input class="form-control" type="text" name="adresse" placeholder="1 rue de Bordeaux">
+							{{form_widget(form_modif_infos.adresse, {'attr':{'class':'form-control'}})}}
+							{{form_row(form_modif_infos.adresse)}}
+							{{form_errors(form_modif_infos.adresse)}}
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="ville" class="col-form-label col-sm-6 col-md-2 offset-md-3">
-							Ville :
-						</label>
+						<div class="col-sm-6 col-md-2 offset-md-3">
+							{{form_label(form_modif_infos.ville, 'Ville :')	}}
+						</div>
 						<div class="form-group col-sm-6 col-md-4">
-							<input type="text" class="form-control" name="ville" placeholder="Bordeaux">
+							{{form_widget(form_modif_infos.ville, {'attr':{'class':'form-control'}})}}
+							{{form_row(form_modif_infos.ville)}}
+							{{form_errors(form_modif_infos.ville)}}
 						</div>
 					</div>
 					<br>
@@ -147,19 +143,23 @@
 					</h5>
 					<br>
 					<div class="form-group row">
-						<label for="email" class="col-form-label col-sm-6 col-md-2 offset-md-3">
-							E-mail :
-						</label>
+						<div class="col-sm-6 col-md-2 offset-md-3">
+							{{form_label(form_modif_infos.ville, 'Email :')	}}
+						</div>
 						<div class="form-group col-sm-6 col-md-4">
-							<input type="email" class="form-control" name="mail" placeholder="nom@exemple.com">
+							{{form_widget(form_modif_infos.email, {'attr':{'class':'form-control'}})}}
+							{{form_row(form_modif_infos.email)}}
+							{{form_errors(form_modif_infos.email)}}
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="tel" class="col-form-label col-sm-6 col-md-2 offset-md-3">
-							Téléphone :
-						</label>
+						<div class="col-sm-6 col-md-2 offset-md-3">
+							{{form_label(form_modif_infos.telephone, 'Téléphone :')	}}
+						</div>
 						<div class="form-group col-sm-6 col-md-4">
-							<input class="form-control" type="tel" name="tel" placeholder="(+33)">
+							{{form_widget(form_modif_infos.telephone, {'attr':{'class':'form-control'}})}}
+							{{form_row(form_modif_infos.telephone)}}
+							{{form_errors(form_modif_infos.telephone)}}
 						</div>
 					</div>
 					<br>
@@ -208,11 +208,13 @@
 					</h5>
 					<br>
 					<div class="form-group row">
-						<label for="mdp" class="col-form-label col-sm-3 col-md-3 offset-md-2">
-							Modifier le mot de passe :
-						</label>
+						<div class="col-sm-3 col-md-3 offset-md-2">
+							{{form_label(form_modif_infos.password, 'Modifier le mot de passe :')}}
+						</div>
 						<div class="form-group col-sm-6 col-md-4">
-							<input autocomplete="new-password" type="password" class="form-control" name="mdp" placeholder="Mot de passe">
+							{{form_widget(form_modif_infos.password, {'attr':{'class':'form-control'}})}}
+							{{form_row(form_modif_infos.password)}}
+							{{form_errors(form_modif_infos.password)}}
 						</div>
 					</div>
 
