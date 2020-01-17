@@ -140,7 +140,9 @@ class DefaultController extends AbstractController
     public function liste_produits()
     {
         $em=$this->get('doctrine')->getManager();
-        $annonces = $em->getRepository(Annonce::class)->findAll();
+        $annonces = $em->getRepository(Annonce::class)->findBy(
+    ['type_annonce' => '85']
+);;
         return $this->render('default/liste_produits.html.twig', [
             'annonces' => $annonces,
         ]);
@@ -151,7 +153,9 @@ class DefaultController extends AbstractController
     public function liste_reparation()
     {
         $em=$this->get('doctrine')->getManager();
-        $annonces = $em->getRepository(Annonce::class)->findAll();
+        $annonces = $em->getRepository(Annonce::class)->findBy(
+    ['type_annonce' => '86']
+);;
         return $this->render('default/liste_reparation.html.twig', [
             'annonces' => $annonces,
         ]);
