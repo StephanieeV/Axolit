@@ -13,6 +13,7 @@ use App\Form\ContactType;
 use App\Form\AnnonceType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\AnnonceRepository;
+use App\Repository\UserRepository;
 
 class DefaultController extends AbstractController
 {
@@ -101,15 +102,12 @@ class DefaultController extends AbstractController
      */
     public function informations(Request $request)
     {
-        $user = new User();
-        $form = $this->createForm(InformationsType::class, $user);
+       
+        $form = $this->createForm(InformationsType::class);
         $form->handleRequest($request);
         if($form->isSubmitted()&& $form->isValid()){
-            
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+            $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('informations');
         }
@@ -142,7 +140,7 @@ class DefaultController extends AbstractController
         $em=$this->get('doctrine')->getManager();
         $annonces = $em->getRepository(Annonce::class)->findBy(
     ['type_annonce' => '85']
-);;
+);
         return $this->render('default/liste_produits.html.twig', [
             'annonces' => $annonces,
         ]);
@@ -155,7 +153,7 @@ class DefaultController extends AbstractController
         $em=$this->get('doctrine')->getManager();
         $annonces = $em->getRepository(Annonce::class)->findBy(
     ['type_annonce' => '86']
-);;
+);
         return $this->render('default/liste_reparation.html.twig', [
             'annonces' => $annonces,
         ]);

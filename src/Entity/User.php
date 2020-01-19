@@ -109,6 +109,11 @@ class User implements UserInterface
      */
     private $annonces;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $code_postal;
+
     public function __construct()
     {
         $this->badges = new ArrayCollection();
@@ -477,6 +482,18 @@ class User implements UserInterface
                 $annonce->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCodePostal(): ?int
+    {
+        return $this->code_postal;
+    }
+
+    public function setCodePostal(?int $code_postal): self
+    {
+        $this->code_postal = $code_postal;
 
         return $this;
     }
