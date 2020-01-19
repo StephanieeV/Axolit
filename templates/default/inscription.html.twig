@@ -27,10 +27,6 @@
 				Créez un compte
 			</h5>
 
-
-
-        			{{ form_row(form_inscription.agreeTerms) }}
-
 						<div class="form-group form-row" >
 
 						<div  class=" offset-md-3 col-md-3 ">
@@ -64,18 +60,22 @@
 
 					<div class="form-row">
 						<div class="col-md-3 offset-md-3">
-						{{form_label(form_inscription.plainPassword, 'Votre mot de passe (6 caractères minimum) :')	}}
-						{{form_widget(form_inscription.plainPassword, {'attr':{'class':'form-control'}})}}
-						{{form_errors(form_inscription.plainPassword)	}}
+						{{form_label(form_inscription.password, 'Votre mot de passe (6 caractères minimum) :')	}}
+						{{form_widget(form_inscription.password, {'attr':{'class':'form-control'}})}}
+						{{form_errors(form_inscription.password)}}
 						</div>
 						<div class="col-md-3">
-							<label>
-								Confirmer votre mot de passe (6 caractères minimum) :
-							</label>
-							<input id="confirmer_mdp" type="password" class="form-control" required="Veuillez renseigner ce champ" minlength="6">
+						{{form_label(form_inscription.confirm_password, 'Confirmer votre mot de passe (6 caractères minimum) :')	}}
+						{{form_widget(form_inscription.confirm_password, {'attr':{'class':'form-control'}})}}
+						{{form_errors(form_inscription.confirm_password)}}
 						</div>
 					</div>
-
+					</br>
+					<div class="form-row">
+						<div class="offset-md-5">
+							{{ form_row(form_inscription.agreeTerms) }}
+						</div>
+					</div>
 	</br>
 
 	<div class="col-md-5 offset-md-5">
