@@ -69,53 +69,13 @@
 
 			<br>
 			{#
-																																																														<div class="col-md-4">
-																																																															<div class="card">
-																																																																<div class="card-body text-center text-md-center">
-																																																																	<div class="row">
-																																																																		<div class="col-md-12">
-																																																																			<img src="./css/images/ipad_pro.png" class="image_produit" alt="photo produit">
-																																																																			<h3>
-																																																																				iPad Pro
-																																																																			</h3>
-																																																																			<p class="text-justify text-center text-md-center">
-																																																																				Vitre avant cassée et vitre arriere de l’appareil photo fissurée
-																																																																			</p>
-																																																																			<a href="produit4.php">
-																																																																				<button class="btn-rose btn btn-primary" name="bouton voir produit" type="button">
-																																																																					Voir le produit
-																																																																				</button>
-																																																																			</a>
-																																																																		</div>
-																																																																	</div>
-																																																																</div>
-																																																															</div>
-																																																															<br>
-																																																															<div class="card">
-																																																																<div class="card-body text-center text-md-center">
-																																																																	<div class="row">
-																																																																		<div class="col-md-12">
-																																																																			<img src="img/telephone.jpg" class="image_produit" alt="photo produit">
-																																																																			<h3>
-																																																																				iPhone
-																																																																			</h3>
-																																																																			<p class="text-justify text-center text-md-center">
-																																																																				Vitre cassé
-																																																																			</p>
-																																																																			<a href="#">
-																																																																				<button class="btn-rose btn btn-primary" name="bouton voir produit" type="button">
-																																																																					Voir le produit
-																																																																				</button>
-																																																																			</a>
-																																																																		</div>
-																																																																	</div>
-																																																																</div>
-																																																															</div>
-																																																														</div> #}
+																																																																							<div class="col-md-4">
+																																																																				</div> #}
 			<br>
 		</div>
 	</div>
 	<br>
+	{{ knp_pagination_render(annonces) }}
 	<nav aria-label="Page navigation example">
 		<ul class="pagination justify-content-center">
 			<li class="page-item ">

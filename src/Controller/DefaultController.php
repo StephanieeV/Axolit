@@ -13,7 +13,7 @@ use App\Form\ContactType;
 use App\Form\AnnonceType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\AnnonceRepository;
-use App\Repository\UserRepository;
+use Knp\Component\Pager\PaginatorInterface;
 
 class DefaultController extends AbstractController
 {
@@ -102,12 +102,18 @@ class DefaultController extends AbstractController
      */
     public function informations(Request $request)
     {
-       
-        $form = $this->createForm(InformationsType::class);
+        $emm=$this->get('doctrine')->getManager();
+        $infosUser = $emm->getRepository(User::class)->findAll(
+);
+        
+        $user = new User();
+        $form = $this->createForm(InformationsType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted()&& $form->isValid()){
 
-            $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
 
             return $this->redirectToRoute('informations');
         }
@@ -135,12 +141,13 @@ class DefaultController extends AbstractController
     /**
      * @Route("/liste_produits", name="liste_produits")
      */
-    public function liste_produits()
+    public function liste_produits(Request $request, PaginatorInterface $paginator)
     {
         $em=$this->get('doctrine')->getManager();
         $annonces = $em->getRepository(Annonce::class)->findBy(
     ['type_annonce' => '85']
 );
+$annonces=$paginator->paginate($annonces,$request->query->getInt('page',1),3);
         return $this->render('default/liste_produits.html.twig', [
             'annonces' => $annonces,
         ]);

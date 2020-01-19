@@ -54,15 +54,19 @@
 										alt="photo de profil"
 										<div class="card-body ">
 											<h3 class="card-title">
-												{% block nom %}
-												{% endblock %}
+												{{ app.user.nom }}
 
 											</h3>
 
 											<h4 class="card-text">
 												<img src="{{asset('css/svg/icone/localisation.svg')}}" alt="icone localisation">
-												{% block ville %}
-												{% endblock %}
+												{% if app.user.Ville == null %}
+													France
+												{% else %}
+													{{ app.user.Ville }}
+												{% endif %}
+
+
 											</h4>
 										</div>
 									</div>
