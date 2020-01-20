@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -34,10 +35,15 @@ class User implements UserInterface
 
     /**
      * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=4096)
+     * @Assert\Length(min="6", minMessage="Votre mot de passe doit faire minimum 6 caractères")
      */
     private $password;
 
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="Votre mot de passe doit être identique")
+     */
+    public $confirm_password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -108,6 +114,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Annonce", mappedBy="user")
      */
     private $annonces;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $code_postal;
 
     public function __construct()
     {
@@ -478,6 +489,18 @@ class User implements UserInterface
                 $annonce->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCodePostal(): ?int
+    {
+        return $this->code_postal;
+    }
+
+    public function setCodePostal(?int $code_postal): self
+    {
+        $this->code_postal = $code_postal;
 
         return $this;
     }

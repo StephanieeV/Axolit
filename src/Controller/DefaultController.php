@@ -13,6 +13,7 @@ use App\Form\ContactType;
 use App\Form\AnnonceType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\AnnonceRepository;
+use Knp\Component\Pager\PaginatorInterface;
 
 class DefaultController extends AbstractController
 {
@@ -101,11 +102,14 @@ class DefaultController extends AbstractController
      */
     public function informations(Request $request)
     {
+        $emm=$this->get('doctrine')->getManager();
+        $infosUser = $emm->getRepository(User::class)->findAll(
+);
+        
         $user = new User();
         $form = $this->createForm(InformationsType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted()&& $form->isValid()){
-            
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -137,10 +141,13 @@ class DefaultController extends AbstractController
     /**
      * @Route("/liste_produits", name="liste_produits")
      */
-    public function liste_produits()
+    public function liste_produits(Request $request, PaginatorInterface $paginator)
     {
         $em=$this->get('doctrine')->getManager();
-        $annonces = $em->getRepository(Annonce::class)->findAll();
+        $annonces = $em->getRepository(Annonce::class)->findBy(
+    ['type_annonce' => '85']
+);
+$annonces=$paginator->paginate($annonces,$request->query->getInt('page',1),3);
         return $this->render('default/liste_produits.html.twig', [
             'annonces' => $annonces,
         ]);
@@ -151,7 +158,9 @@ class DefaultController extends AbstractController
     public function liste_reparation()
     {
         $em=$this->get('doctrine')->getManager();
-        $annonces = $em->getRepository(Annonce::class)->findAll();
+        $annonces = $em->getRepository(Annonce::class)->findBy(
+    ['type_annonce' => '86']
+);
         return $this->render('default/liste_reparation.html.twig', [
             'annonces' => $annonces,
         ]);
@@ -177,7 +186,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/produit/{id}", name="produit",methods={"GET"})
      */
-    public function produit1(Annonce $annonce)
+    public function produit(Annonce $annonce)
     {    
         return $this->render('default/produit.html.twig'
             , [
@@ -185,6 +194,16 @@ class DefaultController extends AbstractController
         ]
         );
     }
-
+/**
+     * @Route("/profil/{id}", name="profil",methods={"GET"})
+     */
+    public function profil(User $user)
+    {    
+        return $this->render('default/profil_autre.html.twig'
+            , [
+            'user' => $user,
+        ]
+        );
+    }
    
 }

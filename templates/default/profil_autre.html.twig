@@ -1,0 +1,530 @@
+{% extends "layout.html.twig" %}
+
+{% block link_css %}
+	<link href="{{asset('css/profil.css')}}" rel="stylesheet">
+{% endblock %}
+{% block titre_page %}
+	Axolit - Profil
+{% endblock %}
+{% block accueil %}
+	class="btn btn-rose"
+{% endblock %}
+{% block vendre %}
+	class="btn btn-rose "
+{% endblock %}
+{% block acheter %}
+	class="btn btn-rose "
+{% endblock %}
+{% block reparer %}
+	class="btn btn-rose "
+{% endblock %}
+{% block contenu %}
+
+
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="card col-md-8">
+				<div class="card-body">
+
+					<div class="row">
+						<div class="col-md-4">
+							<img src="{{asset('css/svg/icone/reparer.svg')}}" style="width: 50px;" alt="badge de réparateur">
+							<img src="{{asset('css/svg/icone/vendre.svg')}}" style="width: 50px;" alt="badge de réparateur">
+						</div>
+
+						<div class="col-md-4">
+							<div class="row justify-content-center">
+
+
+								<div class="card text-center" style="width: 20rem;">
+									<img class="card-img-bottom">
+									{% block photo_profil %}
+									{% endblock %}
+									alt="photo de profil"
+									<div class="card-body ">
+										<h3 class="card-title">
+
+											{{ user.nom }}
+
+										</h3>
+
+										<h4 class="card-text">
+											<img src="{{asset('css/svg/icone/localisation.svg')}}" alt="icone localisation">
+											{% if user.Ville == null %}
+												France
+											{% else %}
+												{{ user.Ville }}
+											{% endif %}
+
+
+										</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-1 offset-3 text-right">
+							<a href="" data-toggle="modal" data-target="#myModal">
+								<img src="{{asset('css/svg/icone/signaler.svg')}}" alt="bouton signaler" style="width: 35px;">
+							</a>
+							<!-- The Modal -->
+							<div class="modal" id="myModal">
+								<div class="modal-dialog">
+									<div
+										class="modal-content">
+
+										<!-- Modal Header -->
+										<div class="modal-header">
+											<h4 class="modal-title">
+												Signaler une annonce
+											</h4>
+											<button type="button" name="bouton signaler" class="close" data-dismiss="modal">
+												&times;
+											</button>
+										</div>
+
+										<!-- Modal body -->
+										<div class="modal-body">
+											<form>
+												<label for="checkbox">
+													Motif :
+												</label>
+												<div class="liste_motif">
+													<input type="checkbox" name="checkbox1" value="1">
+													Contenu indésirable
+													<br>
+													<input type="checkbox" name="checkbox2" value="2">
+													Fraude
+													<br>
+													<input type="checkbox" name="checkbox4" value="3">
+													Arnaque
+													<br>
+													<input type="checkbox" name="checkbox3" value="4">
+													Professionnel
+													<br>
+													<input type="checkbox" name="checkbox5" value="5">
+													Autre
+													<br>
+												</div>
+												<label for="input/text">
+													Message :
+												</label>
+												<input class="form-control" type="text" name="message" placeholder="Décrivez pourquoi vous signalez...">
+											</form>
+										</div>
+
+										<!-- Modal footer -->
+										<div class="modal-footer">
+											<button type="button" class="btn btn-light" name="bouton annuler" data-dismiss="modal">
+												Annuler
+											</button>
+											<button type="button" class="btn btn-danger" name="bouton envoyer" data-dismiss="modal">
+												Envoyer
+											</button>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<br>
+
+					<div class="row justify-content-center">
+						<div class="col-md-4">
+							<table>
+								<tr>
+									<img src="{{asset('./css/svg/icone/telephone.svg')}}" style="width: 40px;">
+								</tr>
+								<tr>
+									<button class="btn-rose btn btn-primary" type="button" data-toggle="modal" data-target=".bd-numero-modal-sm">
+										Voir le numéro
+									</button>
+									<div class="modal fade bd-numero-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+										<div class="modal-dialog modal-sm">
+											<div class="modal-content">
+												<div class="modal-body">
+													Voici le numéro de téléphone de cet utilisateur :
+													{% if user.telephone == null %}
+														Cet utilisateur n'a pas renseigner son numéro de téléphone.
+													{% else %}
+														Voici le numéro de téléphone de cet utilisateur :
+														{{ user.telephone }}
+														.
+														<br>
+														Veuillez le contacter uniquement à propos du site.
+
+
+													{% endif %}
+
+
+													<button type="button" class="close" data-dismiss="modal">
+														<span>
+															&times;
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</tr>
+								</tr>
+							</table>
+						</div>
+						<div class="col-md-4">
+							<table>
+								<tr>
+									<img src="{{asset('css/svg/icone/mail.svg')}}" style="width: 40px;">
+								</tr>
+								<tr>
+									<button class="btn-rose btn btn-primary" type="button" data-toggle="modal" data-target=".bd-mail-modal-sm">
+										Envoyer un mail
+									</button>
+									<div class="modal fade bd-mail-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+										<div class="modal-dialog modal-sm">
+											<div class="modal-content">
+												<div class="modal-body">
+													Voici l'email de cet utilisateur :
+
+													{{ user.email }}
+
+													.
+													<br>
+													Veuillez le contacter uniquement à propos du site.
+
+
+													<button type="button" class="close" data-dismiss="modal">
+														<span>
+															&times;
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</tr>
+								</tr>
+							</table>
+						</div>
+						<div class="col-md-4">
+							<table>
+								<tr>
+									<img src="{{asset('css/svg/icone/favoris.svg')}}" style="width: 40px;">
+								</tr>
+								<tr>
+									<a href="#">
+										<button class="btn-rose btn btn-primary" type="button">
+											Ajouter à ma liste
+										</button>
+									</a>
+								</tr>
+							</table>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<br>
+
+		<div class="col-md-8 offset-md-2">
+
+			<h2>
+				Compétences
+			</h2>
+
+			<p class="text-justify">
+				<ul>
+					{% block competences %}
+					{% endblock %}
+				</ul>
+			</p>
+
+			<br>
+			<!--<span class="trait">Cet utilisateur à déjà réparé</span>-->
+			<h2>
+				Cet utilisateur à déjà réparé
+			</h2>
+			<br>
+
+			<div class="row text-center text-md-left">
+				<div class="col-md-4">
+					<img>
+					{% block repare1 %}
+					{% endblock %}
+					style="width: 200px; height: 150px;"
+				</div>
+				<div class="col-md-6">
+					<h3>
+						{% block dejaRepare1Titre %}
+						{% endblock %}
+						<img src="{{asset('./css/svg/icone/5_etoile.svg')}}" style="width: 100px;">
+					</h3>
+					<p class="text-justify">
+						{% block dejaRepare1Description %}
+						{% endblock %}
+					</p>
+					<div class="text-center">
+						<button type="button" class="btn-rose btn btn-primary btn-sm">
+							Lire plus
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<br>
+
+			<div class="row  text-center text-md-left">
+				<div class="col-md-4">
+					<img>
+					{% block repare2 %}
+					{% endblock %}
+					style="width: 200px; height: 150px;"
+				</div>
+				<div class="col-md-6">
+					<h3>
+						{% block dejaRepare2Titre %}
+						{% endblock %}
+						<img src="{{asset('css/svg/icone/4_etoile.svg')}}" style="width: 100px;">
+					</h3>
+					<p class="text-justify">
+						{% block dejaRepare2Description %}
+						{% endblock %}
+					</p>
+					<div class="text-center">
+						<button type="button" class="btn-rose btn btn-primary btn-sm">
+							Lire plus
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<br>
+
+			<div class="row justify-content-center">
+				<div class="card" style="width: 50rem;">
+					<div class="card-header">
+						<h2>
+							Notes
+							<img src="{{asset('css/svg/icone/3_etoile.svg')}}" style="width: 100px;">
+						</h2>
+						<table class="table-note">
+							<colgroup>
+								<col width="150px">
+								<col width="150px">
+								<col width="250px">
+							</colgroup>
+							<tr>
+								<td class="td-note-droite">
+									8 %
+								</td>
+								<td class="td-note-gauche">
+									<img src="{{asset('css/svg/icone/5_etoile.svg')}}" style="width: 100px;">
+								</td>
+								<td class="td-note-droite">
+									Excellent réparateur
+								</td>
+							</tr>
+							<tr>
+								<td class="td-note-droite">
+									73 %
+								</td>
+								<td class="td-note-gauche">
+									<img src="{{asset('css/svg/icone/4_etoile.svg')}}" style="width: 100px;">
+								</td>
+								<td class="td-note-droite">
+									Bonne prestation
+								</td>
+							</tr>
+							<tr>
+								<td class="td-note-droite">
+									14 %
+								</td>
+								<td class="td-note-gauche">
+									<img src="{{asset('css/svg/icone/3_etoile.svg')}}" style="width: 100px;">
+								</td>
+								<td class="td-note-droite">
+									Prestation satisfaisante
+								</td>
+							</tr>
+							<tr>
+								<td class="td-note-droite">
+									5 %
+								</td>
+								<td class="td-note-gauche">
+									<img src="{{asset('css/svg/icone/2_etoile.svg')}}" style="width: 100px;">
+								</td>
+								<td class="td-note-droite">
+									Prestation décevante
+								</td>
+							</tr>
+							<tr>
+								<td class="td-note-droite">
+									0 %
+								</td>
+								<td class="td-note-gauche">
+									<img src="{{asset('css/svg/icone/1_etoile.svg')}}" style="width: 100px;">
+								</td>
+								<td class="td-note-droite">
+									Mauvaise expérience
+								</td>
+							</tr>
+							<tr>
+								<td class="td-note-droite">
+									0 %
+								</td>
+								<td class="td-note-gauche">
+									<img src="{{asset('css/svg/icone/0_etoile.svg')}}" style="width: 100px;">
+								</td>
+								<td class="td-note-droite">
+									Médiocre
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<br>
+			<h2>
+				Commentaires
+			</h2>
+			<br>
+
+			<div class="row">
+				<div class="card" style="width: 50rem;">
+					<div class="card-body text-center text-md-left">
+
+						<div class="row">
+							<div class="col-md-2">
+								<img src="{{asset('css/images/profil/photo_profil.jpg')}}" style="width: 90px; height: 90px;">
+							</div>
+							<div class="col-md-10">
+								<p>
+									<span>
+										{% block commentaire1Nom %}
+										{% endblock %}
+										<img src="{{asset('css/svg/icone/5_etoile.svg')}}" style="width: 100px;">
+									</span>
+								</p>
+								<p class="text-justify">
+									{% block commentaire1Description %}
+									{% endblock %}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<br>
+
+			<div class="row">
+				<div class="card" style="width: 50rem;">
+					<div class="card-body text-center text-md-left">
+						<div class="row">
+							<div class="col-md-2">
+								<img src="{{asset('css/images/profil/photo_profil.jpg')}}" style="width: 90px; height: 90px;">
+							</div>
+							<div class="col-md-10">
+								<p>
+									<span>
+										{% block commentaire2Nom %}
+										{% endblock %}
+										<img src="{{asset('css/svg/icone/4_etoile.svg')}}" style="width: 100px;">
+									</span>
+								</p>
+								<p class="text-justify">
+									{% block commentaire2Description %}
+									{% endblock %}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<br>
+			<h2>
+				Autres réparateurs
+			</h2>
+			<br>
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card">
+						<div class="card-body text-center text-md-left">
+							<div class="row">
+								<div class="col-md-2">
+									<img>
+									{% block autreReparateur1PhotoProfil %}
+										src="
+										{{asset('css/images/profil/photo_profil1.jpg')}}
+										"
+									{% endblock %}
+									style="width: 90px; height: 90px;"
+								</div>
+								<div class="col-md-8 offset-md-2">
+									<h5 class="card-title">
+										{% block autreReparateur1Nom %}
+										{% endblock %}
+									</h5>
+									<h6 class="card-text">
+										<img src="{{asset('css/svg/icone/localisation.svg')}}" alt="icone de localisation">
+										{% block autreReparateur1Ville %}
+										{% endblock %}
+									</h6>
+									<a>
+										{% block pageProfil1 %}
+										{% endblock %}
+										<button class="btn-rose btn btn-primary btn-sm" type="button">
+											Voir le profil
+										</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="card">
+						<div class="card-body text-center text-md-left">
+							<div class="row">
+								<div class="col-md-2">
+									<img>
+									{% block autreReparateur2PhotoProfil %}
+										src="
+										{{asset('css/images/profil/photo_profil2.jpg')}}
+										"
+									{% endblock %}
+									style="width: 90px; height: 90px;"
+								</div>
+								<div class="col-md-8 offset-md-2">
+									<h5 class="card-title">
+										{% block autreReparateur2Nom %}
+										{% endblock %}
+									</h5>
+									<h6 class="card-text">
+										<img src="{{asset('css/svg/icone/localisation.svg')}}" alt="icone de localisation">
+										{% block autreReparateur2Ville %}
+										{% endblock %}
+									</h6>
+									<a>
+										{% block pageProfil2 %}
+										{% endblock %}
+										<button class="btn-rose btn btn-primary btn-sm" type="button">
+											Voir le profil
+										</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</div>{% endblock %}
