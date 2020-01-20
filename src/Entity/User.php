@@ -425,6 +425,7 @@ class User implements UserInterface
     public function getPhotoProfils(): Collection
     {
         return $this->photoProfils;
+        //return "/public/pddp.jpg";
     }
 
     public function addPhotoProfil(PhotoProfil $photoProfil): self

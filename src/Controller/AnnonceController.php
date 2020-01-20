@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\ModeleRepository;
+
 
 
 class AnnonceController extends AbstractController
@@ -64,4 +66,19 @@ class AnnonceController extends AbstractController
         }
         return $this->render('./default/annonce/vendre.html.twig', array('form_annonce' => $form->createView()));
     }
+
+    /**
+     * add levenhtstein & soundex function https://github.com/glanchow/doctrine-fuzzy
+     * @Route("/annonce/fuzzymodele/{modeleName}", name="fuzzymodele_route")
+     */
+    public function fuzzyModeleSearch($modeleName)
+    {
+        $repository = $this->getDoctrine()->getRepository(Modele::class);
+        $result = $repository->suggestModeleName($modeleName);
+        dd($result);
+
+        
+        //s$result = $repository->suggest
+    }
+
 }

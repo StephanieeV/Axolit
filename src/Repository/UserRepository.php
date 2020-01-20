@@ -62,11 +62,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $query = $this
             ->createQueryBuilder('a')
             ->where("SOUNDEX(a.prenom) LIKE SOUNDEX(:search)")
-            // To use SOUNDEX with another methods like MATCH_AGAINST
-            // You can use the orWhere('SOUN....') clause instead of where
-            // In case that you don't want to use parameter, you can set directly the string into the query
-            //->where("SOUNDEX(a.table_field) LIKE SOUNDEX('%Title to search mispillid%')")
-            ->setParameter('search',$userName)
+            ->setParameter('search',$userName)  
             ->getQuery();
             
         return $query->getResult();
