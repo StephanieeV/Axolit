@@ -29,6 +29,7 @@ class UserFixture extends BaseFixture
 
             
             $user->setPseudo(sprintf('JoJo%d', $i));
+            $user->setPhotoprofil('uneranddomstring');
 
             $user->setPassword($this->passwordEncoder->encodePassword(
                 $user,
