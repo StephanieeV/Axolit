@@ -140,7 +140,10 @@ footer{
 		padding: 0;
 		text-align: center;
 	}
-
+/*Form*/
+.label_required{
+font-size: small;
+}
 
 
 
