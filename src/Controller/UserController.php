@@ -20,7 +20,7 @@ class UserController extends AbstractController
             'controller_name' => 'UserController',
             'userProfile' => $userProfile,
             'displayEditLink' => true,
-            dd($userProfile->getPhotoprofil())
+                
 
         ]);
     }
@@ -32,6 +32,7 @@ class UserController extends AbstractController
      */
     public function findUserByUsername($userName)
     {
+
         $repository = $this->getDoctrine()->getRepository(User::class);
 
         // look for a single Product by name

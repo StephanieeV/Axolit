@@ -145,7 +145,7 @@ class DefaultController extends AbstractController
     {
         $em=$this->get('doctrine')->getManager();
         $annonces = $em->getRepository(Annonce::class)->findBy(
-    ['type_annonce' => '85']
+    ['type_annonce' => '5']
 );
 $annonces=$paginator->paginate($annonces,$request->query->getInt('page',1),3);
         return $this->render('default/liste_produits.html.twig', [
@@ -194,17 +194,6 @@ $annonces=$paginator->paginate($annonces,$request->query->getInt('page',1),3);
         ]
         );
     }
-    /**
-     * @todo unique pseudo
-     * @Route("/profil/{id}", name="profil",methods={"GET"})
-     */
-    public function profil(User $user)
-    {    
-        return $this->render('default/profil_autre.html.twig'
-            , [
-            'user' => $user,
-        ]
-        );
-    }
+
    
 }
