@@ -23,4 +23,6 @@ class ModeleFixture extends BaseFixture
 
         $manager->flush();
     }
+
+
 }
