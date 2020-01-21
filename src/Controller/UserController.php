@@ -20,6 +20,8 @@ class UserController extends AbstractController
             'controller_name' => 'UserController',
             'userProfile' => $userProfile,
             'displayEditLink' => true,
+            dd($userProfile->getPhotoprofil())
+
         ]);
     }
 

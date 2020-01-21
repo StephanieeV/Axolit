@@ -194,7 +194,8 @@ $annonces=$paginator->paginate($annonces,$request->query->getInt('page',1),3);
         ]
         );
     }
-/**
+    /**
+     * @todo unique pseudo
      * @Route("/profil/{id}", name="profil",methods={"GET"})
      */
     public function profil(User $user)

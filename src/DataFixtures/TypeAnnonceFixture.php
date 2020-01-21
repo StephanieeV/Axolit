@@ -16,7 +16,6 @@ class TypeAnnonceFixture extends BaseFixture
 
     protected function loadData(ObjectManager $manager)
     {
-
         $typeannonce= new TypeAnnonce();
         $typeannonce->setLibelle('A vendre');
 
