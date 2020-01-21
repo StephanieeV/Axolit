@@ -1,5 +1,10 @@
 
 {% extends "layout.html.twig"%}
+
+{% block ReCaptcha %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock %}
+
 {% block titre_page %}
 	Axolit - Inscription
 {% endblock %}
@@ -78,6 +83,10 @@
 					</div>
 	</br>
 
+<div class="col-md-8 offset-md-4">
+<div class="g-recaptcha" data-sitekey="6LdZI8QUAAAAALEI9NU699TYNHSbo0CxRyCe5fkH"></div>
+</br>
+</div>
 	<div class="col-md-5 offset-md-5">
 	<button type="submit" class="btn btn-rose btn-primary">
 		Créer votre compte
