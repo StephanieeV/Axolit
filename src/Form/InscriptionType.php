@@ -18,6 +18,8 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
  * @todo ajouter le captcha 
  * @todo inscrire le meme utilisateur ne renvoie pas d'erreur
  */
+
+        
 class InscriptionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -37,6 +39,7 @@ class InscriptionType extends AbstractType
             ])
             ->add('password', PasswordType::class)
             ->add('confirm_password', PasswordType::class);
+    
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -45,4 +48,8 @@ class InscriptionType extends AbstractType
             'data_class' => User::class,
         ]);
     }
+  
+  
+  
 }
+  

@@ -13,6 +13,9 @@
 
 
 					<div class="form-group row">
+					<div  class=" offset-md-3 col-md-3 ">
+						<span class="label_required">Les champs avec * sont obligatoires !</span>
+					</div>
 						<label for="radio" class="col-form-label col-sm-3 col-md-3 offset-md-2">
 							Type d'annonce :
 						</label>
@@ -79,6 +82,7 @@
 
 					<div class="form-group row">
 						<div class="col-sm-3 col-md-3 offset-md-2">
+							{{form_label(form_inscription.prenom, '*')	}}
 							{{form_label(form_annonce.titre, 'Titre de l\'annonce :')	}}
 						</div>
 						<div class="col-sm-6 col-md-4">
