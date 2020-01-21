@@ -30,7 +30,8 @@
 </h4>
 
                                 <div class="row justify-content-center">
-<img src="" style="width: 450px;">
+{% for photodannonce in annonce.photoannonces %}
+<img src="{{ photodannonce.libelle }}">{% endfor %}
 
                                 </div>
                                 <br>
@@ -41,15 +42,23 @@
 
                                 <div>
                                     <h5 class="card-title">Caractéristiques</h5>
-                                    <p class="card-text">Type : {% block type %}{% endblock %}<br>
-                                    Modèle : {% block modele %}{% endblock %}<br>
-                                    Année : {% block annee %}{% endblock %}<br>
-                                    Couleur: {% block couleur %}{% endblock %}<br>
-                                    OS et version : {% block version %}{% endblock %}</p>
+
+<p class="card-text">{% if annonce.typeappareil.libelle != null %}
+	Type :
+	{{ annonce.typeappareil.libelle }}
+
+<br>{% endif %}
+
+Modèle :
+{% if annonce.modele.libelle != null %}
+
+{{ annonce.modele.libelle }}
+
+<br>{% endif %}
                                 </div>
                             </div>
                             <div class="col-md-1 text-right">
-                                <a href=""  data-toggle="modal" data-target="#myModal"><img src="./css/svg/icone/signaler.svg" style="width: 35px;"></a>
+                                <a href=""  data-toggle="modal" data-target="#myModal"><img src="{{asset('./css/svg/icone/signaler.svg')}}" style="width: 35px;"></a>
                                 <!-- The Modal -->
                                 <div class="modal" id="myModal">
                                   <div class="modal-dialog">
@@ -97,12 +106,25 @@
                     <div class="card-body text-center text-md-left">
                         <div class="row">
                             <div class="col-md-2">
-                                <img {% block photo_profil %}{% endblock %} alt="photo profil" class="photo_profil">
+{% if annonce.user.photoprofil.first %}
+<img src="{{ annonce.user.photoprofil }}" class="photo_profil">
+
+{% else %}
+	<img src="{{asset('./img/profil/photo_profil.jpg')}}" class="photo_profil">
+{% endif %}
+
+
                             </div>
                             <div class="col-md-8 offset-md-2">
-                                <h3 class="card-title">{% block nom %}{% endblock %}</h3>
+<h3 class="card-title">
+{{ annonce.user.nom }}
+
+</h3>
+
 <h4 class="card-text">
-	<img src="{{ asset('./css/svg/icone/localisation.svg') }}"  alt="icone de localisation"> {% block ville_profil %}{% endblock %}
+<img src="{{ asset('./css/svg/icone/localisation.svg') }}" alt="icone de localisation">
+{% if annonce.user.ville != null %}{{ annonce.user.ville }}, France{% else %} France {% endif %}
+
 	</h4>
 
 <img src="{{ asset('./css/svg/icone/reparer.svg') }}" class="badge" alt="badge de réparateur">
@@ -129,7 +151,18 @@
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content">
                                                   <div class="modal-body">
-                                                      {% block numeroTelephone %}{% endblock %}
+{% if annonce.user.telephone == null %}
+	Cet utilisateur n'a pas renseigner son numéro de téléphone.
+{% else %}
+	Voici le numéro de téléphone de cet utilisateur :
+	{{ annonce.user.telephone }}
+	.
+	<br>
+	Veuillez le contacter uniquement à propos du site.
+
+
+{% endif %}
+
                                                       <button type="button" class="close" data-dismiss="modal">
                                                       <span>&times;</span>
                                                   </div>
@@ -157,7 +190,14 @@
                                                 <div class="modal-dialog modal-sm">
                                                     <div class="modal-content">
                                                       <div class="modal-body">
-                                                        {% block adresseMail %}{% endblock %}
+Voici l'email de cet utilisateur :
+
+{{ annonce.user.email }}
+
+.
+<br>
+Veuillez le contacter uniquement à propos du site.
+
                                                         <button type="button" class="close" data-dismiss="modal">
                                                         <span>&times;</span>
                                                       </div>
@@ -172,7 +212,12 @@
                         </div>
                         <br>
                         <div class="row justify-content-center">
-                            <a {% block pageProfil %}{% endblock %}><button class="btn-rose btn btn-primary btn-sm" name="bouton voir profil" type="button">Voir le profil</button></a>
+<a href={{ path('profil', {'id': annonce.user.id} ) }}>
+	<button class="btn-rose btn btn-primary btn-sm" name="bouton voir profil" type="button">
+		Voir le profil
+	</button>
+</a>
+
                         </div>
                     </div>
                 </div>
@@ -182,12 +227,21 @@
         <br>
         <h2>Localisation</h2>
         <br>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d90615.62084142302!2d-0.7510120414918734!3d44.786143385329645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd54d8f9227cb8a3%3A0x3ace1d334bf95f98!2s33600%20Pessac!5e0!3m2!1sfr!2sfr!4v1574255940564!5m2!1sfr!2sfr" width="700" height="300" frameborder="0" style="border:0;" allowfullscreen="" class="col"></iframe>        
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d90493.589596808!2d-0.656181488241782!3d44.863828220890774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527e8f751ca81%3A0x796386037b397a89!2sPessac!5e0!3m2!1sfr!2sfr!4v1579548452381!5m2!1sfr!2sfr" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe></iframe>
+
+
         <br>
 
 <h4 class="card-text">
 	<img src="{{ asset('./css/svg/icone/localisation.svg') }}" alt="icone de localisation">
-	Pessac, 33600
+
+{% if annonce.user.codepostal != null %}{{annonce.user.codepostal}}{% endif %}
+{% if annonce.user.ville != null %}
+	&nbsp;{{ annonce.user.ville }}
+{% else %}
+	France
+{% endif %}
+
 </h4>
 
 

@@ -53,14 +53,14 @@
 								<h3>
 									Tom Nguyen
 									{#{{favoris_reparateur.nom}}
-																														{{favoris_reparateur.prenom}}#}
+																																							{{favoris_reparateur.prenom}}#}
 								</h3>
 								<h6 class="card-text">
 									<img src="./css/svg/icone/localisation.svg" alt="icone de localisation">
 									Pessac, 33600
 									{#{{favoris_reparateur.ville}}
-																						{{favoris_reparateur.codepostal}}
-																				#}
+																															{{favoris_reparateur.codepostal}}
+																													#}
 
 
 								</h6>
@@ -84,6 +84,10 @@
 		</div>
 	</div>
 	<br>
+	<div class="justify-content-center">
+		{{ knp_pagination_render(favoris_reparateurs) }}
+	</div>
+
 	<nav aria-label="Page navigation example">
 		<ul class="pagination justify-content-center">
 			<li class="page-item">
