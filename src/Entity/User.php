@@ -483,15 +483,4 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPhotoprofil(): ?string
-    {
-        return $this->photoprofil;
-    }
-
-    public function setPhotoprofil(?string $photoprofil): self
-    {
-        $this->photoprofil = $photoprofil;
-
-        return $this;
-    }
 }
