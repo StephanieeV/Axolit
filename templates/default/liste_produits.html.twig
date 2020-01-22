@@ -37,8 +37,14 @@
 						<div class="card-body text-center text-md-left">
 							<div class="row">
 								<div class="col-md-2">
-									<img src="./css/images/phone1.jpg" class="image_produit" alt="photo produit">
+									{% if annonce.photoannonces.first != null %}
+										<img src="{{ annonce.photoannonces.first }}" class="image_produit">
+
+									{% else %}
+										<img src="{{asset('./img/profil/photo_profil.jpg')}}" class="image_produit">
+									{% endif %}
 								</div>
+
 								<div class="col-md-9 offset-md-1">
 									<h3>
 										{{annonce.titre}}
@@ -49,8 +55,7 @@
 									</h4>
 									<p class="text-justify text-center text-md-left">
 
-										{{ annonce.texteannonce }}
-
+										{{ annonce.texteannonce | slice(0, 50) }} ...
 
 									</p>
 									<a href=" {{ path('produit', {'id': annonce.id} ) }}">
@@ -68,46 +73,12 @@
 			</div>
 
 			<br>
-			{#
-																																																																							<div class="col-md-4">
-																																																																				</div> #}
-			<br>
 		</div>
+
+		<br>
 	</div>
 	<br>
-	{{ knp_pagination_render(annonces) }}
-	<nav aria-label="Page navigation example">
-		<ul class="pagination justify-content-center">
-			<li class="page-item ">
-				<a class="page-link" href="#" tabindex="-1">
-					Précédente
-				</a>
-			</li>
-			<li class="page-item active">
-				<a class="page-link" href="#">
-					1
-					<span class="sr-only">
-						(current)
-					</span>
-				</a>
-			</li>
-			<li class="page-item ">
-				<a class="page-link" href="#">
-					2
-				</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">
-					3
-				</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">
-					Suivante
-				</a>
-			</li>
-		</ul>
-	</nav>
-
-
-{% endblock %}
+	<div class="justify-content-center">
+		{{ knp_pagination_render(annonces) }}
+	</div>
+</div>{% endblock %}
