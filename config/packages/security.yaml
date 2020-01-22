@@ -16,7 +16,7 @@ security:
                 authenticators:
                     - App\Security\AppCustomAuthenticator
             logout:
-                path: deconnexion
+                path: app_logout
                 # where to redirect after logout
                 target: connexion 
 
