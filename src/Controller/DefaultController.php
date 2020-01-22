@@ -77,7 +77,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/favoris", name="favoris_reparateur")
      */
-    public function favoris_reparateur()
+    public function favoris_reparateur(Request $request, PaginatorInterface $paginator)
     {
         $em=$this->get('doctrine')->getManager();
         $favoris_reparateurs = $em->getRepository(Annonce::class)->findAll();
@@ -93,9 +93,10 @@ class DefaultController extends AbstractController
      */
     public function favoris_annonce(Request $request, PaginatorInterface $paginator)
     {
+        $userr=$this->getUser()->getId();
         $em=$this->get('doctrine')->getManager();
         $favoris_annonces = $em->getRepository(Annonce::class)->findBy(
-    ['type_annonce' => '86']
+    ['user' => $userr]
 );
 $favoris_annonces=$paginator->paginate($favoris_annonces,$request->query->getInt('page',1),3);
 
@@ -104,6 +105,37 @@ $favoris_annonces=$paginator->paginate($favoris_annonces,$request->query->getInt
             'favoris_annonces' => $favoris_annonces,
         ]);
     }
+
+    /**
+     * @Route("/addFavorisAnnonce/id={id}", name="addFavorisAnnonce", methods={"GET"})
+     */
+    public function addFavorisAnnonce($id){
+        
+            $em = $this->get('doctrine')->getManager();
+            $favoris_annonce= $em->getRepository(Annonce::class)->find($id);
+            // if(!$truc){
+            //     throw $this->createNotFoundException('Pas de slot');
+            // }
+            // $stu = intval($stu);
+            $favoris_annonce->addUser($this->getUser());
+            $em->flush();
+            return $this->redirectToRoute('favoris_annonce');
+}
+/**
+     * @Route("/removeFavorisAnnonce/id={id}", name="removeFavorisAnnonce", methods={"GET"})
+     */
+    public function removeFavorisAnnonce($id){
+        
+            $em = $this->get('doctrine')->getManager();
+            $favoris_annonce= $em->getRepository(Annonce::class)->find($id);
+            // if(!$truc){
+            //     throw $this->createNotFoundException('Pas de slot');
+            // }
+            // $stu = intval($stu);
+            $favoris_annonce->removeUser($this->getUser());
+            $em->flush();
+            return $this->redirectToRoute('favoris_annonce');
+}
     /**
      * @Route("/informations", name="informations")
      */
@@ -166,12 +198,24 @@ $annonces=$paginator->paginate($annonces,$request->query->getInt('page',1),3);
     {
         $em=$this->get('doctrine')->getManager();
         $annonces = $em->getRepository(Annonce::class)->findBy(
-    ['type_annonce' => '6'],['heure_date_publication' => 'ASC']
-);
-$annonces=$paginator->paginate($annonces,$request->query->getInt('page',1),3);
+        ['type_annonce' => '6'],['heure_date_publication' => 'ASC']
+        );
+        $annonces=$paginator->paginate($annonces,$request->query->getInt('page',1),3);
 
         return $this->render('default/liste_reparation.html.twig', [
             'annonces' => $annonces,
+        ]);
+    }
+
+    public function dernieres_annonce(Request $request)
+    {
+        $em=$this->get('doctrine')->getManager();
+        $dernieres_annonces = $em->getRepository(Annonce::class)->findBy(
+    ['heure_date_publication' => 'ASC']
+);
+
+        return $this->render('default/liste_reparation.html.twig', [
+            'dernieres_annonces' => $dernieres_annonces,
         ]);
     }
     /**
@@ -186,10 +230,16 @@ $annonces=$paginator->paginate($annonces,$request->query->getInt('page',1),3);
     /**
      * @Route("/mes_annonces", name="mes_annonces")
      */
-    public function mes_annonces()
-    {
+    public function mes_annonces(Request $request, PaginatorInterface $paginator)
+    {$em=$this->get('doctrine')->getManager();
+        $userr=$this->getUser()->getId();
+        $mes_annonces = $em->getRepository(Annonce::class)->findBy(
+    ['user' => $userr ]
+);
+$mes_annonces=$paginator->paginate($mes_annonces,$request->query->getInt('page',1),3);
+        
         return $this->render('default/annonce/mes_annonces.html.twig', [
-            'controller_name' => 'DefaultController',
+            'mes_annonces' => $mes_annonces,
         ]);
     }
     /**

@@ -30,11 +30,23 @@
 </h4>
 
                                 <div class="row justify-content-center">
-{% for photodannonce in annonce.photoannonces %}
-<img src="{{ photodannonce.libelle }}">{% endfor %}
+{% if annonce.photoannonces.first != null %}
+  {% for photodannonce in annonce.photoannonces %}
+    <img src="{{ photodannonce.libelle }}">
+  {% endfor %}
+{% else %}
+	<img src="{{asset('./img/profil/photo_profil.jpg')}}" class="photo_profil">
+{% endif %}
+
+
 
                                 </div>
                                 <br>
+<a href="{{path("addFavorisAnnonce",{'id':annonce.id})}}">
+	Ajout Fav
+</a>
+
+
                                 <h5 class="card-title">Description</h5>
 <p class="card-text text-justify">
 	{{ annonce.texteannonce}}
@@ -106,7 +118,7 @@ Modèle :
                     <div class="card-body text-center text-md-left">
                         <div class="row">
                             <div class="col-md-2">
-{% if annonce.user.photoprofil.first %}
+{% if annonce.user.photoprofil != null %}
 <img src="{{ annonce.user.photoprofil }}" class="photo_profil">
 
 {% else %}
