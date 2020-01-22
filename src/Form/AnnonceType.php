@@ -35,7 +35,7 @@ class AnnonceType extends AbstractType
         $builder
             ->add('titre', TextType::class)
             ->add('prix', IntegerType::class)
-            ->add('localisation', TextType::class)
+            /* ->add('localisation', TextType::class) */
             ->add('texte_annonce', TextareaType::class)
             ->add('modele', TextType::class)
 

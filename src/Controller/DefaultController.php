@@ -211,8 +211,8 @@ $annonces=$paginator->paginate($annonces,$request->query->getInt('page',1),3);
     {
         $em=$this->get('doctrine')->getManager();
         $dernieres_annonces = $em->getRepository(Annonce::class)->findBy(
-    ['heure_date_publication' => 'ASC']
-);
+            ['heure_date_publication' => 'ASC']
+        );
 
         return $this->render('default/liste_reparation.html.twig', [
             'dernieres_annonces' => $dernieres_annonces,

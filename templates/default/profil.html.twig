@@ -54,15 +54,17 @@
 
 										<div class="card-body ">
 											<h3 class="card-title">
-												{{ app.user.nom }}
+
+												{{ userProfile.nom }}
+
 											</h3>
 
 											<h4 class="card-text">
 												<img src="{{asset('css/svg/icone/localisation.svg')}}" alt="icone localisation">
-												{% if app.user.Ville == null %}
+												{% if userProfile.Ville == null %}
 													France
 												{% else %}
-													{{ app.user.Ville }}
+													{{ userProfile.Ville }}
 												{% endif %}
 
 

@@ -55,8 +55,7 @@
 									</h4>
 									<p class="text-justify text-center text-md-left">
 
-										{{ annonce.texteannonce }}
-
+										{{ annonce.texteannonce | slice(0, 50) }} ...
 
 									</p>
 									<a href=" {{ path('produit', {'id': annonce.id} ) }}">
