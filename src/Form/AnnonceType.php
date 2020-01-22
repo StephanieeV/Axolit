@@ -18,6 +18,8 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use App\Form\DataTransformer\ModeleToLibelleTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class AnnonceType extends AbstractType
 {
@@ -68,6 +70,37 @@ class AnnonceType extends AbstractType
                     'placeholder' => 'Choisissez le type d\'appareil',
                 ]
             )
+
+            ->add('photoannonces', FileType::class, [
+                'label' => 'Image de votre appareil',
+
+                // unmapped means that this field is not associated to any entity property
+                'mapped' => true,
+
+                // make it optional so you don't have to re-upload the PDF file
+                // everytime you edit the Product details
+                'required' => true,
+
+                // unmapped fields can't define their validation using annotations
+                // in the associated entity, so you can use the PHP constraint classes
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/png',
+                            'application/jpg',
+                            'application/jpeg',
+                        ],
+                        'mimeTypesMessage' => 'Format d\'image demandés : png, jpg, jpeg.',
+                    ])
+                ],
+                'multiple' => true,
+
+            ])
+
+
+
+
 
 
             //On récupère  une simple chaine de caractère qui sera converti en entité avec ce transformer 
