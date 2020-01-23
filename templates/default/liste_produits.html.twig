@@ -37,8 +37,14 @@
 						<div class="card-body text-center text-md-left">
 							<div class="row">
 								<div class="col-md-2">
-									<img src="./css/images/phone1.jpg" class="image_produit" alt="photo produit">
+									{% if annonce.photoannonces.first != null %}
+										<img src="{{ annonce.photoannonces.first }}" class="image_produit">
+
+									{% else %}
+										<img src="{{asset('./img/profil/photo_profil.jpg')}}" class="image_produit">
+									{% endif %}
 								</div>
+
 								<div class="col-md-9 offset-md-1">
 									<h3>
 										{{annonce.titre}}
@@ -67,11 +73,9 @@
 			</div>
 
 			<br>
-			{#
-																																																																							<div class="col-md-4">
-																																																																				</div> #}
-			<br>
 		</div>
+
+		<br>
 	</div>
 	<br>
 	<nav class="pagination justify-content-center">

@@ -41,79 +41,51 @@
 					</button>
 				</a>
 				<br>
-				{#{% for favoris_reparateur in favoris_reparateurs %}#}
+				{% for favoris_reparateur in favoris_reparateurs %}
 
-				<div class="card">
-					<div class="card-body text-center text-md-left">
-						<div class="row">
-							<div class="col-md-2">
-								<img src="./css/images/profil/photo_profil.jpg" class="image_profil" alt="photo de profil">
-							</div>
-							<div class="col-md-9 offset-md-1">
-								<h3>
-									Tom Nguyen
-									{#{{favoris_reparateur.nom}}
-																														{{favoris_reparateur.prenom}}#}
-								</h3>
-								<h6 class="card-text">
-									<img src="./css/svg/icone/localisation.svg" alt="icone de localisation">
-									Pessac, 33600
-									{#{{favoris_reparateur.ville}}
-																						{{favoris_reparateur.codepostal}}
-																				#}
+					<div class="card">
+						<div class="card-body text-center text-md-left">
+							<div class="row">
+								<div class="col-md-2">
+									<img src="./css/images/profil/photo_profil.jpg" class="image_profil" alt="photo de profil">
+								</div>
+								<div class="col-md-9 offset-md-1">
+									<h3>
+										Tom Nguyen
+										{#{{favoris_reparateur.nom}}
+																																																										{{favoris_reparateur.prenom}}#}
+									</h3>
+									<h6 class="card-text">
+										<img src="./css/svg/icone/localisation.svg" alt="icone de localisation">
+										Pessac, 33600
+										{#{{favoris_reparateur.ville}}
+																																																		{{favoris_reparateur.codepostal}}
+																																																#}
 
 
-								</h6>
-								<a href="profil1.php">
-									<button class="btn-rose btn btn-primary" name="bouton voir profil" type="button">
-										Voir le profil
+									</h6>
+									<a href="profil1.php">
+										<button class="btn-rose btn btn-primary" name="bouton voir profil" type="button">
+											Voir le profil
+										</button>
+									</a>
+									<button class="btn-light btn" name="bouton supprimer" type="button">
+										Supprimer de la liste
 									</button>
-								</a>
-								<button class="btn-light btn" name="bouton supprimer" type="button">
-									Supprimer de la liste
-								</button>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<br>
-				{#{% endfor %}#}
+					<br>
+				{% endfor %}
 
 			</div>
 			<br>
 		</div>
 	</div>
 	<br>
-	<nav aria-label="Page navigation example">
-		<ul class="pagination justify-content-center">
-			<li class="page-item">
-				<a class="page-link" href="#" tabindex="-1">
-					Précédente
-				</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">
-					1
-					<span class="sr-only">
-						(current)
-					</span>
-				</a>
-			</li>
-			<li class="page-item active">
-				<a class="page-link" href="#">
-					2
-				</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">
-					3
-				</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">
-					Suivante
-				</a>
-			</li>
-		</ul>
-	</nav>
+	<div class="justify-content-center">
+		{{ knp_pagination_render(favoris_reparateurs) }}
+	</div>
+
 {% endblock %}

@@ -9,8 +9,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\ModeleRepository;
 
+use Symfony\Component\HttpFoundation\Response;
+
+use App\Repository\ModeleRepository;
 
 
 class AnnonceController extends AbstractController
@@ -40,7 +42,7 @@ class AnnonceController extends AbstractController
      * //@todo suggérer l'inscription sute  à denyAccessUnlessgranted 
      * @Route("/vendre", name="vendre")
      */
-    public function vendre(Request $request )
+    public function vendre(Request $request)
     {   
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $annonce = new Annonce();
@@ -68,6 +70,40 @@ class AnnonceController extends AbstractController
     }
 
     /**
+     * @Route("/{id}/edit", name="annonce_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Annonce $annonce): Response
+    {
+        $form = $this->createForm(AnnonceType::class, $annonce);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('mes_annonces');
+        }
+
+        return $this->render('./default/annonce/mes_annonces.html.twig', [
+            'annonce' => $annonce,
+            'form_annonce' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="annonce_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, Annonce $annonce): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$annonce->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($annonce);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('mes_annonces');
+    }
+
+    /*
      * add levenhtstein & soundex function https://github.com/glanchow/doctrine-fuzzy
      * @Route("/annonce/fuzzymodele/{modeleName}", name="fuzzymodele_route")
      */

@@ -64,7 +64,7 @@ class DefaultController extends AbstractController
 
             return $this->redirectToRoute('accueil');
         }
-        return $this->render('./default/annonce.html.twig', array('form_annonce'=>$form->createView()));
+        return $this->render('./default/annonce/annonce.html.twig', array('form_annonce'=>$form->createView()));
     }
     /**
      * @Route("/contact", name="contact")
@@ -77,10 +77,12 @@ class DefaultController extends AbstractController
     /**
      * @Route("/favoris", name="favoris_reparateur")
      */
-    public function favoris_reparateur()
+    public function favoris_reparateur(Request $request, PaginatorInterface $paginator)
     {
         $em=$this->get('doctrine')->getManager();
         $favoris_reparateurs = $em->getRepository(Annonce::class)->findAll();
+        $favoris_reparateurs=$paginator->paginate($favoris_reparateurs,$request->query->getInt('page',1),3);
+
         return $this->render('default/favoris_reparateur.html.twig', [
             'favoris_reparateurs' => $favoris_reparateurs,
         ]);
@@ -89,14 +91,51 @@ class DefaultController extends AbstractController
     /**
      * @Route("/favoris_annonce", name="favoris_annonce")
      */
-    public function favoris_annonce()
+    public function favoris_annonce(Request $request, PaginatorInterface $paginator)
     {
+        $userr=$this->getUser()->getId();
         $em=$this->get('doctrine')->getManager();
-        $favoris_annonces = $em->getRepository(Annonce::class)->findAll();
+        $favoris_annonces = $em->getRepository(Annonce::class)->findBy(
+    ['user' => $userr]
+);
+$favoris_annonces=$paginator->paginate($favoris_annonces,$request->query->getInt('page',1),3);
+
+        
         return $this->render('default/favoris.html.twig', [
             'favoris_annonces' => $favoris_annonces,
         ]);
     }
+
+    /**
+     * @Route("/addFavorisAnnonce/id={id}", name="addFavorisAnnonce", methods={"GET"})
+     */
+    public function addFavorisAnnonce($id){
+        
+            $em = $this->get('doctrine')->getManager();
+            $favoris_annonce= $em->getRepository(Annonce::class)->find($id);
+            // if(!$truc){
+            //     throw $this->createNotFoundException('Pas de slot');
+            // }
+            // $stu = intval($stu);
+            $favoris_annonce->addUser($this->getUser());
+            $em->flush();
+            return $this->redirectToRoute('favoris_annonce');
+}
+/**
+     * @Route("/removeFavorisAnnonce/id={id}", name="removeFavorisAnnonce", methods={"GET"})
+     */
+    public function removeFavorisAnnonce($id){
+        
+            $em = $this->get('doctrine')->getManager();
+            $favoris_annonce= $em->getRepository(Annonce::class)->find($id);
+            // if(!$truc){
+            //     throw $this->createNotFoundException('Pas de slot');
+            // }
+            // $stu = intval($stu);
+            $favoris_annonce->removeUser($this->getUser());
+            $em->flush();
+            return $this->redirectToRoute('favoris_annonce');
+}
     /**
      * @Route("/informations", name="informations")
      */
@@ -145,7 +184,7 @@ class DefaultController extends AbstractController
     {
         $em=$this->get('doctrine')->getManager();
         $annonces = $em->getRepository(Annonce::class)->findBy(
-    ['type_annonce' => '5']
+    ['type_annonce' => '5'],['heure_date_publication' => 'ASC']
 );
 $annonces=$paginator->paginate($annonces,$request->query->getInt('page',1),3);
         return $this->render('default/liste_produits.html.twig', [
@@ -155,14 +194,28 @@ $annonces=$paginator->paginate($annonces,$request->query->getInt('page',1),3);
     /**
      * @Route("/liste_reparation", name="liste_reparation")
      */
-    public function liste_reparation()
+    public function liste_reparation(Request $request, PaginatorInterface $paginator)
     {
         $em=$this->get('doctrine')->getManager();
         $annonces = $em->getRepository(Annonce::class)->findBy(
-    ['type_annonce' => '86']
-);
+        ['type_annonce' => '6'],['heure_date_publication' => 'ASC']
+        );
+        $annonces=$paginator->paginate($annonces,$request->query->getInt('page',1),3);
+
         return $this->render('default/liste_reparation.html.twig', [
             'annonces' => $annonces,
+        ]);
+    }
+
+    public function dernieres_annonce(Request $request)
+    {
+        $em=$this->get('doctrine')->getManager();
+        $dernieres_annonces = $em->getRepository(Annonce::class)->findBy(
+            ['heure_date_publication' => 'ASC']
+        );
+
+        return $this->render('default/liste_reparation.html.twig', [
+            'dernieres_annonces' => $dernieres_annonces,
         ]);
     }
     /**
@@ -177,10 +230,16 @@ $annonces=$paginator->paginate($annonces,$request->query->getInt('page',1),3);
     /**
      * @Route("/mes_annonces", name="mes_annonces")
      */
-    public function mes_annonces()
-    {
+    public function mes_annonces(Request $request, PaginatorInterface $paginator)
+    {$em=$this->get('doctrine')->getManager();
+        $userr=$this->getUser()->getId();
+        $mes_annonces = $em->getRepository(Annonce::class)->findBy(
+    ['user' => $userr ]
+);
+$mes_annonces=$paginator->paginate($mes_annonces,$request->query->getInt('page',1),3);
+        
         return $this->render('default/annonce/mes_annonces.html.twig', [
-            'controller_name' => 'DefaultController',
+            'mes_annonces' => $mes_annonces,
         ]);
     }
     /**
@@ -194,6 +253,16 @@ $annonces=$paginator->paginate($annonces,$request->query->getInt('page',1),3);
         ]
         );
     }
-
+/**
+     * @Route("/profil/{id}", name="profil",methods={"GET"})
+     */
+    public function profil(User $user)
+    {    
+        return $this->render('default/profil_autre.html.twig'
+            , [
+            'user' => $user,
+        ]
+        );
+    }
    
 }
