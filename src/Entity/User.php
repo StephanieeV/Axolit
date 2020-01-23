@@ -106,11 +106,6 @@ class User implements UserInterface
     private $competenceUsers;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PhotoProfil", mappedBy="user", orphanRemoval=true)
-     */
-    private $photoProfils;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Annonce", mappedBy="user")
      */
     private $annonces;
@@ -119,6 +114,11 @@ class User implements UserInterface
      * @ORM\Column(type="integer", nullable=true)
      */
     private $code_postal;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photoprofil;
 
     public function __construct()
     {
@@ -436,31 +436,10 @@ class User implements UserInterface
     public function getPhotoProfils(): Collection
     {
         return $this->photoProfils;
+        //return "/public/pddp.jpg";
     }
 
-    public function addPhotoProfil(PhotoProfil $photoProfil): self
-    {
-        if (!$this->photoProfils->contains($photoProfil)) {
-            $this->photoProfils[] = $photoProfil;
-            $photoProfil->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removePhotoProfil(PhotoProfil $photoProfil): self
-    {
-        if ($this->photoProfils->contains($photoProfil)) {
-            $this->photoProfils->removeElement($photoProfil);
-            // set the owning side to null (unless already changed)
-            if ($photoProfil->getUser() === $this) {
-                $photoProfil->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
+  
     /**
      * @return Collection|Annonce[]
      */
@@ -500,6 +479,18 @@ class User implements UserInterface
     public function setCodePostal(?int $code_postal): self
     {
         $this->code_postal = $code_postal;
+
+        return $this;
+    }
+
+    public function getPhotoprofil(): ?string
+    {
+        return $this->photoprofil;
+    }
+
+    public function setPhotoprofil(?string $photoprofil): self
+    {
+        $this->photoprofil = $photoprofil;
 
         return $this;
     }

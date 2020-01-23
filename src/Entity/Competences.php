@@ -29,6 +29,12 @@ class Competences
      */
     private $competenceUsers;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CompetenceUser", inversedBy="competence")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $competenceUser;
+
     public function __construct()
     {
         $this->competenceUsers = new ArrayCollection();
@@ -90,6 +96,18 @@ class Competences
                 $competenceUser->setCompetence(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCompetenceUser(): ?CompetenceUser
+    {
+        return $this->competenceUser;
+    }
+
+    public function setCompetenceUser(?CompetenceUser $competenceUser): self
+    {
+        $this->competenceUser = $competenceUser;
 
         return $this;
     }
