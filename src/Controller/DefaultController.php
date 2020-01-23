@@ -24,19 +24,29 @@ class DefaultController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index()
+    public function index(Request $request)
     {
+        $em=$this->get('doctrine')->getManager();
+        $offset=1;
+        $limit = 3;
+        $dernieres_annonces = $em->getRepository(Annonce::class)->findAll(
+          
+        );
+
         return $this->render('default/accueil.html.twig', [
-            'controller_name' => 'DefaultController',
+            'dernieres_annonces' => $dernieres_annonces,
         ]);
     }
     /**
      * @Route("/accueil", name="accueil")
      */
-    public function accueil()
+    public function accueil(Request $request)
     {
+        $em=$this->get('doctrine')->getManager();
+        $dernieres_annonces = $em->getRepository(Annonce::class)->findAll();
+
         return $this->render('default/accueil.html.twig', [
-            'controller_name' => 'DefaultController',
+            'dernieres_annonces' => $dernieres_annonces,
         ]);
     }
 
@@ -207,17 +217,7 @@ $annonces=$paginator->paginate($annonces,$request->query->getInt('page',1),3);
         ]);
     }
 
-    public function dernieres_annonce(Request $request)
-    {
-        $em=$this->get('doctrine')->getManager();
-        $dernieres_annonces = $em->getRepository(Annonce::class)->findBy(
-            ['heure_date_publication' => 'ASC']
-        );
-
-        return $this->render('default/liste_reparation.html.twig', [
-            'dernieres_annonces' => $dernieres_annonces,
-        ]);
-    }
+    
     /**
      * @Route("/mentions_legales", name="mentions_legales")
      */
