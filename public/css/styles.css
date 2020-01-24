@@ -26,6 +26,25 @@ nav {
 /*
     Body
 */
+.pagination > li > a,
+.pagination > li > span {
+  color: #967ebe;
+  font-weight: normal;
+}
+.pagination > li > a:hover {
+  color: #c8b4d8;
+  font-weight: bold;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+  background-color: #967ebe;
+  border-color: #c8b4d8;
+}
 
 html {
   height: 100%;
