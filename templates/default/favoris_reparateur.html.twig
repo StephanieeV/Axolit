@@ -77,15 +77,18 @@
 						</div>
 					</div>
 					<br>
+					
 				{% endfor %}
 
 			</div>
+			
 			<br>
 		</div>
+		
 	</div>
 	<br>
-	<div class="justify-content-center">
-		{{ knp_pagination_render(favoris_reparateurs) }}
-	</div>
 
+	<nav class="pagination justify-content-center">
+		{{ knp_pagination_render(favoris_reparateurs) }}
+	</nav>
 {% endblock %}
