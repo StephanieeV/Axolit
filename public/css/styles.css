@@ -2,153 +2,157 @@
   Navbar
 */
 
-.btn-nav{
-    width: 50px;
-    margin-left: 15px;
-    margin-right: 15px;
+.btn-nav {
+  width: 50px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
-.nav-link{
-    color: white !important;
-    display: inline;
+.nav-link {
+  color: white !important;
+  display: inline;
 }
 
 #logo {
-    min-width: 100px;
-    width: 200px;
+  min-width: 100px;
+  width: 200px;
 
-    position: relative;
+  position: relative;
 }
-nav{
-    margin-bottom: 15px;
-    padding: none;
+nav {
+  margin-bottom: 15px;
+  padding: none;
 }
-
 
 /*
     Body
-*/ 
-.pagination{
-    margin-bottom:100px;
+*/
+
+html {
+  height: 100%;
+}
+#wrap {
+  min-height: 100%;
+  position: relative;
+}
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+h1,
+h3 {
+  font-family: "Ubuntu", sans-serif;
 }
 
-h1, h3{
-    font-family: 'Ubuntu', sans-serif;
+h2,
+h4 {
+  font-family: "Roboto", sans-serif;
 }
 
-h2, h4{
-    font-family: 'Roboto', sans-serif;
+p {
+  font-family: "Raleway", sans-serif;
 }
 
-p{
-    font-family: 'Raleway', sans-serif;
+.btn-rose {
+  background-color: #967ebe;
+  border: none;
+  margin-right: 5px;
+  margin-left: 5px;
+  color: white;
 }
 
-.btn-rose{
-    background-color: #967ebe ;
-    border: none;
-    margin-right: 5px;
-    margin-left: 5px;
-    color: white;
-}
-
-.btn-rose:hover{
-    background-color: #c8b4d8;
-    color: white;
+.btn-rose:hover {
+  background-color: #c8b4d8;
+  color: white;
 }
 
 /*
     Footer
 */
 
-footer a{
-    color: white;
-    font-size: 20px;
-    margin-top: 10px;
-    
-    text-decoration: none;
-    display: inline-block;
-    vertical-align: middle;
+footer a {
+  color: white;
+  font-size: 20px;
+  margin-top: 10px;
+
+  text-decoration: none;
+  display: inline-block;
+  /* vertical-align: middle; */
 }
-footer p{
-    color: white; 
-    margin: none;
+footer p {
+  color: white;
+  margin: none;
 }
 
-
-
-footer a:hover{
-    color: rgb(52, 172, 180);
-    text-decoration: none;
-} 
-footer{
-   height: auto;
-   padding: 10px;
+footer a:hover {
+  color: rgb(52, 172, 180);
+  text-decoration: none;
 }
-.btn-reseaux-sociaux-footer{
-    width: 50px;
-    margin-left: 10px;
-    margin-right: 10px;
+footer {
+  position: relative;
+  width: 100%;
+  bottom: 0;
+}
+.btn-reseaux-sociaux-footer {
+  width: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 /*nav bar */
-.ico{
-    width: 10%;
+.ico {
+  width: 10%;
 }
-#ma_nav{
-    min-height: 50px;
-    }
-    #img_nav_bar{
-        height: 50px;
-    }
-    .card.presentation{
-        width: initial;
-        display: block;
-    }
-    
-    .active{
-        background: #c8b4d8;
-    }
-    .ariane.top {
-        border-bottom: 1px solid grey;
-        padding-bottom: 10px;
-        margin: 20px 0;
-      }
+#ma_nav {
+  min-height: 50px;
+}
+#img_nav_bar {
+  height: 50px;
+}
+.card.presentation {
+  width: initial;
+  display: block;
+}
 
+.active {
+  background: #c8b4d8;
+}
+.ariane.top {
+  border-bottom: 1px solid grey;
+  padding-bottom: 10px;
+  margin: 20px 0;
+}
 
-      .loader {
-
-        position : fixed;
-        z-index: 9999;
-        background : url('../img/loader.gif') 50% 50% no-repeat;
-        background-color: rgb(249,249,249);
-        opacity: 70%;
-        top : 0px;
-        left : 0px;
-        height : 100%;
-        width : 100%;
-        cursor : wait;
-        
-        }
-.loader h3{
-		background: none;
-		border: none;
-		color: black;
-		font-size: 30px;
-		font-family: 'Ubuntu', sans-serif;
-		font-variant: small-caps;
-		font-weight: 700;
-		height: 700px;
-		line-height: 700px;
-		margin: 0 0 10px;
-		padding: 0;
-		text-align: center;
-	}
+.loader {
+  position: fixed;
+  z-index: 9999;
+  background: url("../img/loader.gif") 50% 50% no-repeat;
+  background-color: rgb(249, 249, 249);
+  opacity: 70%;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  cursor: wait;
+}
+.loader h3 {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 30px;
+  font-family: "Ubuntu", sans-serif;
+  font-variant: small-caps;
+  font-weight: 700;
+  height: 700px;
+  line-height: 700px;
+  margin: 0 0 10px;
+  padding: 0;
+  text-align: center;
+}
 /*Form*/
-.label_required{
-font-size: small;
+.label_required {
+  font-size: small;
 }
-
-
 
 /*
     Inutilisé/Je comprend pas à quoi il sert et où
