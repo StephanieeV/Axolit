@@ -67,9 +67,7 @@ class UserController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(User::class);
         $result = $repository->suggestPrenom($userName);
-        dd($result);
-
-        
+        //dd($result);
         //s$result = $repository->suggest
     }
 

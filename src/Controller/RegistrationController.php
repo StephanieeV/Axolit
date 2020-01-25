@@ -12,11 +12,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class RegistrationController extends AbstractController
 {
     /**
      * @Route("/inscription", name="inscription")
+     * @todo pseudo unique
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppCustomAuthenticator $authenticator): Response
     {
@@ -28,6 +31,36 @@ class RegistrationController extends AbstractController
             // encode the plain password
             $hash = $passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
+            $user->setPseudo ($form->get('prenom')->getData().$form->get('nom')->getData());
+
+
+            /** @var UploadedFile $brochureFile */
+            $photoFile = $form->get('photoprofil')->getData();
+
+            // this condition is needed because the 'photoprofil' field is not required
+            if ($photoFile) {
+                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $photoFile->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $photoFile->move(
+                        $this->getParameter('kernel.project_dir') . '/public/img/profil',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $user->setPhotoprofil($newFilename);
+            }
+
+            //$user->setPseudo($form->get('prenom')->getData().$form->get('nom')->getData());
+
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -43,8 +76,9 @@ class RegistrationController extends AbstractController
             );
         }
 
-        return $this->render('./default/inscription.html.twig',
-         array('form_inscription'=>$form->createView()));
-    
+        return $this->render(
+            './default/inscription.html.twig',
+            array('form_inscription' => $form->createView())
+        );
     }
 }

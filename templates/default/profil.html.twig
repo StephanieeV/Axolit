@@ -31,7 +31,6 @@
 							<div class="col-md-4">
 								<img src="{{asset('css/svg/icone/reparer.svg')}}" style="width: 50px;" alt="badge de réparateur">
 								<img src="{{asset('css/svg/icone/vendre.svg')}}" style="width: 50px;" alt="badge de réparateur">
-								<img src="{{asset(userProfile.photoprofil)}}" style="width: 50px;" alt="badge de réparateur">
 							</div>
 
 							<div class="col-md-4">
@@ -51,12 +50,12 @@
 
 									<div class="card text-center" style="width: 20rem;">
 										<img class="card-img-bottom">
-										<img src="{{asset('{{ user.photoprofils.libelle }}')}}" class="photo_profil">
+										<img src="{{asset(userProfile.photoprofil)}}" style="max-width: 237px; max-height: 237px;" class="photo_profil">
 
 										<div class="card-body ">
 											<h3 class="card-title">
 
-												{{ userProfile.nom }}
+												{{ userProfile.pseudo }}
 
 											</h3>
 

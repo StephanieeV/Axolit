@@ -97,12 +97,6 @@ class AnnonceType extends AbstractType
                 'multiple' => true,
 
             ])
-
-
-
-
-
-
             //On récupère  une simple chaine de caractère qui sera converti en entité avec ce transformer 
             ->get('modele')
             ->addModelTransformer($this->transformer);
