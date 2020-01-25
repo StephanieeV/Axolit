@@ -67,7 +67,7 @@ class DefaultController extends AbstractController
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
         if($form->isSubmitted()&& $form->isValid()){
-            
+            $annonce->setUser($this->getUser());
             $em = $this->getDoctrine()->getManager();
             $em->persist($annonce);
             $em->flush();
