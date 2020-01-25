@@ -17,8 +17,9 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		<script src="https://vicopo.selfbuild.fr/api.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"/>
 		{% block ReCaptcha %}
-		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+			<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 		{% endblock %}
 	</head>
 
@@ -132,34 +133,36 @@
 
 		</nav>
 
-
+		<div
+			id="wrap">
+			<!-- ============================================================================================================================ -->
+			{% block contenu %}
+			{% endblock %}
+		</div>
 		<!-- ============================================================================================================================ -->
-		{% block contenu %}
-		{% endblock %}
-		<!-- ============================================================================================================================ -->
-		<div class="footer bottom">
-		<footer class="bg-dark mt-5 fixe  font-small text-center">
-			<p>
-				<a href="{{path('index')}}" id="copyright">
-					&copy;AxolIT -
-				</a>
-				<a href="{{path('contact')}}">
-					Contact -
-				</a>
-				<a href="{{path('mentions_legales')}}">
-					Mentions légales
-				</a>
-				<br>
-				<a href="https://twitter.com/AxolitFr">
-					<img class="btn-reseaux-sociaux-footer" alt="lien et icone twitter" src="{{ asset('./css/svg/icone/twitter.svg') }}">
-				</a>
-				<a href="https://www.facebook.com/AxoIIT/">
-					<img class="btn-reseaux-sociaux-footer" alt="lien et icone facebook" src="{{ asset('./css/svg/icone/facebook.svg') }}">
-				</a>
-			</p>
+		<div class="footer ">
+			<footer class="bg-dark fixe py-4 font-small text-center page-footer">
+				<p>
+					<a href="{{path('index')}}" id="copyright">
+						&copy;AxolIT -
+					</a>
+					<a href="{{path('contact')}}">
+						Contact -
+					</a>
+					<a href="{{path('mentions_legales')}}">
+						Mentions légales
+					</a>
+					<br>
+					<a href="https://twitter.com/AxolitFr">
+						<img class="btn-reseaux-sociaux-footer" alt="lien et icone twitter" src="{{ asset('./css/svg/icone/twitter.svg') }}">
+					</a>
+					<a href="https://www.facebook.com/AxoIIT/">
+						<img class="btn-reseaux-sociaux-footer" alt="lien et icone facebook" src="{{ asset('./css/svg/icone/facebook.svg') }}">
+					</a>
+				</p>
 
 
-		</footer>
+			</footer>
 		</div>
 
 		<script type="text/javascript">
@@ -167,5 +170,28 @@
 $(".loader").fadeOut("slow");
 });
 		</script>
+		<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+		<script>
+			window.cookieconsent.initialise({
+"palette": {
+"popup": {
+"background": "#64386b",
+"text": "#ffcdfd"
+},
+"button": {
+"background": "#f8a8ff",
+"text": "#3f0045"
+}
+},
+"theme": "classic",
+"position": "top",
+"static": true,
+"content": {
+"message": "En poursuivant votre navigation sur ce site, vous acceptez l’utilisation de cookies  pour vous proposer une expérience personnalisé et mesurer notre audience",
+"dismiss": "j'y consens",
+"link": "En savoir plus"
+}
+});
+		</script>
 	</body>
-</html></body></html>
+</html>

@@ -64,7 +64,8 @@
 									</h4>
 
 									<p class="text-justify  text-center text-md-left">
-										{{ annonce.texteannonce | slice(0, 50) }} ...
+										{{ annonce.texteannonce | slice(0, 50) }}
+										...
 
 									</p>
 									<a href=" {{ path('produit', {'id': annonce.id} ) }}">
@@ -80,93 +81,47 @@
 					<br>
 
 				{% endfor %}
+
 			</div>
 
-			{#
-																																																<div class="col-md-4">
-																																																	<div class="card">
-																																																		<div class="card-body text-center text-md-center">
-																																																			<div class="row">
-																																																				<div class="col-md-12">
-																																																					<img src="./css/images/ipad_pro.png" alt="photo produit" class="image_produit">
-																																																					<h3>
-																																																						iPad Pro
-																																																					</h3>
-																																																					<p class="text-justify text-center text-md-center">
-																																																						Vitre avant cassée et vitre arriere de l’appareil photo fissurée
-																																																					</p>
-																																																					<a href="produit4.php">
-																																																						<button class="btn-rose btn btn-primary" name="bouton voir produit" type="button">
-																																																							Voir le produit
-																																																						</button>
-																																																					</a>
-																																																				</div>
-																																																			</div>
-																																																		</div>
-																																																	</div>
-																																																	<br>
-																																																	<div class="card">
-																																																		<div class="card-body text-center text-md-center">
-																																																			<div class="row">
-																																																				<div class="col-md-12">
-																																																					<img src="img/telephone.jpg" alt="photo produit" class="image_produit">
-																																																					<h3>
-																																																						iPhone
-																																																					</h3>
-																																																					<p class="text-justify text-center text-md-center">
-																																																						Vitre cassé
-																																																					</p>
-																																																					<a href="#">
-																																																						<button class="btn-rose btn btn-primary" name="bouton voir produit" type="button">
-																																																							Voir le produit
-																																																						</button>
-																																																					</a>
-																																																				</div>
-																																																			</div>
-																																																		</div>
-																																																	</div>
-																																																</div>
-																																																<br>#}
+
 		</div>
-	</div>
-
-	<br>
-	<nav class="pagination justify-content-center">
-		{{ knp_pagination_render(annonces) }}
-	</nav>
+		<nav class="pagination justify-content-center">
+			{{ knp_pagination_render(annonces) }}
+		</nav>
 
 
-{# 	<nav aria-label="Page navigation example">
-		<ul class="pagination justify-content-center">
-			<li class="page-item">
-				<a class="page-link" href="#" tabindex="-1">
-					Précédente
-				</a>
-			</li>
-			<li class="page-item active">
-				<a class="page-link" href="#">
-					1
-					<span class="sr-only">
-						(current)
-					</span>
-				</a>
-			</li>
-			<li class="page-item ">
-				<a class="page-link" href="#">
-					2
-				</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">
-					3
-				</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">
-					Suivante
-				</a>
-			</li>
-		</ul>
-	</nav> #}
+		{# 	<nav aria-label="Page navigation example">
+										<ul class="pagination justify-content-center">
+											<li class="page-item">
+												<a class="page-link" href="#" tabindex="-1">
+													Précédente
+												</a>
+											</li>
+											<li class="page-item active">
+												<a class="page-link" href="#">
+													1
+													<span class="sr-only">
+														(current)
+													</span>
+												</a>
+											</li>
+											<li class="page-item ">
+												<a class="page-link" href="#">
+													2
+												</a>
+											</li>
+											<li class="page-item">
+												<a class="page-link" href="#">
+													3
+												</a>
+											</li>
+											<li class="page-item">
+												<a class="page-link" href="#">
+													Suivante
+												</a>
+											</li>
+										</ul>
+									</nav> #}
 
-{% endblock %}
+	{% endblock %}

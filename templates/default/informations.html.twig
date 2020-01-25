@@ -21,7 +21,9 @@
 
 {% block contenu %}
 
-	<div class="container justify-content-center">
+	<div class="container justify-content-center bas-infos ">
+
+
 		<div class="card">
 			<div class="card-header">
 				Informations utilisateur
@@ -34,7 +36,7 @@
 			{# {{ form_row(form_modif_infos.competences) }} #}
 
 
-				<div class="card-body"> <h5 class="card-title text-center">
+				<div class="card-body "> <h5 class="card-title text-center">
 					Informations personnelles
 				</h5>
 				<br>
@@ -262,15 +264,22 @@
 										<button type="submit" class="btn btn-primary btn-rose">
 											Sauvegarder les modifications
 										</button>
+
 									</div>
+
 								</div>
+
 							</div>
 						</div>
+						<br>
+						<br>
 
 
 					</div>
 				</form>
+
 			</div>
+
 			{{ form_end(form_modif_infos) }}
 
 		</div>
