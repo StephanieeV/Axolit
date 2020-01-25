@@ -22,90 +22,15 @@
 			<div class="card-header">
 				Contact
 			</div>
-			{{ form_start(form_contact) }}
-			<div class="card-body">
-				<form>
-					<div class="form-group row">
-						<div class="col-sm-6 col-md-2 offset-md-3">
-							{{form_label(form_contact.nom, 'Nom :')	}}
-						</div>
-						<div class="col-sm-6 col-md-4">
-							{{form_widget(form_contact.nom, {'attr':{'class':'form-control'}})}}
-							{{form_row(form_contact.nom)}}
-							{{form_errors(form_contact.nom)}}
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-sm-6 col-md-2 offset-md-3">
-							{{form_label(form_contact.prenom, 'Prenom :')	}}
-						</div>
-						<div class="col-sm-6 col-md-4">
-							{{form_widget(form_contact.prenom, {'attr':{'class':'form-control'}})}}
-							{{form_row(form_contact.prenom)}}
-							{{form_errors(form_contact.prenom)}}
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-sm-6 col-md-2 offset-md-3">
-							{{form_label(form_contact.email, 'Email :')	}}
-						</div>
-						<div class="col-sm-6 col-md-4">
-							{{form_widget(form_contact.email, {'attr':{'class':'form-control'}})}}
-							{{ form_row(form_contact.email) }}
-							{{form_errors(form_contact.email)}}
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-sm-6 col-md-2 offset-md-3">
-							{{form_label(form_contact.sujet, 'Sujet :')	}}
-						</div>
-						<div class="col-sm-6 col-md-4">
-							{{form_widget(form_contact.sujet, {'attr':{'class':'form-control'}})}}
-							{{ form_row(form_contact.sujet) }}
-							{{form_errors(form_contact.sujet)}}
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="checkbox" class="col-form-label col-sm-6 col-md-2 offset-md-3">
-							Choix optionnel :
-						</label>
-						<div class="col-sm-6 col-md-4" style="text-align: left;">
-							<input type="checkbox" name="checkbox1" value="Vendre">
-							Vendre
-							<br>
-							<input type="checkbox" name="checkbox2" value="Vendeur">
-							Vendeur
-							<br>
-							<input type="checkbox" name="checkbox3" value="Acheter">
-							Acheter
-							<br>
-							<input type="checkbox" name="checkbox4" value="Acheteur">
-							Acheteur
-							<br>
-							<input type="checkbox" name="checkbox5" value="Réparer">
-							Réparer
-							<br>
-							<input type="checkbox" name="checkbox6" value="Réparateur">
-							Réparateur
-						</div>
-					</div>
-					<div class="form-group row">
-						<div  class="col-sm-6 col-md-2 offset-md-3">
-							{{ form_label(form_contact.message, 'Message :') }}
-						</div>
-						<div class="col-sm-6 col-md-4">
-							{{ form_widget(form_contact.message, {'attr':{'class':'form-control'}}) }}
-							{{ form_row(form_contact.message) }}
-							{{ form_errors(form_contact.message) }}
-						</div>
-					</div>
 
-					<div class="text-center">
-						<button type="submit" name="bouton envoie message" class="btn btn-rose btn-primary">
-							Envoyer un message
-						</button>
-					</div>
-				</form>
+			<div class="card-body">
+				<h3>
+					Une question? Besoin d'information? Ou pour toute autre demande ...
+					<br>
+					Vous pouvez nous contacter sur nos réseaux sociaux ou par mail à l'adresse suivante : contact.axolit@gmail.com .
+					<br>
+
+				</h3>
 			</div>
 			{{ form_end(form_contact) }}
 

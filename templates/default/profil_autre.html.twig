@@ -38,8 +38,8 @@
 
 								<div class="card text-center" style="width: 20rem;">
 
-									{% if user.photoprofils.first.libelle != null %}
-										<img src="{{ user.photoprofils.first.libelle }}" class="photo_profil">
+									{% if user.photoprofil != null %}
+										<img src="{{ user.photoprofil}}" class="photo_profil">
 									{% else %}
 										<img src="{{asset('./img/profil/photo_profil.jpg')}}" class="photo_profil">
 									{% endif %}
