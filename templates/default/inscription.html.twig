@@ -1,9 +1,8 @@
-
 {% extends "layout.html.twig"%}
 
 {% block ReCaptcha %}
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 {% endblock %}
 
 {% block titre_page %}
@@ -25,7 +24,7 @@
 
 {% block contenu %}
 
-{{ form_start(form_inscription) }}
+	{{ form_start(form_inscription) }}
 
 	<div class="container">
 		<div class="card">
@@ -33,92 +32,76 @@
 				Créez un compte
 			</h5>
 
-						<div class="form-group form-row" >
-						<form method="get" action="accueil.html.twig" data-captcha-type="recaptcha_v2" onsubmit="return checkRecaptcha()">
-						</br>
-						<div  class=" offset-md-9 col-md-3 ">
-						<span class="label_required">Les champs avec * sont obligatoires !</span>
-						</div>
-						</br>
-						<div  class=" offset-md-3 col-md-3 ">
-						{{form_label(form_inscription.prenom, '*')	}}
-						{{form_label(form_inscription.nom, 'Votre nom :')	}}
-						{{form_widget(form_inscription.nom, 
+			<div class="form-group form-row">
+				<form method="get" action="accueil.html.twig" data-captcha-type="recaptcha_v2" onsubmit="return checkRecaptcha()"></br>
+				<div class=" offset-md-9 col-md-3 ">
+					<span class="label_required">Les champs avec * sont obligatoires !</span>
+				</div>
+			</br>
+			<div class=" offset-md-3 col-md-3 ">
+				{{form_label(form_inscription.prenom, '*')	}}
+				{{form_label(form_inscription.nom, 'Votre nom :')	}}
+				{{form_widget(form_inscription.nom, 
 						{'attr':{'class':'form-control'}}
-						)}}
-						{{form_errors(form_inscription.nom)	}}
-						</div>
-						
-						<div class="col-md-3 ">
-						{{form_label(form_inscription.prenom, '*')	}}
-						{{form_label(form_inscription.prenom, 'Votre prénom :')	}}
-						{{form_widget(form_inscription.prenom, {'attr':{'class':'form-control'}})}}
-						{{form_errors(form_inscription.prenom)	}}
-						</div>
-
-						</div>
-
-						<div class="form-group col-md-4 offset-md-4">
-							{{form_label(form_inscription.prenom, '*')	}}
-							{{form_label(form_inscription.email, 'Votre e-mail :')}}
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text" id="btnGroupAddon">
-										@
-									</div>
-								</div>
-						{{form_widget(form_inscription.email, {'attr':{'class':'form-control'}})}}
-						{{form_errors(form_inscription.email)}}
-							</div>
-						</div>
-
-					<div class="form-row">
-						<div class="col-md-3 offset-md-3">
-						{{form_label(form_inscription.prenom, '*')	}}
-						{{form_label(form_inscription.password, 'Votre mot de passe (6 caractères minimum) :')	}}
-						{{form_widget(form_inscription.password, {'attr':{'class':'form-control'}})}}
-						{{form_errors(form_inscription.password)}}
-						</div>
-						<div class="col-md-3">
-						{{form_label(form_inscription.prenom, '*')	}}
-						{{form_label(form_inscription.confirm_password, 'Confirmer votre mot de passe (6 caractères minimum) :')	}}
-						{{form_widget(form_inscription.confirm_password, {'attr':{'class':'form-control'}})}}
-						{{form_errors(form_inscription.confirm_password)}}
-						</div>
-					</div>
-					</br>
-					<div class="form-row">
-						<div class="offset-md-5">
-							{{ form_row(form_inscription.agreeTerms) }}
-						</div>
-					</div>
-	</br>
-
-<div class="col-md-8 offset-md-4">
-<div class="g-recaptcha" data-sitekey="6LdZI8QUAAAAALEI9NU699TYNHSbo0CxRyCe5fkH"></div>
-</br>
-</div>
-	<div class="col-md-5 offset-md-5">
-	<input  onclick="checkRecaptcha();" class="btn btn-rose btn-primary" value="Valider le Captcha" type="button" id="btnSubmit">
-	</input>
-	</br>
-	<button style="display:none" class="btn btn-rose btn-primary" type="submit" id="btnvalidator"> Créer votre compte </button
-	</form>
-	</div>
-	</br>
-
-	{{ form_end(form_inscription) }}
-
-	<div class="card-footer text-muted text-center">
-				Vous possédez déjà un compte ?
-				<a href="{{path('connexion')}}">
-					Identifiez-vous
-				</a>
+				)}}
+				{{form_errors(form_inscription.nom)	}}
 			</div>
 
-	<script type="text/javascript" language="javascript">
+			<div class="col-md-3 ">
+				{{form_label(form_inscription.prenom, '*')	}}
+				{{form_label(form_inscription.prenom, 'Votre prénom :')	}}
+				{{form_widget(form_inscription.prenom, {'attr':{'class':'form-control'}})}}
+				{{form_errors(form_inscription.prenom)	}}
+			</div>
 
-document.getElementById("creer").onclick = function (event) {
+		</div>
+
+		<div class="form-group col-md-4 offset-md-4">
+			{{form_label(form_inscription.prenom, '*')	}}
+			{{form_label(form_inscription.email, 'Votre e-mail :')}}
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<div class="input-group-text" id="btnGroupAddon">
+						@
+					</div>
+				</div>
+				{{form_widget(form_inscription.email, {'attr':{'class':'form-control'}})}}
+				{{form_errors(form_inscription.email)}}
+			</div>
+		</div>
+
+		<div class="form-row">
+			<div class="col-md-3 offset-md-3">
+				{{form_label(form_inscription.prenom, '*')	}}
+				{{form_label(form_inscription.password, 'Votre mot de passe (6 caractères minimum) :')	}}
+				{{form_widget(form_inscription.password, {'attr':{'class':'form-control'}})}}
+				{{form_errors(form_inscription.password)}}
+			</div>
+			<div class="col-md-3">
+				{{form_label(form_inscription.prenom, '*')	}}
+				{{form_label(form_inscription.confirm_password, 'Confirmer votre mot de passe (6 caractères minimum) :')	}}
+				{{form_widget(form_inscription.confirm_password, {'attr':{'class':'form-control'}})}}
+				{{form_errors(form_inscription.confirm_password)}}
+			</div>
+		</div>
+	</br>
+	<div class="form-row mt-4">
+		<div class="offset-md-5">
+			{{ form_row(form_inscription.agreeTerms) }}
+		</div>
+	</div>
+
+	<div class="form-row my-3">
+		<div class="mx-auto">
+			{{ form_row(form_inscription.photoprofil) }}
+		</div>
+	</div>
+</br>
+
+<div class="col-md-8 offset-md-4">
+	<div class="g-recaptcha" data-sitekey="6LdZI8QUAAAAALEI9NU699TYNHSbo0CxRyCe5fkH"></div>
+</br></div><div class="col-md-5 offset-md-5">
+<input onclick="checkRecaptcha();" class="btn btn-rose btn-primary" value="Valider le Captcha" type="button" id="btnSubmit"></input></br><button style="display:none" class="btn btn-rose btn-primary" type="submit" id="btnvalidator">Créer votre compte</button</form></div></br>{{ form_end(form_inscription) }}<div class="card-footer text-muted text-center">Vous possédez déjà un compte ?<a href="{{path('connexion')}}">Identifiez-vous</a></div><script type="text/javascript" language="javascript">document.getElementById("creer").onclick = function (event) {
 var a = document.getElementById("mdp").value;
 var b = document.getElementById("confirmer_mdp").value;
 
@@ -139,45 +122,39 @@ alert("Tous les champs obligatoires ne sont pas renseignés.");
 alert("Un e-mail de confirmation vous a été envoyé.");
 window.location = 'inscription.php';
 }
+}</script><script>function checkRecaptcha() {
+let b2 = document.getElementById("btnvalidator")
+let b1 = document.getElementById("btnSubmit")
+var response = grecaptcha.getResponse();
+if (response.length == 0) {
+// reCaptcha not verified
+alert("Captcha not Valide");
+
+return false;
+} else {
+// reCaptch verified
+b2.style.display = "block"
+b1.style.display = "none"
+return true;
+
 }
-
-
-
-</script>
-<script> 
-function checkRecaptcha() {
-	let b2 = document.getElementById("btnvalidator")
-	let b1 = document.getElementById("btnSubmit")
-  var response = grecaptcha.getResponse();
-  if(response.length == 0) { 
-    //reCaptcha not verified
-	    alert("Captcha not Valide");
-		
-	return false;
-  }
-  else { 
-    //reCaptch verified
-	b2.style.display = "block"
-	b1.style.display = "none"
-	return true; 
-
-  }
 
 }
 
 // implement on the backend
 function backend_API_challenge() {
-    var response = grecaptcha.getResponse();
-    $.ajax({
-        type: "POST",
-        url: 'https://www.google.com/recaptcha/api/siteverify',
-        data: {"secret" : "6LdEE8QUAAAAAMmmZfMgNrivH8PM0z68KzTy7QkS", "response" : response, "remoteip":"localhost"},
-        contentType: 'application/x-www-form-urlencoded',
-        success: function(data) { console.log(data); }
-    });
+var response = grecaptcha.getResponse();
+$.ajax({
+type: "POST",
+url: 'https://www.google.com/recaptcha/api/siteverify',
+data: {
+"secret": "6LdEE8QUAAAAAMmmZfMgNrivH8PM0z68KzTy7QkS",
+"response": response,
+"remoteip": "localhost"
+},
+contentType: 'application/x-www-form-urlencoded',
+success: function (data) {
+console.log(data);
 }
-</script>
-
-</div>
-</div>
-{% endblock %}
+});
+}</script></div></div>{% endblock %}

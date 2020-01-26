@@ -485,7 +485,12 @@ class User implements UserInterface
 
     public function getPhotoprofil(): ?string
     {
-        return $this->photoprofil;
+        if(isset($this->photoprofil) && $this->photoprofil != ""){
+        return '/img/profil/'.$this->photoprofil;
+        }
+        else{
+            return '/img/profil/photo_profil.jpg';
+        }
     }
 
     public function setPhotoprofil(?string $photoprofil): self
@@ -494,4 +499,5 @@ class User implements UserInterface
 
         return $this;
     }
+
 }
