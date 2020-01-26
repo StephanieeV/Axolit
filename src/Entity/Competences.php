@@ -90,15 +90,5 @@ class Competences
         return $this;
     }
 
-    public function getCompetenceUser(): ?CompetenceUser
-    {
-        return $this->competenceUser;
-    }
 
-    public function setCompetenceUser(?CompetenceUser $competenceUser): self
-    {
-        $this->competenceUser = $competenceUser;
-
-        return $this;
-    }
 }
