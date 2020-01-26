@@ -66,10 +66,15 @@
 											Voir le produit
 										</button>
 									</a>
-									<a href="{{ path('removeAnnonce', {'id': mon_annonce.id} ) }}">
-
+									<a href="{{ path('editAnnonce', {'id': mon_annonce.id} ) }}">
 										<button class="btn btn-light" name="modifier annonce" type="button">
 											Modifier l'annonce
+										</button>
+									</a>
+
+									<a href="{{ path('removeAnnonce', {'id': mon_annonce.id} ) }}">
+										<button class="btn btn-light" name="modifier annonce" type="button">
+											Supprimer mon annonce
 										</button>
 									</a>
 								</div>

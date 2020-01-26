@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Controller\Response;
 use App\Entity\Annonce;
 use App\Entity\User;
 use App\Form\UserType;
@@ -150,9 +151,6 @@ $favoris_annonces=$paginator->paginate($favoris_annonces,$request->query->getInt
      * @Route("/removeAnnonce/id={id}", name="removeAnnonce", methods={"GET"})
      */
     public function removeAnnonce($id){
-        
-
-            
             $entityManager = $this->getDoctrine()->getManager();
             $annonce= $entityManager->getRepository(Annonce::class)->find($id);
             $entityManager->remove($annonce);
@@ -160,6 +158,25 @@ $favoris_annonces=$paginator->paginate($favoris_annonces,$request->query->getInt
             
             return $this->redirectToRoute('mes_annonces');
 }
+  /**
+     * @Route("/{id}/editAnnonce", name="editAnnonce", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Annonce $annonce)
+    {
+        $form = $this->createForm(AnnonceType::class, $annonce);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('accueil');
+        }
+
+        return $this->render('default/annonce/annonce_edit.html.twig', [
+            'annonce' => $annonce,
+            'form_annonce' => $form->createView(),
+        ]);
+    }
     /**
      * @Route("/informations", name="informations",methods={"GET","POST"})
      */
