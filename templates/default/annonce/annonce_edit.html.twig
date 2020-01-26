@@ -1,7 +1,275 @@
-{% block body %}
-    {{ include('annonce/annonce_vente.html.twig', {'button_label': 'Update'}) }}
+{% extends "layout.html.twig" %}
+{% block titre_page %}
+	Axolit - Modifier une annonce
+{% endblock %}
+{% block link_css %}
+	<link href="./css/annonce.css" rel="stylesheet">
+{% endblock %}
 
-    <a href="{{ path('vendre') }}">Retour à la liste</a>
+{% block accueil %}
+	class="btn btn-rose "
+{% endblock %}
+{% block vendre %}
+	class="btn btn-rose "
+{% endblock %}
+{% block acheter %}
+	class="btn btn-rose "
+{% endblock %}
+{% block reparer %}
+	class="btn btn-rose "
+{% endblock %}
 
-    {{ include('annonce/annonce_delete.html.twig') }}
+{% block contenu %}
+	{{ form_start(form_annonce) }}
+	<div class="container">
+		<div class="card bas-form">
+
+			<div class="card-header">
+				Modifier une annonce
+			</div>
+
+			<div class="card-body">
+				<form
+					id="submit-button">
+
+
+					{# 	<div class="form-group row">
+																																																																					<div  class=" offset-md-3 col-md-3 ">
+																																																																						<span class="label_required">Les champs avec * sont obligatoires !</span>
+																																																																					</div>
+																																																																						<label for="radio" class="col-form-label col-sm-3 col-md-3 offset-md-2">
+																																																																							Type d'annonce :
+																																																																						</label>
+																																																																						<div class="form-check form-check-inline">
+																																																																							
+																																																																							<input class="form-check-input" type="radio" name="option1" name="radio1" value="option1">
+																																																																							<label class="form-check-label" for="inlineRadio1">
+																																																																								A vendre
+																																																																							</label>
+																																																																						</div>
+																																																																						<div class="form-check form-check-inline">
+																																																																							<input class="form-check-input" type="radio" name="option2" name="radio2" value="option2">
+																																																																							<label class="form-check-label" for="inlineRadio2">
+																																																																								A réparer
+																																																																							</label>
+																																																																						</div>
+																																																																					</div> #}
+					<div class="form-group row">
+						<label for="radio" class="col-form-label col-sm-3 col-md-3 offset-md-2">
+							<label class="form-check-label">
+								*
+							</label>
+							Type d'annonce :
+						</label>
+						<div class="form-check form-check-inline">
+							{{form_widget(form_annonce.typeannonce, {'attr':{'class':'form-check-input'}}
+							)}}
+							{{form_row(form_annonce.typeannonce)}}
+							{{form_errors(form_annonce.typeannonce)}}
+
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="inputType" class="col-form-label col-sm-3 col-md-3 offset-md-2">
+							<label class="form-check-label">
+								*
+							</label>
+							Type d'appareil :
+						</label>
+						<div class="col-sm-6 col-md-4">
+							{{form_widget(form_annonce.typeappareil, {'attr':{'class':'form-control'}}
+							)}}
+							{{form_row(form_annonce.typeappareil)}}
+							{{form_errors(form_annonce.typeappareil)}}
+
+						</div>
+					</div>
+
+
+					<div class="form-group row">
+						<label for="inputTitre"></label>
+						<div class="col-sm-3 col-md-3 offset-md-2">
+							{{form_label(form_annonce.titre, '*')	}}
+							{{form_label(form_annonce.titre, 'Titre de l\'annonce :')	}}
+						</div>
+						<div class="col-sm-6 col-md-4">
+							{{form_widget(form_annonce.titre, {'attr':{'class':'form-control'}})}}
+							{{form_row(form_annonce.titre)}}
+							{{form_errors(form_annonce.titre)}}
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-3 col-md-3 offset-md-2">
+							<label for="inputText" class="form-check-label">
+								*
+							</label>
+							{{form_label(form_annonce.texte_annonce, 'Texte de l\'annonce :')}}
+						</div>
+						<div class="col-sm-6 col-md-4">
+							{{form_widget(form_annonce.texte_annonce, {'attr':{'class':'form-control'}}
+							)}}
+							{{form_row(form_annonce.texte_annonce)}}
+							{{form_errors(form_annonce.texte_annonce)}}
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-3 col-md-3 offset-md-2">
+							<label for="inputPrix" class="form-check-label">
+								*
+							</label>
+							{{form_label(form_annonce.prix, 'Prix :')}}
+						</div>
+						<div class="col-sm-6 col-md-4">
+							{{form_widget(form_annonce.prix, {'attr':{'class':'form-control'}}
+							)}}
+							{{form_row(form_annonce.prix)}}
+							{{form_errors(form_annonce.prix)}}
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="fichier" class="col-form-label col-sm-3 col-md-3 offset-md-2">
+							Photos :
+						</label>
+						<div class="col-sm-6 col-md-4">
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" name="fichier" accept="image/bmp,image/gif,image/jpeg,image/png,image/x-ms-bmp">
+								<label class="custom-file-label" for="customFile">
+									Choisir une image
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-3 col-md-3 offset-md-2">
+							<label class="form-check-label">
+								*
+							</label>
+							{{form_label(form_annonce.localisation, 'Localisation :')	}}
+						</div>
+						<div class="col-sm-6 col-md-4">
+							{{form_widget(form_annonce.localisation, {'attr':{'class':'form-control'}}
+							)}}
+							{{form_row(form_annonce.localisation)}}
+							{{form_errors(form_annonce.localisation)}}
+						</div>
+					</div>
+
+					<br>
+					<h5 class="card-title text-center">
+						Caractéristiques de l'appareil :
+					</h5>
+					<br>
+					<div class="form-group row">
+						<div class="col-sm-3 col-md-3 offset-md-2">
+							<label class="form-check-label">
+								*
+							</label>
+							{{form_label(form_annonce.modele, 'Modele :')	}}
+						</div>
+						<div class="col-sm-6 col-md-4">
+							{{form_widget(form_annonce.modele, {'attr':{'class':'form-control'}}
+							)}}
+							{{form_row(form_annonce.modele)}}
+							{{form_errors(form_annonce.modele)}}
+						</div>
+					</div>
+
+
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+
+					<div class="text-center">
+						<a href="{{path('mes_annonces')}}">
+							<button type="button" class="btn btn-light">
+								Annuler
+							</button>
+						</a>
+						<button type="submit" class="btn btn-rose btn-primary" data-toggle="modal" data-target="#depotModal">
+							Modifier l'annonce
+						</button>
+
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<script>
+		jQuery(function ($) {
+var _code = $('#code'),
+_city = $('#city'),
+_out = $('#output');
+var _cache = {};
+// Utilisation du HTTPS ou non selon le protocole de la page actuelle
+var _host = ~(location.protocol + '').indexOf('s') ? 'https://www.selfbuild.fr/vicopo' : 'http://vicopo.selfbuild.fr';
+// Si le code postal ne commence pas par un chiffre, c'est une ville, on passe dans le champ ville avec la valeur courante
+_code.keyup(function () {
+var _val = $(this).val();
+if (/^[^0-9]/.test(_val)) {
+_code.val('');
+_city.val(_val).focus().trigger('keyup');
+}
+});
+// Si la ville commence par un chiffre, c'est un code postal, on passe dans le champ code postal avec la valeur courante
+_city.keyup(function () {
+var _val = $(this).val();
+if (/^[0-9]/.test(_val)) {
+_city.val('');
+_code.val(_val).focus().trigger('keyup');
+}
+});
+// Fonction à exécuter à la réception d'une réponse pour afficher les liens dans #output
+function _done(_cities) {
+_out.html(_cities.map(function (_data) {
+return '<a href="#">' + _data.code + ' &nbsp; ' + _data.city + '</a>';
+}).join(''));
+}
+// Appel de Vicopo lors de l'appui sur une touche dans #code ou #city
+$.each([
+'code', 'city'
+], function (i, _name) {
+var _input = $('#' + _name).on('keyup', function () {
+var _val = _input.val();
+if (_val.length > 1) {
+_cache[_name] = _cache[_name] || {};
+if (_cache[_name][_val]) {
+_done(_cache[_name][_val]);
+}
+var _data = {};
+_data[_name] = _val;
+$.getJSON(_host, _data, function (_answear) {
+_cache[_name][_answear.input] = _answear.cities;
+if (_input.val() == _answear.input) {
+_done(_answear.cities);
+}
+});
+}
+});
+});
+// Au clic sur un lien, on remplace la valeur des champs code postal et ville
+$(document).on('click', '#output a', function (e) {
+var _contents = $(this).text();
+var _space = _contents.indexOf(' ');
+// Le premier espace sépare le code postal de la ville dans le texte du lien
+// Si vous souhaitez personnaliser le texte des liens, nous vous conseillons d'utiliser :
+// <a href="#" data-code="' + _data.code + '" data-city="' + _data.city + '">
+// dans le lien, puis :
+// _code.val($(this).data('code'));
+// _city.val($(this).data('city'));
+if (~ _space) {
+_code.val(_contents.substr(0, _space));
+_city.val(_contents.substr(_space).trim());
+_out.empty();
+}
+e.preventDefault();
+e.stopPropagation();
+return false;
+});
+});
+	</script>
+
+
+	{{ form_end(form_annonce) }}
 {% endblock %}
