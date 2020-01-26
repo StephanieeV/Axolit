@@ -69,13 +69,8 @@ class DefaultController extends AbstractController
         $annonce = new Annonce();
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
-<<<<<<< HEAD
-        if ($form->isSubmitted() && $form->isValid()) {
-
-=======
         if($form->isSubmitted()&& $form->isValid()){
             $annonce->setUser($this->getUser());
->>>>>>> 0d9898022e41a10742576250fd19a03b066c14fe
             $em = $this->getDoctrine()->getManager();
             $em->persist($annonce);
             $em->flush();
@@ -254,7 +249,6 @@ class DefaultController extends AbstractController
         ]);
     }
 
-<<<<<<< HEAD
     public function dernieres_annonce(Request $request)
     {
         $em = $this->get('doctrine')->getManager();
@@ -266,9 +260,7 @@ class DefaultController extends AbstractController
             'dernieres_annonces' => $dernieres_annonces,
         ]);
     }
-=======
     
->>>>>>> 0d9898022e41a10742576250fd19a03b066c14fe
     /**
      * @Route("/mentions_legales", name="mentions_legales")
      */

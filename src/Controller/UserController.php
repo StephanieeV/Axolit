@@ -16,7 +16,7 @@ class UserController extends AbstractController
     public function monprofil()
     {
         $userProfile = $this->getUser();
-        return $this->render('default/profil1.html.twig', [
+        return $this->render('default/profil.html.twig', [
             'controller_name' => 'UserController',
             'userProfile' => $userProfile,
             'displayEditLink' => true,
@@ -38,7 +38,7 @@ class UserController extends AbstractController
         // look for a single Product by name
         $user = $repository->findOneBy(['pseudo' => $userName]);
 
-        return $this->render('default/profil1.html.twig', [
+        return $this->render('default/profil.html.twig', [
             'controller_name' => 'UserController',
             'userProfile' => $user,
             
