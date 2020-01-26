@@ -13,6 +13,7 @@ use App\Form\ContactType;
 use App\Form\AnnonceType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\AnnonceRepository;
+use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
 
 class DefaultController extends AbstractController
@@ -27,8 +28,7 @@ class DefaultController extends AbstractController
     public function index(Request $request)
     {
         $em=$this->get('doctrine')->getManager();
-        $offset=1;
-        $limit = 3;
+        
         $dernieres_annonces = $em->getRepository(Annonce::class)->findAll(
           
         );
@@ -146,29 +146,40 @@ $favoris_annonces=$paginator->paginate($favoris_annonces,$request->query->getInt
             $em->flush();
             return $this->redirectToRoute('favoris_annonce');
 }
-    /**
-     * @Route("/informations", name="informations")
+/**
+     * @Route("/removeAnnonce/id={id}", name="removeAnnonce", methods={"GET"})
      */
-    public function informations(Request $request)
-    {
-        $emm=$this->get('doctrine')->getManager();
-        $infosUser = $emm->getRepository(User::class)->findAll(
-);
+    public function removeAnnonce($id){
         
-        $user = new User();
-        $form = $this->createForm(InformationsType::class, $user);
+
+            
+            $entityManager = $this->getDoctrine()->getManager();
+            $annonce= $entityManager->getRepository(Annonce::class)->find($id);
+            $entityManager->remove($annonce);
+            $entityManager->flush();
+            
+            return $this->redirectToRoute('mes_annonces');
+}
+    /**
+     * @Route("/informations", name="informations",methods={"GET","POST"})
+     */
+    public function informations(Request $request){
+    // $user=$this->getUser();
+    //     $em=$this->get('doctrine')->getManager();
+    //     $info = $em->getRepository(User::class)->find($user);
+        
+         $form = $this->createForm(InformationsType::class);
         $form->handleRequest($request);
-        if($form->isSubmitted()&& $form->isValid()){
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('informations');
-        }
+        //     return $this->redirectToRoute('informations');
+        // }
         return $this->render('./default/informations.html.twig', array('form_modif_infos'=>$form->createView()));
         
     }
+    
     /**
      * @Route("/inscription", name="inscription")
      */

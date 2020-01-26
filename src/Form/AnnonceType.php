@@ -8,8 +8,6 @@ use App\Entity\Annonce;
 //pour construire une query et afficher dans le form les entités séléctionnée
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
