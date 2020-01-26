@@ -1,6 +1,11 @@
 /*
     Annonces
 */
+.date {
+  opacity : 0.5;
+  font-size: 13px;
+}
+
 .photo {
   background-size: contain;
   background-repeat: no-repeat;

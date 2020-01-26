@@ -46,6 +46,8 @@
 									{% endif %}
 								</div>
 								<br>
+								<p class="date">Posté le : {{ annonce.heuredatepublication|date("m/d/Y") }} à {{ annonce.heuredatepublication|date("H:i") }}</p>
+								<br>
 								<h5 class="card-title">
 									Description
 								</h5>
@@ -85,7 +87,7 @@
 										{% endif %}
 										<a href="{{path("addFavorisAnnonce",{'id':annonce.id})}}">
 
-											<button class="btn-rose btn btn-primary btn-sm" type="button" name="voir numero telepone" data-toggle="modal" data-target=".bd-numero-modal-sm">
+											<button class="btn-rose btn btn-primary btn-sm" type="button" name="favoris">
 												Ajouter aux favoris
 											</button>
 										</a>
@@ -228,7 +230,7 @@
 																{{ annonce.user.telephone }}
 																.
 																<br>
-																Veuillez le contacter uniquement à propos du site.
+																Veuillez le contacter uniquement à propos de l'annonce.
 
 
 															{% endif %}
@@ -258,7 +260,7 @@
 									<tr>
 										<div class="row justify-content-center">
 											<button class="btn-rose btn btn-primary btn-sm" type="button" name="bouton envoie mail" data-toggle="modal" data-target=".bd-mail-modal-sm">
-												Envoyer un mail
+												Envoyer un email
 											</button>
 											<div class="modal fade bd-mail-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 												<div class="modal-dialog modal-sm">
@@ -270,7 +272,7 @@
 
 															.
 															<br>
-															Veuillez le contacter uniquement à propos du site.
+															Veuillez le contacter uniquement à propos de l'annonce.
 
 															<button type="button" class="close" data-dismiss="modal">
 																<span>
