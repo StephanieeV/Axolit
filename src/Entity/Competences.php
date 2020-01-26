@@ -58,15 +58,6 @@ class Competences
     }
 
 
-
-    /**
-     * @return Collection|CompetenceUser[]
-     */
-    public function getCompetenceUsers(): Collection
-    {
-        return $this->competenceUsers;
-    }
-
     public function addCompetenceUser(CompetenceUser $competenceUser): self
     {
         if (!$this->competenceUsers->contains($competenceUser)) {
