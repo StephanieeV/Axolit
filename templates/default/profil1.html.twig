@@ -1,0 +1,41 @@
+{% extends "default/profil.html.twig" %}
+
+
+
+{% block photo_profil %} <img src="{{asset('css/images/profil/photo_profil.jpg')}}"> {% endblock %}
+{% block nom %}{{ userProfile.prenom }} {{ userProfile.nom }}{% endblock %}
+{% block ville %}Bordeaux, 33000{% endblock %}
+{% block numeroTelephone %}06.11.11.11.11{% endblock %}
+{% block adresseMail %}nom@example.com{% endblock %}
+
+{% block competences %}
+<li>
+    Changer vitre téléphone
+</li>
+<li>
+    Changer batteries
+</li>
+{% endblock %}
+
+{% block dejaRepare1Titre %}iPhone 8{% endblock %}
+{% block dejaRepare1Description %}La vitre de mon télépone est cassé suite à une chute.{% endblock %}
+{% block dejaRepare2Titre %}Honor 9{% endblock %}
+{% block dejaRepare2Description %}Vitre cassé sur mon téléphone Honor 9. L'écran est HS.{% endblock %}
+
+{% block commentaire1Nom %}Alicia{% endblock %}
+{% block commentaire1Description %}Très satisfaisaite de ma réparation ! Réparateur au top !{% endblock %}
+{% block commentaire2Nom %}Ludo{% endblock %}
+{% block commentaire2Description %}Une personne souriante avec une touche d'humour, vraiment pas cher au vue des réparations, je recommande.{% endblock %}
+
+{% block autreReparateur1PhotoProfil %}src="./css/images/profil/photo_profil2.png"{% endblock %}
+{% block autreReparateur1Nom %}Adrien Lobser{% endblock %}
+{% block autreReparateur2PhotoProfil %}src="./css/images/profil/photo_profil3.png"{% endblock %}
+{% block autreReparateur2Nom %}Jonh Doe{% endblock %}
+{% block autreReparateur1Ville %}Pessac, 33600{% endblock %}
+{% block autreReparateur2Ville %}Pessac, 33600{% endblock %}
+
+{% block pageProfil1 %}href="profil2.php"{% endblock %}
+{% block pageProfil2 %}href="profil3.php"{% endblock %}
+
+{% block repare1 %}src="img/telephone.jpg"{% endblock %}
+{% block repare2 %}src="./css/images/honor.png"{% endblock %}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Controller\Response;
 use App\Entity\Annonce;
 use App\Entity\User;
 use App\Form\UserType;
@@ -13,6 +14,7 @@ use App\Form\ContactType;
 use App\Form\AnnonceType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\AnnonceRepository;
+use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -29,8 +31,7 @@ class DefaultController extends AbstractController
     public function index(Request $request)
     {
         $em=$this->get('doctrine')->getManager();
-        $offset=1;
-        $limit = 3;
+        
         $dernieres_annonces = $em->getRepository(Annonce::class)->findAll(
           
         );
@@ -138,40 +139,87 @@ class DefaultController extends AbstractController
     /**
      * @Route("/removeFavorisAnnonce/id={id}", name="removeFavorisAnnonce", methods={"GET"})
      */
-    public function removeFavorisAnnonce($id)
+    public function removeFavorisAnnonce($id){
+        
+            $em = $this->get('doctrine')->getManager();
+            $favoris_annonce= $em->getRepository(Annonce::class)->find($id);
+            // if(!$truc){
+            //     throw $this->createNotFoundException('Pas de slot');
+            // }
+            // $stu = intval($stu);
+            $favoris_annonce->removeUser($this->getUser());
+            $em->flush();
+            return $this->redirectToRoute('favoris_annonce');
+}
+/**
+     * @Route("/removeAnnonce/id={id}", name="removeAnnonce", methods={"GET"})
+     */
+    public function removeAnnonce($id){
+            $entityManager = $this->getDoctrine()->getManager();
+            $annonce= $entityManager->getRepository(Annonce::class)->find($id);
+            $entityManager->remove($annonce);
+            $entityManager->flush();
+            
+            return $this->redirectToRoute('mes_annonces');
+}
+  /**
+     * @Route("/{id}/editAnnonce", name="editAnnonce", methods={"GET","POST"})
+     */
+    public function editAnnonce(Request $request, Annonce $annonce)
     {
+        $form = $this->createForm(AnnonceType::class, $annonce);
+        $form->handleRequest($request);
 
-        $em = $this->get('doctrine')->getManager();
-        $favoris_annonce = $em->getRepository(Annonce::class)->find($id);
-        // if(!$truc){
-        //     throw $this->createNotFoundException('Pas de slot');
-        // }
-        // $stu = intval($stu);
-        $favoris_annonce->removeUser($this->getUser());
-        $em->flush();
-        return $this->redirectToRoute('favoris_annonce');
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('accueil');
+        }
+
+        return $this->render('default/annonce/annonce_edit.html.twig', [
+            'annonce' => $annonce,
+            'form_annonce' => $form->createView(),
+        ]);
     }
     /**
-     * @Route("/informations", name="informations")
+     * @Route("/informations", name="informations",methods={"GET","POST"})
      */
-    public function informations(Request $request)
-    {
-        $emm = $this->get('doctrine')->getManager();
-        $infosUser = $emm->getRepository(User::class)->findAll();
+    public function informations(Request $request){
+    // $user=$this->getUser();
+    //     $em=$this->get('doctrine')->getManager();
+    //     $info = $em->getRepository(User::class)->find($user);
+        
+         $form = $this->createForm(InformationsType::class);
+        $form->handleRequest($request);
 
-        $user = new User();
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     $this->getDoctrine()->getManager()->flush();
+
+        //     return $this->redirectToRoute('informations');
+        // }
+        return $this->render('./default/informations.html.twig', array('form_modif_infos'=>$form->createView()));
+        
+    }
+    /**
+     * @Route("/{id}/informations", name="editInformations", methods={"GET","POST"})
+     */
+    public function editInformations(Request $request, User $user)
+    {
         $form = $this->createForm(InformationsType::class, $user);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+        if ($form->isSubmitted()) {
+            $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('informations');
+            return $this->redirectToRoute('accueil');
         }
-        return $this->render('./default/informations.html.twig', array('form_modif_infos' => $form->createView()));
+
+        return $this->render('default/informations.html.twig', [
+            'user' => $user,
+            'form_modif_infos' => $form->createView(),
+        ]);
     }
+    
     /**
      * @Route("/inscription", name="inscription")
      */

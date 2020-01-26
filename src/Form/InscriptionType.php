@@ -66,8 +66,6 @@ class InscriptionType extends AbstractType
                 ],
             ])
 
-
-
             ->add('password', PasswordType::class)
             ->add('confirm_password', PasswordType::class);
     

@@ -247,9 +247,12 @@
 						<button type="button" class="btn btn-primary btn-rose" data-toggle="modal" data-target="#popup">
 							Sauvegarder les modifications
 						</button>
-						<button type="button" class="btn btn-light" id="refresh">
-							Annuler
-						</button>
+						<a href="{{ path('informations')}}">
+							<button type="button" class="btn btn-light" id="refresh">
+
+								Annuler
+							</button>
+						</a>
 
 						<div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="popupLabel" aria-hidden="true">
 							<div class="modal-dialog" role="document">
@@ -258,12 +261,16 @@
 										Voulez-vous sauvegarder les modifications ?
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-light" data-dismiss="modal">
-											Annuler
-										</button>
+										<a href="{{ path('informations')}}">
+											<button type="button" class="btn btn-light" data-dismiss="modal">
+												Annuler
+											</button>
+										</a>
+
 										<button type="submit" class="btn btn-primary btn-rose">
 											Sauvegarder les modifications
 										</button>
+
 
 									</div>
 
