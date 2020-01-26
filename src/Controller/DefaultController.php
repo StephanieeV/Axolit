@@ -161,7 +161,7 @@ $favoris_annonces=$paginator->paginate($favoris_annonces,$request->query->getInt
   /**
      * @Route("/{id}/editAnnonce", name="editAnnonce", methods={"GET","POST"})
      */
-    public function edit(Request $request, Annonce $annonce)
+    public function editAnnonce(Request $request, Annonce $annonce)
     {
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
@@ -195,6 +195,25 @@ $favoris_annonces=$paginator->paginate($favoris_annonces,$request->query->getInt
         // }
         return $this->render('./default/informations.html.twig', array('form_modif_infos'=>$form->createView()));
         
+    }
+    /**
+     * @Route("/{id}/informations", name="editInformations", methods={"GET","POST"})
+     */
+    public function editInformations(Request $request, User $user)
+    {
+        $form = $this->createForm(InformationsType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('accueil');
+        }
+
+        return $this->render('default/informations.html.twig', [
+            'user' => $user,
+            'form_modif_infos' => $form->createView(),
+        ]);
     }
     
     /**
