@@ -82,8 +82,7 @@ class DefaultController extends AbstractController
      */
     public function contact()
     {
-        $form = $this->createForm(ContactType::class);
-        return $this->render('./default/contact.html.twig', array('form_contact'=>$form->createView()));
+        return $this->render('./default/contact.html.twig');
     }
     /**
      * @Route("/favoris", name="favoris_reparateur")
