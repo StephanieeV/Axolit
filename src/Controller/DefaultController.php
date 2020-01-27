@@ -346,4 +346,16 @@ class DefaultController extends AbstractController
         );
     }
 
+    /**
+     * @Route("/profil/{id}", name="profil",methods={"GET"})
+     */
+    public function profil(Annonce $annonce)
+    {
+        return $this->render(
+            'default/profil.html.twig',
+            [
+                'annonce' => $annonce,
+            ]
+        );
+    }
 }
