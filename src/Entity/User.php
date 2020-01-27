@@ -101,11 +101,6 @@ class User implements UserInterface
     private $reparation;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\CompetenceUser", mappedBy="user")
-     */
-    private $competenceUsers;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Annonce", mappedBy="user")
      */
     private $annonces;
@@ -120,14 +115,20 @@ class User implements UserInterface
      */
     private $photoprofil;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CompetenceUser", mappedBy="user", orphanRemoval=true)
+     */
+    private $competences;
+
     public function __construct()
     {
         $this->badges = new ArrayCollection();
         $this->favoris = new ArrayCollection();
         $this->reparation = new ArrayCollection();
-        $this->competenceUsers = new ArrayCollection();
+
         $this->photoProfils = new ArrayCollection();
         $this->annonces = new ArrayCollection();
+        $this->competences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -400,37 +401,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|CompetenceUser[]
-     */
-    public function getCompetenceUsers(): Collection
-    {
-        return $this->competenceUsers;
-    }
-
-    public function addCompetenceUser(CompetenceUser $competenceUser): self
-    {
-        if (!$this->competenceUsers->contains($competenceUser)) {
-            $this->competenceUsers[] = $competenceUser;
-            $competenceUser->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCompetenceUser(CompetenceUser $competenceUser): self
-    {
-        if ($this->competenceUsers->contains($competenceUser)) {
-            $this->competenceUsers->removeElement($competenceUser);
-            // set the owning side to null (unless already changed)
-            if ($competenceUser->getUser() === $this) {
-                $competenceUser->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|PhotoProfil[]
      */
     public function getPhotoProfils(): Collection
@@ -496,6 +466,37 @@ class User implements UserInterface
     public function setPhotoprofil(?string $photoprofil): self
     {
         $this->photoprofil = $photoprofil;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CompetenceUser[]
+     */
+    public function getCompetences(): Collection
+    {
+        return $this->competences;
+    }
+
+    public function addCompetence(CompetenceUser $competence): self
+    {
+        if (!$this->competences->contains($competence)) {
+            $this->competences[] = $competence;
+            $competence->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompetence(CompetenceUser $competence): self
+    {
+        if ($this->competences->contains($competence)) {
+            $this->competences->removeElement($competence);
+            // set the owning side to null (unless already changed)
+            if ($competence->getUser() === $this) {
+                $competence->setUser(null);
+            }
+        }
 
         return $this;
     }

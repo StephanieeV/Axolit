@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\CompetencesUser;
+use App\Entity\Competence;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method CompetencesUser|null find($id, $lockMode = null, $lockVersion = null)
- * @method CompetencesUser|null findOneBy(array $criteria, array $orderBy = null)
- * @method CompetencesUser[]    findAll()
- * @method CompetencesUser[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Competence|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Competence|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Competence[]    findAll()
+ * @method Competence[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CompetencesUserRepository extends ServiceEntityRepository
+class CompetenceRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, CompetencesUser::class);
+        parent::__construct($registry, Competence::class);
     }
 
     // /**
-    //  * @return CompetencesUser[] Returns an array of CompetencesUser objects
+    //  * @return Competence[] Returns an array of Competence objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class CompetencesUserRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?CompetencesUser
+    public function findOneBySomeField($value): ?Competence
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')
