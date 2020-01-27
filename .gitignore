@@ -4,10 +4,12 @@
 /.env.local.php
 /.env.*.local
 /public/bundles/
+/.env
 /var/
 /vendor/
 /axolit/
 /.env
+/notesdeploy.txt
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###

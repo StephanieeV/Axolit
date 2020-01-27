@@ -57,17 +57,7 @@ class Competences
         return $this;
     }
 
-    public function getCompetencesUser(): ?CompetencesUser
-    {
-        return $this->competencesUser;
-    }
 
-    public function setCompetencesUser(?CompetencesUser $competencesUser): self
-    {
-        $this->competencesUser = $competencesUser;
-
-        return $this;
-    }
 
     /**
      * @return Collection|CompetenceUser[]
@@ -100,15 +90,5 @@ class Competences
         return $this;
     }
 
-    public function getCompetenceUser(): ?CompetenceUser
-    {
-        return $this->competenceUser;
-    }
 
-    public function setCompetenceUser(?CompetenceUser $competenceUser): self
-    {
-        $this->competenceUser = $competenceUser;
-
-        return $this;
-    }
 }
