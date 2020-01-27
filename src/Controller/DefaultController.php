@@ -21,9 +21,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DefaultController extends AbstractController
 {
-    /**
-     * Routes
-     */
 
     /**
      * @Route("/", name="index")
@@ -40,6 +37,7 @@ class DefaultController extends AbstractController
             'dernieres_annonces' => $dernieres_annonces,
         ]);
     }
+
     /**
      * @Route("/accueil", name="accueil")
      */
@@ -62,6 +60,7 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
         ]);
     }
+
     /**
      * @Route("/annonce", name="annonce")
      */
@@ -80,6 +79,7 @@ class DefaultController extends AbstractController
         }
         return $this->render('./default/annonce/annonce.html.twig', array('form_annonce' => $form->createView()));
     }
+
     /**
      * @Route("/contact", name="contact")
      */
@@ -87,6 +87,7 @@ class DefaultController extends AbstractController
     {
         return $this->render('./default/contact.html.twig');
     }
+
     /**
      * @Route("/favoris", name="favoris_reparateur")
      */
@@ -135,6 +136,7 @@ class DefaultController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('favoris_annonce');
     }
+
     /**
      * @Route("/removeFavorisAnnonce/id={id}", name="removeFavorisAnnonce", methods={"GET"})
      */
@@ -149,8 +151,9 @@ class DefaultController extends AbstractController
             $favoris_annonce->removeUser($this->getUser());
             $em->flush();
             return $this->redirectToRoute('favoris_annonce');
-}
-/**
+    }
+
+    /**
      * @Route("/removeAnnonce/id={id}", name="removeAnnonce", methods={"GET"})
      */
     public function removeAnnonce($id){
@@ -160,7 +163,8 @@ class DefaultController extends AbstractController
             $entityManager->flush();
             
             return $this->redirectToRoute('mes_annonces');
-}
+    }
+
   /**
      * @Route("/{id}/editAnnonce", name="editAnnonce", methods={"GET","POST"})
      */
@@ -180,6 +184,7 @@ class DefaultController extends AbstractController
             'form_annonce' => $form->createView(),
         ]);
     }
+    
     /**
      * @Route("/informations", name="informations",methods={"GET","POST"})
      */
@@ -199,6 +204,7 @@ class DefaultController extends AbstractController
         return $this->render('./default/informations.html.twig', array('form_modif_infos'=>$form->createView()));
         
     }
+
     /**
      * @Route("/{id}/informations", name="editInformations", methods={"GET","POST"})
      */
@@ -264,6 +270,7 @@ class DefaultController extends AbstractController
         dd("yareyare");
         return $this->render('./default/inscription.html.twig', array('form_inscription' => $form->createView()));
     }
+
     /**
      * @Route("/liste_produits", name="liste_produits")
      */
@@ -279,6 +286,7 @@ class DefaultController extends AbstractController
             'annonces' => $annonces,
         ]);
     }
+
     /**
      * @Route("/liste_reparation", name="liste_reparation")
      */
@@ -317,6 +325,7 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
         ]);
     }
+
     /**
      * @Route("/mes_annonces", name="mes_annonces")
      */
@@ -333,6 +342,7 @@ class DefaultController extends AbstractController
             'mes_annonces' => $mes_annonces,
         ]);
     }
+
     /**
      * @Route("/produit/{id}", name="produit",methods={"GET"})
      */

@@ -25,7 +25,6 @@ class UserController extends AbstractController
         ]);
     }
 
-
     /**
      * @todo si utilisateur pas trouvé : template -> Désolé mais cet utilisateur n'existe pas
      * @Route("/profil/{userName}", name="findUserByUsername")
@@ -59,7 +58,7 @@ class UserController extends AbstractController
         //s$result = $repository->suggest
     }
 
-        /**
+    /**
      * add levenhtstein & soundex function https://github.com/glanchow/doctrine-fuzzy
      * @Route("/profil/fuzzyprenom/{userName}", name="fuzzyPrenomSearchUsername_route")
      */
@@ -70,8 +69,4 @@ class UserController extends AbstractController
         //dd($result);
         //s$result = $repository->suggest
     }
-
-
-
-
 }
