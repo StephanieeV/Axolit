@@ -7,6 +7,8 @@
 /.env
 /var/
 /vendor/
+/axolit/
+/.env
 /notesdeploy.txt
 ###< symfony/framework-bundle ###
 

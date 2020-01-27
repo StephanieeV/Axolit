@@ -1,3 +1,7 @@
 .image_produit {
   width: 120px;
 }
+
+.lien, .lien:hover {
+  color:black;
+}

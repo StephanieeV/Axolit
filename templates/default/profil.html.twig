@@ -77,72 +77,36 @@
 
 						<br>
 
-						<div class="row justify-content-center">
-							<div class="col-md-4">
+						<div class="row">
+							<div class="col-md-6">
 								<table>
 									<tr>
-										<img src="{{asset('./css/svg/icone/telephone.svg')}}" style="width: 40px;">
+										<div class="row justify-content-center">
+											<img src="{{asset('./css/svg/icone/telephone.svg')}}" style="width: 40px;">
+										</div>
 									</tr>
 									<tr>
-										<button class="btn-rose btn btn-primary" type="button" data-toggle="modal" data-target=".bd-numero-modal-sm">
-											Voir le numéro
-										</button>
-										<div class="modal fade bd-numero-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-											<div class="modal-dialog modal-sm">
-												<div class="modal-content">
-													<div class="modal-body">
-														{% block numeroTelephone %}
-														{% endblock %}
-														<button type="button" class="close" data-dismiss="modal">
-															<span>
-																&times;
-															</span>
-														</div>
-													</div>
-												</div>
-											</div>
-										</tr>
+										<div class="row justify-content-center">
+											{% if app.user.telephone != null %}
+												{{ app.user.telephone }}
+											{% else %}
+												Numéro non renseigné.
+											{% endif %}
+										</div>
 									</tr>
 								</table>
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-6">
 								<table>
 									<tr>
-										<img src="{{asset('css/svg/icone/mail.svg')}}" style="width: 40px;">
+										<div class="row justify-content-center">
+											<img src="{{asset('css/svg/icone/mail.svg')}}" style="width: 40px;">
+										</div>
 									</tr>
 									<tr>
-										<button class="btn-rose btn btn-primary" type="button" data-toggle="modal" data-target=".bd-mail-modal-sm">
-											Envoyer un mail
-										</button>
-										<div class="modal fade bd-mail-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-											<div class="modal-dialog modal-sm">
-												<div class="modal-content">
-													<div class="modal-body">
-														{% block adresseMail %}
-														{% endblock %}
-														<button type="button" class="close" data-dismiss="modal">
-															<span>
-																&times;
-															</span>
-														</div>
-													</div>
-												</div>
-											</div>
-										</tr>
-									</tr>
-								</table>
-							</div>
-							<div class="col-md-4">
-								<table>
-									<tr>
-										<img src="{{asset('css/svg/icone/favoris.svg')}}" style="width: 40px;">
-									</tr>
-									<tr>
-										<a href="#">
-											<button class="btn-rose btn btn-primary" type="button">
-												Ajouter à ma liste
-											</button>
-										</a>
+										<div class="row justify-content-center">
+											{{ app.user.email }}
+										</div>
 									</tr>
 								</table>
 							</div>

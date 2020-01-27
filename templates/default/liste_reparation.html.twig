@@ -56,7 +56,9 @@
 								</div>
 								<div class="col-md-9 offset-md-1">
 									<h3>
-										{{annonce.titre}}
+										<a class="lien" href=" {{ path('produit', {'id': annonce.id} ) }}">
+											{{annonce.titre}}
+										</a>
 									</h3>
 									<h4>
 										{{ annonce.prix }}
@@ -69,7 +71,6 @@
 
 									</p>
 									<a href=" {{ path('produit', {'id': annonce.id} ) }}">
-
 										<button class="btn-rose btn btn-primary" name="bouton voir produit" type="button">
 											Voir le produit
 										</button>
