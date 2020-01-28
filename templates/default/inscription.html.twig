@@ -35,7 +35,9 @@
 			<div class="form-group form-row">
 				<form method="get" action="accueil.html.twig" data-captcha-type="recaptcha_v2" onsubmit="return checkRecaptcha()"></br>
 				<div class=" offset-md-9 col-md-3 ">
-					<span class="label_required">Les champs avec * sont obligatoires !</span>
+					<span class="label_required">
+						Les champs avec * sont obligatoires !
+					</span>
 				</div>
 			</br>
 			<div class=" offset-md-3 col-md-3 ">
@@ -50,7 +52,8 @@
 			<div class="col-md-3 ">
 				{{form_label(form_inscription.prenom, '*')	}}
 				{{form_label(form_inscription.prenom, 'Votre prénom :')	}}
-				{{form_widget(form_inscription.prenom, {'attr':{'class':'form-control'}})}}
+				{{form_widget(form_inscription.prenom, {'attr':{'class':'form-control'}}
+				)}}
 				{{form_errors(form_inscription.prenom)	}}
 			</div>
 
@@ -65,7 +68,8 @@
 						@
 					</div>
 				</div>
-				{{form_widget(form_inscription.email, {'attr':{'class':'form-control'}})}}
+				{{form_widget(form_inscription.email, {'attr':{'class':'form-control'}}
+				)}}
 				{{form_errors(form_inscription.email)}}
 			</div>
 		</div>
@@ -74,13 +78,15 @@
 			<div class="col-md-3 offset-md-3">
 				{{form_label(form_inscription.prenom, '*')	}}
 				{{form_label(form_inscription.password, 'Votre mot de passe (6 caractères minimum) :')	}}
-				{{form_widget(form_inscription.password, {'attr':{'class':'form-control'}})}}
+				{{form_widget(form_inscription.password, {'attr':{'class':'form-control'}}
+				)}}
 				{{form_errors(form_inscription.password)}}
 			</div>
 			<div class="col-md-3">
 				{{form_label(form_inscription.prenom, '*')	}}
 				{{form_label(form_inscription.confirm_password, 'Confirmer votre mot de passe (6 caractères minimum) :')	}}
-				{{form_widget(form_inscription.confirm_password, {'attr':{'class':'form-control'}})}}
+				{{form_widget(form_inscription.confirm_password, {'attr':{'class':'form-control'}}
+				)}}
 				{{form_errors(form_inscription.confirm_password)}}
 			</div>
 		</div>
@@ -101,7 +107,8 @@
 <div class="col-md-8 offset-md-4">
 	<div class="g-recaptcha" data-sitekey="6LdZI8QUAAAAALEI9NU699TYNHSbo0CxRyCe5fkH"></div>
 </br></div><div class="col-md-5 offset-md-5">
-<input onclick="checkRecaptcha();" class="btn btn-rose btn-primary" value="Valider le Captcha" type="button" id="btnSubmit"></input></br><button style="display:none" class="btn btn-rose btn-primary" type="submit" id="btnvalidator">Créer votre compte</button</form></div></br>{{ form_end(form_inscription) }}<div class="card-footer text-muted text-center">Vous possédez déjà un compte ?<a href="{{path('connexion')}}">Identifiez-vous</a></div><script type="text/javascript" language="javascript">document.getElementById("creer").onclick = function (event) {
+<input onclick="checkRecaptcha();" class="btn btn-rose btn-primary" value="Valider le Captcha" type="button" id="btnSubmit"></input><br><br><button style="display:none" class="btn btn-rose btn-primary" type="submit" id="btnvalidator">
+Créer votre compte</button><br><br></form></div>{{ form_end(form_inscription) }}<div class="card-footer text-muted text-center">Vous possédez déjà un compte ?<a href="{{path('connexion')}}">Identifiez-vous</a></div><br><br><script type="text/javascript" language="javascript">document.getElementById("creer").onclick = function (event) {
 var a = document.getElementById("mdp").value;
 var b = document.getElementById("confirmer_mdp").value;
 
@@ -126,13 +133,11 @@ window.location = 'inscription.php';
 let b2 = document.getElementById("btnvalidator")
 let b1 = document.getElementById("btnSubmit")
 var response = grecaptcha.getResponse();
-if (response.length == 0) {
-// reCaptcha not verified
+if (response.length == 0) { // reCaptcha not verified
 alert("Captcha not Valide");
 
 return false;
-} else {
-// reCaptch verified
+} else { // reCaptch verified
 b2.style.display = "block"
 b1.style.display = "none"
 return true;

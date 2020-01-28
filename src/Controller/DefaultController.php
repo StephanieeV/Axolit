@@ -29,10 +29,7 @@ class DefaultController extends AbstractController
     public function index(Request $request)
     {
         $em=$this->get('doctrine')->getManager();
-        
-        $dernieres_annonces = $em->getRepository(Annonce::class)->findAll(
-          
-        );
+        $dernieres_annonces = $em->getRepository(Annonce::class)->findAll();
 
         return $this->render('default/accueil.html.twig', [
             'dernieres_annonces' => $dernieres_annonces,
@@ -280,7 +277,7 @@ class DefaultController extends AbstractController
         $em = $this->get('doctrine')->getManager();
         $annonces = $em->getRepository(Annonce::class)->findBy(
             ['type_annonce' => '5'],
-            ['heure_date_publication' => 'ASC']
+            ['heure_date_publication' => 'DESC']
         );
         $annonces = $paginator->paginate($annonces, $request->query->getInt('page', 1), 3);
         return $this->render('default/liste_produits.html.twig', [
@@ -296,7 +293,7 @@ class DefaultController extends AbstractController
         $em = $this->get('doctrine')->getManager();
         $annonces = $em->getRepository(Annonce::class)->findBy(
             ['type_annonce' => '6'],
-            ['heure_date_publication' => 'ASC']
+            ['heure_date_publication' => 'DESC']
         );
         $annonces = $paginator->paginate($annonces, $request->query->getInt('page', 1), 3);
 
@@ -309,7 +306,7 @@ class DefaultController extends AbstractController
     {
         $em = $this->get('doctrine')->getManager();
         $dernieres_annonces = $em->getRepository(Annonce::class)->findBy(
-            ['heure_date_publication' => 'ASC']
+            ['heure_date_publication' => 'DESC']
         );
 
         return $this->render('default/liste_reparation.html.twig', [
@@ -360,12 +357,25 @@ class DefaultController extends AbstractController
     /**
      * @Route("/profil/{id}", name="profil",methods={"GET"})
      */
+<<<<<<< HEAD
     public function profil(User $user)
     {
         $form = $this->createForm(SignalerType::class);
         return $this->render('default/profil_autre.html.twig', [
             'user' => $user,
             'form_signaler' => $form->createView(),
+=======
+    public function profil(User $user,Request $request)
+    {    
+        $em = $this->get('doctrine')->getManager();
+        // $userr = $this->getUser()->getId();
+        $annonces = $em->getRepository(Annonce::class)->findBy(
+            ['user' => $user]
+        );
+        return $this->render('default/profil_autre.html.twig'
+            , [
+            'user' => $user,'annoncesUser'=>$annonces
+>>>>>>> c4d7166fca97f6d6233f020c4e5591aeb748c55b
             ]
         );
     }

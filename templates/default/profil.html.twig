@@ -50,6 +50,14 @@
 
 									<div class="card text-center" style="width: 20rem;">
 										<img class="card-img-bottom">
+										{% if userProfile.photoprofil != null %}
+
+											<img src="{{ userProfile.photoprofil }}" class="image_produit">
+
+										{% else %}
+											<img src="{{asset('./img/profil/photo_profil.jpg')}}" class="image_profil">
+										{% endif %}
+
 										<img src="{{asset(userProfile.photoprofil)}}" style="max-width: 237px; max-height: 237px;" class="photo_profil">
 
 										<div class="card-body ">

@@ -1,61 +1,77 @@
 {% extends "layout.html.twig" %}
-{% block titre_page %}Axolit - Connexion
+{% block titre_page %}
+	Axolit - Connexion
 {% endblock %}
 {% block accueil %}
 	class="btn btn-rose "
 {% endblock %}
-{% block vendre %}class="btn btn-rose "
+{% block vendre %}
+	class="btn btn-rose "
 {% endblock %}
-{% block acheter %}class="btn btn-rose "
+{% block acheter %}
+	class="btn btn-rose "
 {% endblock %}
-{% block reparer %}class="btn btn-rose "
+{% block reparer %}
+	class="btn btn-rose "
 {% endblock %}
 {% block contenu %}
 
 	<div class="container">
 		<div class="card">
-			<h5 class="card-header">Connexion</h5>
+			<h5 class="card-header">
+				Connexion
+			</h5>
 			<div class="card-body text-center">
 				<form method="post">
 					{% if error %}
-						<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+						<div class="alert alert-danger">
+							{{ error.messageKey|trans(error.messageData, 'security') }}
+						</div>
 					{% endif %}
 
 					{% if app.user %}
 						<div class="mb-3">
 							You are logged in as
-							{{ app.user.username }},
-							<a href="{{ path('app_logout') }}">Logout</a>
+							{{ app.user.username }}
+							,
+							<a href="{{ path('app_logout') }}">
+								Logout
+							</a>
 						</div>
 					{% endif %}
 
 					<div class="form-group row col-md-4 offset-md-4">
-						<label for="email">Adresse e-mail :</label>
+						<label for="email">
+							Adresse e-mail :
+						</label>
 						<div class="input-group">
 							<div class="input-group-prepend">
-								<div class="input-group-text" id="btnGroupAddon">@</div>
+								<div class="input-group-text" id="btnGroupAddon">
+									@
+								</div>
 							</div>
 							<input type="email" value="{{ last_username }}" class="form-control" id="email" placeholder="E-mail" required="Veuillez renseigner ce champ" name="email" autofocus>
 						</div>
 					</div>
 					<div class="form-group row col-md-4 offset-md-4">
-						<label for="inputPassword">Mot de passe :</label>
-						<input type="password" class="form-control" id="mdp"  name="password" placeholder="Mot de passe" required="Veuillez renseigner ce champ" name="mdp">
+						<label for="inputPassword">
+							Mot de passe :
+						</label>
+						<input type="password" class="form-control" id="mdp" name="password" placeholder="Mot de passe" required="Veuillez renseigner ce champ" name="mdp">
 					</div>
 
-					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-					<a href="#">Mot de passe oublié ?</a>
-					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="connexion">
-						<label class="form-check-label" for="connexion">Se souvenir de moi</label>
-					</div>
+
 					<br>
-					<button type="submit" class="btn btn-rose btn-primary">Me connecter</button>
+					<button type="submit" class="btn btn-rose btn-primary">
+						Me connecter
+					</button>
 				</form>
 			</div>
 			<div class="card-footer text-muted text-center">
 				Vous n'avez pas de compte ?
-				<a href="{{path('inscription')}}">Créer un compte</a>
+				<a href="{{path('inscription')}}">
+					Créer un compte
+				</a>
 			</div>
 		</div>
 	</div>

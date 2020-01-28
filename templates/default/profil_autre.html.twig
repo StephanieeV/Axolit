@@ -31,28 +31,18 @@
 							<img src="{{asset('css/svg/icone/reparer.svg')}}" style="width: 50px;" alt="badge de réparateur">
 							<img src="{{asset('css/svg/icone/vendre.svg')}}" style="width: 50px;" alt="badge de réparateur">
 						</div>
-
 						<div class="col-md-4">
 							<div class="row justify-content-center">
-
-
 								<div class="card text-center" style="width: 20rem;">
-
 									{% if user.photoprofil != null %}
 										<img src="{{ user.photoprofil}}" class="photo_profil">
 									{% else %}
 										<img src="{{asset('./img/profil/photo_profil.jpg')}}" class="photo_profil">
 									{% endif %}
-
-
 									<div class="card-body ">
 										<h3 class="card-title">
-
 											{{ user.nom }}
-
-
 										</h3>
-
 										<h4 class="card-text">
 											<img src="{{asset('css/svg/icone/localisation.svg')}}" alt="icone localisation">
 											{% if user.Ville == null %}
@@ -61,14 +51,11 @@
 												{{ user.Ville }}
 												, France
 											{% endif %}
-
-
 										</h4>
 									</div>
 								</div>
 							</div>
 						</div>
-
 						<div class="col-md-1 offset-3 text-right">
 							<a href="" data-toggle="modal" data-target="#myModal">
 								<img src="{{asset('css/svg/icone/signaler.svg')}}" alt="bouton signaler" style="width: 35px;">
@@ -78,7 +65,6 @@
 								<div class="modal-dialog">
 									<div
 										class="modal-content">
-
 										<!-- Modal Header -->
 										<div class="modal-header">
 											<h4 class="modal-title">
@@ -88,8 +74,8 @@
 												&times;
 											</button>
 										</div>
-
 										<!-- Modal body -->
+<<<<<<< HEAD
 										{{ form_start(form_signaler) }}
 											<div class="modal-body">
 													
@@ -106,6 +92,36 @@
 											</div>
 										{{ form_end(form_signaler) }}
 
+=======
+										<div class="modal-body">
+											<form>
+												<label for="checkbox">
+													Motif :
+												</label>
+												<div class="liste_motif">
+													<input type="checkbox" name="checkbox1" value="1">
+													Contenu indésirable
+													<br>
+													<input type="checkbox" name="checkbox2" value="2">
+													Fraude
+													<br>
+													<input type="checkbox" name="checkbox4" value="3">
+													Arnaque
+													<br>
+													<input type="checkbox" name="checkbox3" value="4">
+													Professionnel
+													<br>
+													<input type="checkbox" name="checkbox5" value="5">
+													Autre
+													<br>
+												</div>
+												<label for="input/text">
+													Message :
+												</label>
+												<input class="form-control" type="text" name="message" placeholder="Décrivez pourquoi vous signalez...">
+											</form>
+										</div>
+>>>>>>> c4d7166fca97f6d6233f020c4e5591aeb748c55b
 										<!-- Modal footer -->
 										<div class="modal-footer">
 											<button type="button" class="btn btn-light" name="bouton annuler" data-dismiss="modal">
@@ -115,15 +131,12 @@
 												Envoyer
 											</button>
 										</div>
-
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-
 					<br>
-
 					<div class="row justify-content-center">
 						<div class="col-md-4">
 							<table>
@@ -140,18 +153,14 @@
 												<div class="modal-body">
 													Voici le numéro de téléphone de cet utilisateur :
 													{% if user.telephone == null %}
-														Cet utilisateur n'a pas renseigner son numéro de téléphone.
+														Cet utilisateur n'a pas renseigné son numéro de téléphone.
 													{% else %}
 														Voici le numéro de téléphone de cet utilisateur :
 														{{ user.telephone }}
 														.
 														<br>
 														Veuillez le contacter uniquement à propos du site.
-
-
 													{% endif %}
-
-
 													<button type="button" class="close" data-dismiss="modal">
 														<span>
 															&times;
@@ -178,14 +187,10 @@
 											<div class="modal-content">
 												<div class="modal-body">
 													Voici l'email de cet utilisateur :
-
 													{{ user.email }}
-
 													.
 													<br>
 													Veuillez le contacter uniquement à propos du site.
-
-
 													<button type="button" class="close" data-dismiss="modal">
 														<span>
 															&times;
@@ -217,225 +222,65 @@
 				</div>
 			</div>
 		</div>
-
 		<br>
-
 		<div class="col-md-8 offset-md-2">
-
 			<h2>
 				Compétences
 			</h2>
-
 			<p class="text-justify">
 				<ul>
 					{% block competences %}
 					{% endblock %}
 				</ul>
 			</p>
-
 			<br>
 			<!--<span class="trait">Cet utilisateur à déjà réparé</span>-->
 			<h2>
-				Cet utilisateur à déjà réparé
+				Annonces de cet utilisateur
 			</h2>
 			<br>
+			{% for annonce in annoncesUser %}
+				<div class="row text-center text-md-left">
+					<div class="col-md-4">
+						{% if annonce.photoannonces.first != null %}
+							<img src="{{ annonce.photoannonces.first }}" class="image_produit">
 
-			<div class="row text-center text-md-left">
-				<div class="col-md-4">
-					<img>
-					{% block repare1 %}
-					{% endblock %}
-					style="width: 200px; height: 150px;"
-				</div>
-				<div class="col-md-6">
-					<h3>
-						{% block dejaRepare1Titre %}
-						{% endblock %}
-						<img src="{{asset('./css/svg/icone/5_etoile.svg')}}" style="width: 100px;">
-					</h3>
-					<p class="text-justify">
-						{% block dejaRepare1Description %}
-						{% endblock %}
-					</p>
-					<div class="text-center">
-						<button type="button" class="btn-rose btn btn-primary btn-sm">
-							Lire plus
-						</button>
+						{% else %}
+							<img src="{{asset('./img/produit/image_produit.jpg')}}" class="image_produit">
+						{% endif %}
+
+					</div>
+					<div class="col-md-6">
+						<h3>
+							<a class="lien" href=" {{ path('produit', {'id': annonce.id} ) }}">
+								{{annonce.titre}}
+							</a>
+
+						</h3>
+						<h4>
+							{{ annonce.prix }}
+							€
+						</h4>
+
+						<p class="text-justify  text-center text-md-left">
+							{{ annonce.texteannonce | slice(0, 50) }}
+							...
+
+						</p>
+						<a href=" {{ path('produit', {'id': annonce.id} ) }}">
+							<button class="btn-rose btn btn-primary" name="bouton voir produit" type="button">
+								Voir le produit
+							</button>
+						</a>
 					</div>
 				</div>
-			</div>
+
+				<br>
+			{% endfor %}
+
 
 			<br>
 
-			<div class="row  text-center text-md-left">
-				<div class="col-md-4">
-					<img>
-					{% block repare2 %}
-					{% endblock %}
-					style="width: 200px; height: 150px;"
-				</div>
-				<div class="col-md-6">
-					<h3>
-						{% block dejaRepare2Titre %}
-						{% endblock %}
-						<img src="{{asset('css/svg/icone/4_etoile.svg')}}" style="width: 100px;">
-					</h3>
-					<p class="text-justify">
-						{% block dejaRepare2Description %}
-						{% endblock %}
-					</p>
-					<div class="text-center">
-						<button type="button" class="btn-rose btn btn-primary btn-sm">
-							Lire plus
-						</button>
-					</div>
-				</div>
-			</div>
-
-			<br>
-
-			<div class="row justify-content-center">
-				<div class="card" style="width: 50rem;">
-					<div class="card-header">
-						<h2>
-							Notes
-							<img src="{{asset('css/svg/icone/3_etoile.svg')}}" style="width: 100px;">
-						</h2>
-						<table class="table-note">
-							<colgroup>
-								<col width="150px">
-								<col width="150px">
-								<col width="250px">
-							</colgroup>
-							<tr>
-								<td class="td-note-droite">
-									8 %
-								</td>
-								<td class="td-note-gauche">
-									<img src="{{asset('css/svg/icone/5_etoile.svg')}}" style="width: 100px;">
-								</td>
-								<td class="td-note-droite">
-									Excellent réparateur
-								</td>
-							</tr>
-							<tr>
-								<td class="td-note-droite">
-									73 %
-								</td>
-								<td class="td-note-gauche">
-									<img src="{{asset('css/svg/icone/4_etoile.svg')}}" style="width: 100px;">
-								</td>
-								<td class="td-note-droite">
-									Bonne prestation
-								</td>
-							</tr>
-							<tr>
-								<td class="td-note-droite">
-									14 %
-								</td>
-								<td class="td-note-gauche">
-									<img src="{{asset('css/svg/icone/3_etoile.svg')}}" style="width: 100px;">
-								</td>
-								<td class="td-note-droite">
-									Prestation satisfaisante
-								</td>
-							</tr>
-							<tr>
-								<td class="td-note-droite">
-									5 %
-								</td>
-								<td class="td-note-gauche">
-									<img src="{{asset('css/svg/icone/2_etoile.svg')}}" style="width: 100px;">
-								</td>
-								<td class="td-note-droite">
-									Prestation décevante
-								</td>
-							</tr>
-							<tr>
-								<td class="td-note-droite">
-									0 %
-								</td>
-								<td class="td-note-gauche">
-									<img src="{{asset('css/svg/icone/1_etoile.svg')}}" style="width: 100px;">
-								</td>
-								<td class="td-note-droite">
-									Mauvaise expérience
-								</td>
-							</tr>
-							<tr>
-								<td class="td-note-droite">
-									0 %
-								</td>
-								<td class="td-note-gauche">
-									<img src="{{asset('css/svg/icone/0_etoile.svg')}}" style="width: 100px;">
-								</td>
-								<td class="td-note-droite">
-									Médiocre
-								</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-			</div>
-
-			<br>
-			<h2>
-				Commentaires
-			</h2>
-			<br>
-
-			<div class="row">
-				<div class="card" style="width: 50rem;">
-					<div class="card-body text-center text-md-left">
-
-						<div class="row">
-							<div class="col-md-2">
-								<img src="{{asset('css/images/profil/photo_profil.jpg')}}" style="width: 90px; height: 90px;">
-							</div>
-							<div class="col-md-10">
-								<p>
-									<span>
-										{% block commentaire1Nom %}
-										{% endblock %}
-										<img src="{{asset('css/svg/icone/5_etoile.svg')}}" style="width: 100px;">
-									</span>
-								</p>
-								<p class="text-justify">
-									{% block commentaire1Description %}
-									{% endblock %}
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<br>
-
-			<div class="row">
-				<div class="card" style="width: 50rem;">
-					<div class="card-body text-center text-md-left">
-						<div class="row">
-							<div class="col-md-2">
-								<img src="{{asset('css/images/profil/photo_profil.jpg')}}" style="width: 90px; height: 90px;">
-							</div>
-							<div class="col-md-10">
-								<p>
-									<span>
-										{% block commentaire2Nom %}
-										{% endblock %}
-										<img src="{{asset('css/svg/icone/4_etoile.svg')}}" style="width: 100px;">
-									</span>
-								</p>
-								<p class="text-justify">
-									{% block commentaire2Description %}
-									{% endblock %}
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 
 			<br>
 			<h2>
