@@ -116,37 +116,21 @@
 											</div>
 
 											<!-- Modal body -->
+											{{ form_start(form_signaler) }}
 											<div class="modal-body">
-												<form>
-													<label for="checkbox">
-														Motif :
-													</label>
-													<div class="liste_motif">
-														<input type="checkbox" name="checkbox1" value="1">
-														Contenu indésirable
-														<br>
-														<input type="checkbox" name="checkbox2" value="2">
-														Fraude
-														<br>
-														<input type="checkbox" name="checkbox4" value="3">
-														Arnaque
-														<br>
-														<input type="checkbox" name="checkbox3" value="4">
-														Professionnel
-														<br>
-														<input type="checkbox" name="checkbox4" value="5">
-														Doublon
-														<br>
-														<input type="checkbox" name="checkbox5" value="6">
-														Autre
-														<br>
-													</div>
-													<label for="input/text">
-														Message :
-													</label>
-													<input class="form-control" type="text" name="message" placeholder="Décrivez pourquoi vous signalez...">
-												</form>
+													
+													{{form_label(form_signaler.motif, 'Motif')}}
+													{{form_widget(form_signaler.motif, {'attr':{'class':'form-control'}})}}
+													{{form_row(form_signaler.motif)}}
+													{{form_errors(form_signaler.motif)}}
+													<br>
+													{{form_label(form_signaler.message, 'Message')}}
+													{{form_widget(form_signaler.message, {'attr':{'class':'form-control'}})}}
+													{{form_row(form_signaler.message)}}
+													{{form_errors(form_signaler.message)}}
+												
 											</div>
+											{{ form_end(form_signaler) }}
 
 											<!-- Modal footer -->
 											<div class="modal-footer">
@@ -157,7 +141,7 @@
 													Envoyer
 												</button>
 											</div>
-
+											
 										</div>
 									</div>
 								</div>

@@ -11,6 +11,7 @@ use App\Form\UserType;
 use App\Form\InscriptionType;
 use App\Form\InformationsType;
 use App\Form\ContactType;
+use App\Form\SignalerType;
 use App\Form\AnnonceType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\AnnonceRepository;
@@ -348,10 +349,10 @@ class DefaultController extends AbstractController
      */
     public function produit(Annonce $annonce)
     {
-        return $this->render(
-            'default/produit.html.twig',
-            [
+        $form = $this->createForm(SignalerType::class);
+        return $this->render('default/produit.html.twig',[
                 'annonce' => $annonce,
+                'form_signaler' => $form->createView(),
             ]
         );
     }
@@ -359,12 +360,12 @@ class DefaultController extends AbstractController
     /**
      * @Route("/profil/{id}", name="profil",methods={"GET"})
      */
-    public function profil(Annonce $annonce)
+    public function profil(User $user)
     {
-        return $this->render(
-            'default/profil.html.twig',
-            [
-                'annonce' => $annonce,
+        $form = $this->createForm(SignalerType::class);
+        return $this->render('default/profil_autre.html.twig', [
+            'user' => $user,
+            'form_signaler' => $form->createView(),
             ]
         );
     }
