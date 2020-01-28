@@ -359,12 +359,16 @@ class DefaultController extends AbstractController
     /**
      * @Route("/profil/{id}", name="profil",methods={"GET"})
      */
-    public function profil(Annonce $annonce)
-    {
-        return $this->render(
-            'default/profil.html.twig',
-            [
-                'annonce' => $annonce,
+    public function profil(User $user,Request $request)
+    {    
+        $em = $this->get('doctrine')->getManager();
+        // $userr = $this->getUser()->getId();
+        $annonces = $em->getRepository(Annonce::class)->findBy(
+            ['user' => $user]
+        );
+        return $this->render('default/profil_autre.html.twig'
+            , [
+            'user' => $user,'annoncesUser'=>$annonces
             ]
         );
     }

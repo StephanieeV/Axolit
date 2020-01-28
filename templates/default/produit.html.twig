@@ -39,14 +39,20 @@
 								<div class="row justify-content-center">
 									{% if annonce.photoannonces.first != null %}
 										{% for photodannonce in annonce.photoannonces %}
-											<img src="{{ photodannonce.libelle }}">
+											<img src="{{ photodannonce.libelle }}" class="photo">
+
 										{% endfor %}
 									{% else %}
-										<img src="{{asset('./img/profil/photo_profil.jpg')}}" class="photo_profil">
+										<img src="{{asset('./img/profil/photo_profil.jpg')}}" class="photo">
 									{% endif %}
 								</div>
 								<br>
-								<p class="date">Posté le : {{ annonce.heuredatepublication|date("m/d/Y") }} à {{ annonce.heuredatepublication|date("H:i") }}</p>
+								<p class="date">
+									Posté le :
+									{{ annonce.heuredatepublication|date("m/d/Y") }}
+									à
+									{{ annonce.heuredatepublication|date("H:i") }}
+								</p>
 								<br>
 								<h5 class="card-title">
 									Description
@@ -85,13 +91,17 @@
 										{% else %}
 											France
 										{% endif %}
+										<br>
+										<br>
+
 										<a href="{{path("addFavorisAnnonce",{'id':annonce.id})}}">
 
 											<button class="btn-rose btn btn-primary btn-sm" type="button" name="favoris">
 												Ajouter aux favoris
 											</button>
 										</a>
-										<br>
+
+
 									</p>
 								</div>
 							</div>
