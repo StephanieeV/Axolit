@@ -276,7 +276,7 @@ class DefaultController extends AbstractController
         $em = $this->get('doctrine')->getManager();
         $annonces = $em->getRepository(Annonce::class)->findBy(
             ['type_annonce' => '5'],
-            ['heure_date_publication' => 'ASC']
+            ['heure_date_publication' => 'DESC']
         );
         $annonces = $paginator->paginate($annonces, $request->query->getInt('page', 1), 3);
         return $this->render('default/liste_produits.html.twig', [
@@ -292,7 +292,7 @@ class DefaultController extends AbstractController
         $em = $this->get('doctrine')->getManager();
         $annonces = $em->getRepository(Annonce::class)->findBy(
             ['type_annonce' => '6'],
-            ['heure_date_publication' => 'ASC']
+            ['heure_date_publication' => 'DESC']
         );
         $annonces = $paginator->paginate($annonces, $request->query->getInt('page', 1), 3);
 
@@ -305,7 +305,7 @@ class DefaultController extends AbstractController
     {
         $em = $this->get('doctrine')->getManager();
         $dernieres_annonces = $em->getRepository(Annonce::class)->findBy(
-            ['heure_date_publication' => 'ASC']
+            ['heure_date_publication' => 'DESC']
         );
 
         return $this->render('default/liste_reparation.html.twig', [
