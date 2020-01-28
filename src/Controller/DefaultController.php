@@ -28,10 +28,7 @@ class DefaultController extends AbstractController
     public function index(Request $request)
     {
         $em=$this->get('doctrine')->getManager();
-        
-        $dernieres_annonces = $em->getRepository(Annonce::class)->findAll(
-          
-        );
+        $dernieres_annonces = $em->getRepository(Annonce::class)->findAll();
 
         return $this->render('default/accueil.html.twig', [
             'dernieres_annonces' => $dernieres_annonces,

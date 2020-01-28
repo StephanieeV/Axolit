@@ -161,45 +161,29 @@
 						<li data-target="#Indicators" data-slide-to="2"></li>
 					</ol>
 					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<a href="produit1.php">
-								<img src="img/telephone.jpg" class="d-block w-100" alt="...">
+						{% for derniere_annonce in dernieres_annonces|slice(-3, 3) %}
+							{% if loop.index == 1 %}
+								<div class="carousel-item active">
+							{% else %}
+								<div class="carousel-item ">
+							{% endif %}
+							<a href=" {{ path('produit', {'id': derniere_annonce.id} ) }}">
+							{% if derniere_annonce.photoannonces.first != null %}
+								<img src="{{ derniere_annonce.photoannonces.first }}" class="image_produit">
+							{% else %}
+								<img src="{{asset('./img/profil/photo_profil.jpg')}}" class="image_produit">
+							{% endif %}
 								<div class="carousel-caption d-block">
 									<h5>
-										Iphone X
+										{{ derniere_annonce.titre }}
 									</h5>
 									<p>
-										Vitre cassée.
+										{{ derniere_annonce.texteannonce | slice(0, 50) }}...
 									</p>
 								</div>
 							</a>
 						</div>
-						<div class="carousel-item">
-							<a href="produit.php">
-								<img src="./css/images/phone1.jpg" class="d-block w-100" alt="...">
-								<div class="carousel-caption d-block">
-									<h5>
-										Second slide label
-									</h5>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									</p>
-								</div>
-							</a>
-						</div>
-						<div class="carousel-item">
-							<a href="produit.php">
-								<img src="./css/images/phone1.jpg" class="d-block w-100" alt="...">
-								<div class="carousel-caption d-block">
-									<h5>
-										Second slide label
-									</h5>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									</p>
-								</div>
-							</a>
-						</div>
+						{% endfor %}
 					</div>
 					<a class="carousel-control-prev" href="#Indicators" role="button" data-slide="prev">
 						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -227,49 +211,26 @@
 			<div class="photo_last_annonces">
 				<div class="sous-categorie container">
 					<div class="row justify-content-center ">
+						{% for derniere_annonce in dernieres_annonces|slice(-3, 3) %}
 						<div class="col-auto">
-							<a href="produit1.php">
+							<a href=" {{ path('produit', {'id': derniere_annonce.id} ) }}">
 								<p class="photo-annonces">
-									<img class="photo img-fluid" src="./css/images/phone1.jpg" alt="annonce récente">
-									<span class="texte-photo ">
-										<u>
-											IPhone 8
-										</u>
-										<br>
-										Ecran noir
-									</span>
-								</p>
-							</a>
-						</div>
-						<div class="col-auto">
-							<a href="produit2.php">
-								<p class="photo-annonces">
-									<img class="photo img-fluid" src="img/telephone.jpg" alt="annonce récente">
+									{% if derniere_annonce.photoannonces.first != null %}
+										<img src="{{ derniere_annonce.photoannonces.first }}" class="image_produit">
+									{% else %}
+										<img src="{{asset('./img/profil/photo_profil.jpg')}}" class="image_produit">
+									{% endif %}
 									<span class="texte-photo">
 										<u>
-											Samsung
+											{{ derniere_annonce.titre }}
 										</u>
 										<br>
-										Vitre cassé
+										{{ derniere_annonce.texteannonce | slice(0, 50) }}...
 									</span>
 								</p>
 							</a>
 						</div>
-						<div class="col-auto">
-							<a href="produit3.php">
-								<p class="photo-annonces">
-									<img class="photo img-fluid" src="./css/images/ordinateuracer.jpg" alt="annonce récente">
-									<span class="texte-photo">
-										<u>
-											Acer
-										</u>
-										<br>
-										Batterie en fin de vie
-									</span>
-								</p>
-							</a>
-						</div>
-
+						{% endfor %}
 					</div>
 				</div>
 			</div>
