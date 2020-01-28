@@ -357,25 +357,17 @@ class DefaultController extends AbstractController
     /**
      * @Route("/profil/{id}", name="profil",methods={"GET"})
      */
-<<<<<<< HEAD
-    public function profil(User $user)
-    {
-        $form = $this->createForm(SignalerType::class);
-        return $this->render('default/profil_autre.html.twig', [
-            'user' => $user,
-            'form_signaler' => $form->createView(),
-=======
     public function profil(User $user,Request $request)
     {    
+        $form = $this->createForm(SignalerType::class);
         $em = $this->get('doctrine')->getManager();
         // $userr = $this->getUser()->getId();
         $annonces = $em->getRepository(Annonce::class)->findBy(
             ['user' => $user]
         );
-        return $this->render('default/profil_autre.html.twig'
-            , [
-            'user' => $user,'annoncesUser'=>$annonces
->>>>>>> c4d7166fca97f6d6233f020c4e5591aeb748c55b
+        return $this->render('default/profil_autre.html.twig', [
+            'user' => $user,'annoncesUser'=>$annonces,
+            'form_signaler' => $form->createView(),
             ]
         );
     }
